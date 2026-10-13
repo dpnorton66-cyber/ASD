@@ -1,0 +1,85 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Handheld.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Handheld alerts",
+      "w": 390,
+      "x": 1520,
+      "y": 1600
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 1160,
+      "is_interactive": true,
+      "title": "Live ward view",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Patient.dc.html": {
+      "expand": "fill",
+      "h": 1120,
+      "is_interactive": true,
+      "title": "Patient sensory match",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "Patterns.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "Patterns and thresholds",
+      "w": 1440,
+      "x": 0,
+      "y": 1600
+    },
+    "Zone.dc.html": {
+      "expand": "fill",
+      "h": 1180,
+      "is_interactive": true,
+      "title": "Zone detail — lounge",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-13T20:55:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "n1": {
+      "kind": "title1",
+      "maxW": 4480,
+      "text": "Live monitoring",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "n2": {
+      "kind": "title1",
+      "maxW": 1990,
+      "text": "Patterns and the handheld view",
+      "w": 240,
+      "x": 0,
+      "y": 1300
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Zone.dc.html",
+    "Patient.dc.html",
+    "Patterns.dc.html",
+    "Handheld.dc.html"
+  ],
+  "pages": [],
+  "title": "Ward Sensory Monitor"
+}

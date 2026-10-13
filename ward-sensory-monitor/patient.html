@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patient sensory match</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'IBM Plex Sans', system-ui, sans-serif; background: #EEF0EC; color: #18211F; -webkit-font-smoothing: antialiased; }
+a { color: #1D6B62; }
+a:hover { color: #14504a; }
+</style>
+</head>
+<body>
+<div id="dc-root"><div style="max-width: 1440px; margin: 0 auto; padding: 28px 32px 44px; display: flex; flex-direction: column; gap: 20px">
+
+  <header style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between">
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #5B6560; font-weight: 600">Beech Ward · sensory profile against conditions</div>
+      <h1 style="margin: 6px 0 0; font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.01em">Patient 1042 — [NAME]</h1>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end">
+      <div>
+        <label for="patientpick" style="display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600; margin-bottom: 5px">Patient</label>
+        <select id="patientpick" style="font: inherit; font-size: 14px; min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #CBD2CC; background: #FFFFFF; color: #18211F">
+          <option selected>1042 — [NAME]</option>
+          <option>1038 — [NAME]</option>
+          <option>1049 — [NAME]</option>
+          <option>1055 — [NAME]</option>
+          <option>1061 — [NAME]</option>
+        </select>
+      </div>
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600">Reading taken</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 500; margin-top: 4px">16:12</div>
+      </div>
+    </div>
+  </header>
+
+  <nav style="display: flex; flex-wrap: wrap; gap: 8px" aria-label="Screens">
+    <a href="index.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Live ward</a>
+    <a href="zone.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Zone detail</a>
+    <span aria-current="page" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 600; background: #18211F; color: #FFFFFF">Patient match</span>
+    <a href="patterns.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Patterns and thresholds</a>
+    <a href="handheld.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Handheld</a>
+  </nav>
+
+  <div style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 22px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+    <div style="display: flex; gap: 14px; align-items: flex-start; flex: 1 1 480px; min-width: 0">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex: none; margin-top: 2px" role="img" aria-label="Warning">
+        <path d="M12 3.5 21.5 20H2.5L12 3.5Z" stroke="#9E3B22" stroke-width="1.8" stroke-linejoin="round"></path>
+        <path d="M12 9.5v4.5" stroke="#9E3B22" stroke-width="1.8" stroke-linecap="round"></path>
+        <circle cx="12" cy="17" r="1.1" fill="#9E3B22"></circle>
+      </svg>
+      <div>
+        <div style="font-size: 18px; font-weight: 600; line-height: 24px">In the lounge, 7 dB above their sound limit for 18 minutes</div>
+        <div style="font-size: 14px; line-height: 21px; color: #5B6560; margin-top: 4px">Crowding is also above their limit: thirteen people, eleven of them patients. The sensory room is free and is within every limit in their profile.</div>
+      </div>
+    </div>
+    <div style="display: flex; flex: none; gap: 10px">
+      <a href="zone.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 8px; border: 1px solid #1D6B62; background: #1D6B62; color: #FFFFFF; font-size: 13px; font-weight: 600; text-decoration: none">Open the lounge</a>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+    <div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 24px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">Limits in the profile against the lounge now</h2>
+        <div style="font-size: 13px; color: #5B6560">The band shows what suits this patient. The marker shows the reading where they are.</div>
+
+        <div style="margin-top: 22px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+            <span style="font-size: 14px; font-weight: 600">Sound</span>
+            <span style="font-size: 13px; color: #5B6560">Suits up to 58 dB · limit 65 dB · <b style="color: #8A3219">now 72 dB</b></span>
+          </div>
+          <div style="position: relative; margin-top: 10px; padding-top: 16px">
+            <div style="display: flex; height: 14px; border-radius: 7px; overflow: hidden">
+              <div style="width: 50.8%; background: #1D6B62"></div>
+              <div style="width: 10.8%; background: #E3A93B"></div>
+              <div style="width: 38.4%; background: #C8502F"></div>
+            </div>
+            <div style="position: absolute; top: 0; left: 72.3%; width: 2px; height: 30px; background: #18211F"></div>
+            <div style="position: absolute; top: 0; left: 72.3%; width: 10px; height: 10px; background: #18211F; border-radius: 2px; transform: translate(-4px, 0) rotate(45deg)"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5B6560; margin-top: 7px">
+            <span>25 dB</span><span>58</span><span>90 dB</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 26px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+            <span style="font-size: 14px; font-weight: 600">People in the same room</span>
+            <span style="font-size: 13px; color: #5B6560">Suits up to 6 · limit 10 · <b style="color: #8A3219">now 13</b> (11 patients, 2 staff)</span>
+          </div>
+          <div style="position: relative; margin-top: 10px; padding-top: 16px">
+            <div style="display: flex; height: 14px; border-radius: 7px; overflow: hidden">
+              <div style="width: 30%; background: #1D6B62"></div>
+              <div style="width: 20%; background: #E3A93B"></div>
+              <div style="width: 50%; background: #C8502F"></div>
+            </div>
+            <div style="position: absolute; top: 0; left: 70%; width: 2px; height: 30px; background: #18211F"></div>
+            <div style="position: absolute; top: 0; left: 70%; width: 10px; height: 10px; background: #18211F; border-radius: 2px; transform: translate(-4px, 0) rotate(45deg)"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5B6560; margin-top: 7px">
+            <span>0</span><span>6</span><span>20</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 26px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+            <span style="font-size: 14px; font-weight: 600">Light</span>
+            <span style="font-size: 13px; color: #5B6560">Suits 150 to 500 lux · limit 650 · <b style="color: #7A4F0C">now 620 lux</b></span>
+          </div>
+          <div style="position: relative; margin-top: 10px; padding-top: 16px">
+            <div style="display: flex; height: 14px; border-radius: 7px; overflow: hidden">
+              <div style="width: 12.5%; background: #AEB8B2"></div>
+              <div style="width: 29.2%; background: #1D6B62"></div>
+              <div style="width: 12.5%; background: #E3A93B"></div>
+              <div style="width: 45.8%; background: #C8502F"></div>
+            </div>
+            <div style="position: absolute; top: 0; left: 51.7%; width: 2px; height: 30px; background: #18211F"></div>
+            <div style="position: absolute; top: 0; left: 51.7%; width: 10px; height: 10px; background: #18211F; border-radius: 2px; transform: translate(-4px, 0) rotate(45deg)"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5B6560; margin-top: 7px">
+            <span>0</span><span>150</span><span>500</span><span>1200 lux</span>
+          </div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 10px">Artificial light above 400 lux is recorded as a trigger. Of the 620 lux in the lounge, 440 is artificial, so this reading counts as above the limit even though the total does not.</div>
+        </div>
+
+        <div style="margin-top: 26px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+            <span style="font-size: 14px; font-weight: 600">Movement past them</span>
+            <span style="font-size: 13px; color: #5B6560">Suits up to 8 a minute · limit 15 · <b style="color: #185D55">now 9</b></span>
+          </div>
+          <div style="position: relative; margin-top: 10px; padding-top: 16px">
+            <div style="display: flex; height: 14px; border-radius: 7px; overflow: hidden">
+              <div style="width: 26.7%; background: #1D6B62"></div>
+              <div style="width: 23.3%; background: #E3A93B"></div>
+              <div style="width: 50%; background: #C8502F"></div>
+            </div>
+            <div style="position: absolute; top: 0; left: 30%; width: 2px; height: 30px; background: #18211F"></div>
+            <div style="position: absolute; top: 0; left: 30%; width: 10px; height: 10px; background: #18211F; border-radius: 2px; transform: translate(-4px, 0) rotate(45deg)"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5B6560; margin-top: 7px">
+            <span>0</span><span>8</span><span>30 a minute</span>
+          </div>
+        </div>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between">
+          <div>
+            <h2 style="margin: 0; font-size: 17px; font-weight: 600">Where 1042 has been today, and how it suited them</h2>
+            <div style="font-size: 13px; color: #5B6560; margin-top: 3px">Built from the foot-traffic sensors and the readings in each area.</div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: #4A544F">
+            <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 10px; border-radius: 3px; background: #1D6B62"></span>Within limits</span>
+            <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 10px; border-radius: 3px; background: #E3A93B"></span>Approaching</span>
+            <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 10px; border-radius: 3px; background: #C8502F"></span>Above</span>
+          </div>
+        </div>
+
+        <svg viewBox="0 0 820 140" style="width: 100%; height: auto; display: block; margin-top: 14px" role="img" aria-label="Timeline of the patient's day. Their room in wing A, dining and the group therapy room from 06:00 to 11:00, all within limits. The secure garden until noon. Dining from 12:00 to 12:50 was above limits and they left the table at 12:35. The sensory room until 14:00. The lounge from 14:00, approaching limits, then above limits from 15:20, and they left the room briefly at 15:58.">
+          <rect x="56" y="48" width="72.3" height="36" fill="#1D6B62"></rect>
+          <rect x="128.3" y="48" width="41.4" height="36" fill="#1D6B62"></rect>
+          <rect x="169.7" y="48" width="93" height="36" fill="#1D6B62"></rect>
+          <rect x="262.7" y="48" width="103.3" height="36" fill="#1D6B62"></rect>
+          <rect x="366" y="48" width="62" height="36" fill="#1D6B62"></rect>
+          <rect x="428" y="48" width="51.7" height="36" fill="#C8502F"></rect>
+          <rect x="479.7" y="48" width="72.3" height="36" fill="#1D6B62"></rect>
+          <rect x="552" y="48" width="82.7" height="36" fill="#E3A93B"></rect>
+          <rect x="634.7" y="48" width="53.3" height="36" fill="#C8502F"></rect>
+          <g stroke="#FFFFFF" stroke-width="1.5">
+            <line x1="128.3" y1="48" x2="128.3" y2="84"></line>
+            <line x1="169.7" y1="48" x2="169.7" y2="84"></line>
+            <line x1="262.7" y1="48" x2="262.7" y2="84"></line>
+            <line x1="366" y1="48" x2="366" y2="84"></line>
+            <line x1="428" y1="48" x2="428" y2="84"></line>
+            <line x1="479.7" y1="48" x2="479.7" y2="84"></line>
+            <line x1="552" y1="48" x2="552" y2="84"></line>
+          </g>
+          <rect x="688" y="48" width="112" height="36" fill="#EEF0EC" stroke="#D6DAD4" stroke-width="1"></rect>
+          <text x="744" y="71" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#5B6560" text-anchor="middle">still to come</text>
+          <g fill="#8A3219">
+            <path d="M464.2 28 l6 10 -12 0 Z"></path>
+            <path d="M673.9 28 l6 10 -12 0 Z"></path>
+          </g>
+          <circle cx="288.5" cy="33" r="5" fill="#1D6B62"></circle>
+          <text x="56" y="38" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#5B6560">Responses recorded by staff</text>
+          <g font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#4A544F" text-anchor="middle">
+            <text x="92" y="100">B03, wing A</text>
+            <text x="149" y="100">Dining</text>
+            <text x="216" y="100">B03, wing A</text>
+            <text x="314" y="100">Therapy</text>
+            <text x="397" y="100">Garden</text>
+            <text x="454" y="100">Dining</text>
+            <text x="516" y="100">Sensory room</text>
+            <text x="620" y="100">Lounge</text>
+          </g>
+          <line x1="56" y1="112" x2="800" y2="112" stroke="#CBD2CC" stroke-width="1"></line>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#5B6560" text-anchor="middle">
+            <text x="56" y="128">06:00</text>
+            <text x="180" y="128">08:00</text>
+            <text x="304" y="128">10:00</text>
+            <text x="428" y="128">12:00</text>
+            <text x="552" y="128">14:00</text>
+            <text x="676" y="128">16:00</text>
+            <text x="800" y="128">18:00</text>
+          </g>
+        </svg>
+
+        <ul style="list-style: none; margin: 16px 0 0; padding: 0; border-top: 1px solid #E4E7E3">
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">09:45</span>
+            <span style="font-size: 13px; line-height: 20px">Settled and took part in the activity session for forty minutes — [NAME]</span>
+          </li>
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">12:35</span>
+            <span style="font-size: 13px; line-height: 20px">Left the table before finishing the meal; dining room was at 69 dB — [NAME]</span>
+          </li>
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">15:58</span>
+            <span style="font-size: 13px; line-height: 20px">Left the lounge, returned after four minutes — [NAME]</span>
+          </li>
+        </ul>
+        <p style="margin: 14px 0 0; font-size: 12px; line-height: 19px; color: #5B6560">Both recorded responses followed a reading above this patient's sound limit. Three similar pairings have been recorded in the last fortnight, all between 12:00 and 13:00 or after 15:00.</p>
+      </section>
+    </div>
+
+    <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">Where would suit them now</h2>
+        <div style="font-size: 13px; color: #5B6560">Every area on the ward, measured against this profile.</div>
+
+        <div style="margin-top: 14px">
+          <sc-for list="{{spaces}}" as="s" hint-placeholder-count="6">
+            <div style="padding: 12px 0; border-top: 1px solid #E4E7E3">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+                <span style="font-size: 14px; font-weight: 600">{{s.name}}</span>
+                <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: {{s.chipBg}}; color: {{s.chipInk}}">{{s.chip}}</span>
+              </div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #4A544F; margin-top: 5px">{{s.readings}}</div>
+              <div style="font-size: 13px; line-height: 19px; color: #5B6560; margin-top: 4px">{{s.note}}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">Adjustments in the care plan</h2>
+        <div style="font-size: 13px; color: #5B6560">Agreed with the patient and recorded by the occupational therapist.</div>
+        <ul style="list-style: none; margin: 14px 0 0; padding: 0">
+          <li style="padding: 11px 0; border-top: 1px solid #E4E7E3; display: flex; gap: 10px; align-items: flex-start">
+            <span style="flex: none; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #F2D9D0; color: #8A3219; min-width: 76px; text-align: center">NOT DONE</span>
+            <span style="font-size: 13px; line-height: 20px">Offer ear defenders whenever sound passes 65 dB</span>
+          </li>
+          <li style="padding: 11px 0; border-top: 1px solid #E4E7E3; display: flex; gap: 10px; align-items: flex-start">
+            <span style="flex: none; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #E7EEEA; color: #185D55; min-width: 76px; text-align: center">IN PLACE</span>
+            <span style="font-size: 13px; line-height: 20px">Quiet room may be used without asking first</span>
+          </li>
+          <li style="padding: 11px 0; border-top: 1px solid #E4E7E3; display: flex; gap: 10px; align-items: flex-start">
+            <span style="flex: none; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #E7EEEA; color: #185D55; min-width: 76px; text-align: center">IN PLACE</span>
+            <span style="font-size: 13px; line-height: 20px">Seated away from the television and the lounge door</span>
+          </li>
+          <li style="padding: 11px 0; border-top: 1px solid #E4E7E3; display: flex; gap: 10px; align-items: flex-start">
+            <span style="flex: none; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #E7EEEA; color: #185D55; min-width: 76px; text-align: center">DONE</span>
+            <span style="font-size: 13px; line-height: 20px">Daylight before 11:00 — secure garden, 11:00 to 12:00</span>
+          </li>
+          <li style="padding: 11px 0; border-top: 1px solid #E4E7E3; display: flex; gap: 10px; align-items: flex-start">
+            <span style="flex: none; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #EFF1EE; color: #4A544F; min-width: 76px; text-align: center">NONE DUE</span>
+            <span style="font-size: 13px; line-height: 20px">Told in advance of any alarm test or fire drill</span>
+          </li>
+        </ul>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 10px; font-size: 17px; font-weight: 600">How this profile was set</h2>
+        <p style="margin: 0; font-size: 13px; line-height: 21px; color: #4A544F">Set by [NAME], occupational therapist, on 2 September 2026. Reviewed monthly; next review 4 November 2026.</p>
+        <p style="margin: 10px 0 0; font-size: 13px; line-height: 21px; color: #4A544F">Limits come from the sensory assessment and from the responses staff have recorded on the ward. Staff may record a response at any time; limits are only changed at review.</p>
+      </section>
+    </div>
+  </div>
+</div></div>
+<script src="dc-lite.js"></script>
+<script>
+class Component extends DCLogic {
+  renderVals() {
+    var ok = { chip: 'ALL WITHIN', chipBg: '#E7EEEA', chipInk: '#185D55' };
+    var near = { chip: 'APPROACHING', chipBg: '#FAEBCB', chipInk: '#7A4F0C' };
+    var over = { chip: 'ABOVE', chipBg: '#F2D9D0', chipInk: '#8A3219' };
+
+    var spaces = [
+      { name: 'Sensory / quiet room', readings: '32 dB · empty · 180 lux · 0 a min', note: 'Free now. Within every limit in this profile.', chip: ok.chip, chipBg: ok.chipBg, chipInk: ok.chipInk },
+      { name: 'Garden access corridor', readings: '51 dB · empty · 760 lux · 4 a min', note: 'Within every limit, and two thirds of the light is daylight. People pass through it.', chip: ok.chip, chipBg: ok.chipBg, chipInk: ok.chipInk },
+      { name: 'Their own room, B03', readings: '36 dB · 1 patient · 410 lux · 2 a min', note: 'Quiet, but the light is all artificial and close to the limit.', chip: near.chip, chipBg: near.chipBg, chipInk: near.chipInk },
+      { name: 'Secure garden', readings: '44 dB · 1 patient · 9,800 lux · 1 a min', note: 'Quiet and all daylight, but far above the light limit. Offer the shaded bench.', chip: near.chip, chipBg: near.chipBg, chipInk: near.chipInk },
+      { name: 'Dining', readings: '58 dB · 1 staff · 480 lux · 3 a min', note: 'Rising towards the limit as the room is set for the 17:00 meal.', chip: near.chip, chipBg: near.chipBg, chipInk: near.chipInk },
+      { name: 'Lounge — here now', readings: '72 dB · 11 patients + 2 staff · 620 lux · 5 a min', note: 'Above the limit for sound, crowding and artificial light.', chip: over.chip, chipBg: over.chipBg, chipInk: over.chipInk }
+    ];
+
+    return { spaces: spaces };
+  }
+}
+window.__dcProps = {};
+window.__dcBoot();
+</script>
+</body>
+</html>

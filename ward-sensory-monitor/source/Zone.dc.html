@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Zone detail — lounge</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'IBM Plex Sans', system-ui, sans-serif; background: #EEF0EC; color: #18211F; -webkit-font-smoothing: antialiased; }
+a { color: #1D6B62; }
+a:hover { color: #14504a; }
+</style>
+</helmet>
+
+<div style="max-width: 1440px; margin: 0 auto; padding: 28px 32px 44px; display: flex; flex-direction: column; gap: 20px">
+
+  <header style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between">
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #5B6560; font-weight: 600">Beech Ward · area detail</div>
+      <h1 style="margin: 6px 0 0; font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.01em">Lounge</h1>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end">
+      <div>
+        <label for="zonepick" style="display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600; margin-bottom: 5px">Area</label>
+        <select id="zonepick" style="font: inherit; font-size: 14px; min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #CBD2CC; background: #FFFFFF; color: #18211F">
+          <option selected>Lounge</option>
+          <option>Main corridor</option>
+          <option>Dining</option>
+          <option>Supervised kitchen</option>
+          <option>Garden access corridor</option>
+          <option>Secure garden</option>
+          <option>Bedroom wing A (B01–B06)</option>
+          <option>Bedroom wing B (B07–B10)</option>
+          <option>Bedroom wing C (B11–B14)</option>
+          <option>Sensory / quiet room</option>
+          <option>De-escalation suite</option>
+        </select>
+      </div>
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600">Reading taken</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 500; margin-top: 4px">16:12</div>
+      </div>
+    </div>
+  </header>
+
+  <nav style="display: flex; flex-wrap: wrap; gap: 8px" aria-label="Screens">
+    <a href="Main.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Live ward</a>
+    <span aria-current="page" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 600; background: #18211F; color: #FFFFFF">Zone detail</span>
+    <a href="Patient.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Patient match</a>
+    <a href="Patterns.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Patterns and thresholds</a>
+    <a href="Handheld.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Handheld</a>
+  </nav>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+    <div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+        <div style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 20px">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+            <span style="font-size: 13px; font-weight: 600; color: #4A544F">Sound</span>
+            <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #F2D9D0; color: #8A3219">ABOVE</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 10px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 38px; font-weight: 600; line-height: 40px">72</span>
+            <span style="font-size: 14px; color: #5B6560">dB LAeq</span>
+          </div>
+          <div style="font-size: 13px; color: #5B6560; margin-top: 8px; line-height: 19px">Set level 65 dB. Up 5 dB since 15:00. Above for 18 minutes, peaks of 81 dB.</div>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 20px">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+            <span style="font-size: 13px; font-weight: 600; color: #4A544F">People present</span>
+            <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #F2D9D0; color: #8A3219">ABOVE</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 10px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 38px; font-weight: 600; line-height: 40px">13</span>
+            <span style="font-size: 14px; color: #5B6560">people</span>
+          </div>
+          <div style="font-size: 13px; color: #5B6560; margin-top: 8px; line-height: 19px">Set level 12. Eleven patients and two staff. Five passes a minute through the door.</div>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 20px">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+            <span style="font-size: 13px; font-weight: 600; color: #4A544F">Light</span>
+            <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #FAEBCB; color: #7A4F0C">APPROACHING</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 10px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 38px; font-weight: 600; line-height: 40px">620</span>
+            <span style="font-size: 14px; color: #5B6560">lux</span>
+          </div>
+          <div style="font-size: 13px; color: #5B6560; margin-top: 8px; line-height: 19px">Set level 700. Daylight gives 180 lux, down from 560 at noon. No flicker detected.</div>
+        </div>
+      </div>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between">
+          <h2 style="margin: 0; font-size: 17px; font-weight: 600">Sound and people present, 06:00 to now</h2>
+          <div style="display: flex; gap: 18px; font-size: 12px; color: #4A544F">
+            <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 18px; height: 3px; background: #2C3833"></span>Sound, dB LAeq</span>
+            <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 18px; height: 3px; background: #9E3B22"></span>Set level</span>
+          </div>
+        </div>
+
+        <svg viewBox="0 0 820 300" style="width: 100%; height: auto; display: block; margin-top: 12px" role="img" aria-label="Sound in the lounge from 06:00 to 16:12. It stays between 38 and 69 decibels through the morning, with peaks at handover and lunch, then climbs steadily from 60 decibels at 14:00 to 73 decibels at 16:00 as visiting hour fills the room, passing the 65 decibel set level at about 15:15.">
+          <rect x="56" y="20" width="744" height="84" fill="#F2D9D0" fill-opacity="0.55"></rect>
+          <g stroke="#E4E7E3" stroke-width="1">
+            <line x1="56" y1="20" x2="800" y2="20"></line>
+            <line x1="56" y1="103.6" x2="800" y2="103.6"></line>
+            <line x1="56" y1="166.7" x2="800" y2="166.7"></line>
+            <line x1="56" y1="250" x2="800" y2="250"></line>
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#5B6560" text-anchor="end">
+            <text x="46" y="24">85</text>
+            <text x="46" y="108">65</text>
+            <text x="46" y="171">50</text>
+            <text x="46" y="254">30</text>
+          </g>
+          <path d="M56 216.5 L87 191.5 L118 158 L149 120.4 L180 132.9 L211 107.8 L242 141.3 L273 158 L304 145.5 L335 132.9 L366 149.6 L397 137.1 L428 99.5 L459 86.9 L490 112 L521 145.5 L552 124.5 L583 107.8 L614 95.3 L645 82.7 L676 70.2 L688 74.4 L688 250 L56 250 Z" fill="#2C3833" fill-opacity="0.08"></path>
+          <path d="M56 216.5 L87 191.5 L118 158 L149 120.4 L180 132.9 L211 107.8 L242 141.3 L273 158 L304 145.5 L335 132.9 L366 149.6 L397 137.1 L428 99.5 L459 86.9 L490 112 L521 145.5 L552 124.5 L583 107.8 L614 95.3 L645 82.7 L676 70.2 L688 74.4" fill="none" stroke="#2C3833" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></path>
+          <line x1="56" y1="103.6" x2="800" y2="103.6" stroke="#9E3B22" stroke-width="2" stroke-dasharray="7 5"></line>
+          <circle cx="688" cy="74.4" r="5" fill="#C8502F" stroke="#FFFFFF" stroke-width="2"></circle>
+          <line x1="688" y1="20" x2="688" y2="250" stroke="#9FA8A2" stroke-width="1" stroke-dasharray="3 4"></line>
+          <text x="684" y="34" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="600" fill="#5B6560" text-anchor="end">now</text>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#5B6560" text-anchor="middle">
+            <text x="56" y="272">06:00</text>
+            <text x="180" y="272">08:00</text>
+            <text x="304" y="272">10:00</text>
+            <text x="428" y="272">12:00</text>
+            <text x="552" y="272">14:00</text>
+            <text x="676" y="272">16:00</text>
+            <text x="800" y="272">18:00</text>
+          </g>
+          <text x="56" y="292" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#8A3219">Shaded band marks sound above the 65 dB set level</text>
+        </svg>
+
+        <svg viewBox="0 0 820 104" style="width: 100%; height: auto; display: block; margin-top: 4px" role="img" aria-label="People present in the lounge over the same period, rising from two at 06:00 to thirteen now, passing the set level of twelve at about 16:00.">
+          <g fill="#8FA39B">
+            <rect x="45" y="62.5" width="22" height="7.5"></rect>
+            <rect x="76" y="58.8" width="22" height="11.2"></rect>
+            <rect x="107" y="51.3" width="22" height="18.7"></rect>
+            <rect x="138" y="40" width="22" height="30"></rect>
+            <rect x="169" y="47.5" width="22" height="22.5"></rect>
+            <rect x="200" y="36.3" width="22" height="33.7"></rect>
+            <rect x="231" y="43.8" width="22" height="26.2"></rect>
+            <rect x="262" y="51.3" width="22" height="18.7"></rect>
+            <rect x="293" y="47.5" width="22" height="22.5"></rect>
+            <rect x="324" y="43.8" width="22" height="26.2"></rect>
+            <rect x="355" y="47.5" width="22" height="22.5"></rect>
+            <rect x="386" y="43.8" width="22" height="26.2"></rect>
+            <rect x="417" y="32.5" width="22" height="37.5"></rect>
+            <rect x="448" y="25" width="22" height="45"></rect>
+            <rect x="479" y="36.3" width="22" height="33.7"></rect>
+            <rect x="510" y="47.5" width="22" height="22.5"></rect>
+            <rect x="541" y="36.3" width="22" height="33.7"></rect>
+            <rect x="572" y="32.5" width="22" height="37.5"></rect>
+            <rect x="603" y="28.8" width="22" height="41.2"></rect>
+            <rect x="634" y="25" width="22" height="45"></rect>
+          </g>
+          <g fill="#C8502F">
+            <rect x="665" y="21.3" width="22" height="48.7"></rect>
+            <rect x="677" y="21.3" width="22" height="48.7"></rect>
+          </g>
+          <line x1="45" y1="70" x2="800" y2="70" stroke="#CBD2CC" stroke-width="1"></line>
+          <line x1="45" y1="25" x2="800" y2="25" stroke="#9E3B22" stroke-width="1.5" stroke-dasharray="7 5"></line>
+          <text x="46" y="20" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#8A3219">Set level 12 people</text>
+          <text x="46" y="88" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#5B6560">People present, counted by the door sensor — now eleven patients and two staff</text>
+        </svg>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between">
+          <h2 style="margin: 0; font-size: 17px; font-weight: 600">Light through the day, daylight and artificial</h2>
+          <div style="display: flex; gap: 18px; font-size: 12px; color: #4A544F">
+            <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 10px; border-radius: 3px; background: #C8942E"></span>Daylight</span>
+            <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 10px; border-radius: 3px; background: #4C6E90"></span>Artificial</span>
+          </div>
+        </div>
+        <svg viewBox="0 0 820 260" style="width: 100%; height: auto; display: block; margin-top: 12px" role="img" aria-label="Light in the lounge through the day. Daylight rises from 20 lux at 06:00 to 560 lux at noon then falls to 180 lux now, while artificial light is raised from 180 lux at noon to 440 lux now, holding the total between 600 and 740 lux.">
+          <g stroke="#E4E7E3" stroke-width="1">
+            <line x1="56" y1="20" x2="800" y2="20"></line>
+            <line x1="56" y1="83.3" x2="800" y2="83.3"></line>
+            <line x1="56" y1="146.7" x2="800" y2="146.7"></line>
+            <line x1="56" y1="210" x2="800" y2="210"></line>
+          </g>
+          <path d="M56 142.4 L180 108.7 L304 75.1 L428 53.8 L552 79.2 L614 79.2 L688 79.2 L688 172 L614 159.3 L552 129.8 L428 91.8 L304 121.3 L180 172 L56 205.8 Z" fill="#4C6E90" fill-opacity="0.85"></path>
+          <path d="M56 210 L56 205.8 L180 172 L304 121.3 L428 91.8 L552 129.8 L614 159.3 L688 172 L688 210 Z" fill="#C8942E" fill-opacity="0.9"></path>
+          <line x1="56" y1="62.2" x2="800" y2="62.2" stroke="#9E3B22" stroke-width="2" stroke-dasharray="7 5"></line>
+          <text x="800" y="57" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#8A3219" text-anchor="end">Set level 700 lux</text>
+          <line x1="688" y1="20" x2="688" y2="210" stroke="#9FA8A2" stroke-width="1" stroke-dasharray="3 4"></line>
+          <text x="684" y="32" font-family="IBM Plex Sans, sans-serif" font-size="11" font-weight="600" fill="#5B6560" text-anchor="end">now</text>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#5B6560" text-anchor="end">
+            <text x="46" y="24">900</text>
+            <text x="46" y="87">600</text>
+            <text x="46" y="151">300</text>
+            <text x="46" y="214">0</text>
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#5B6560" text-anchor="middle">
+            <text x="56" y="232">06:00</text>
+            <text x="180" y="232">08:00</text>
+            <text x="304" y="232">10:00</text>
+            <text x="428" y="232">12:00</text>
+            <text x="552" y="232">14:00</text>
+            <text x="676" y="232">16:00</text>
+            <text x="800" y="232">18:00</text>
+          </g>
+          <text x="56" y="252" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#5B6560">Lux measured at seated height, south side of the room</text>
+        </svg>
+      </section>
+    </div>
+
+    <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">Patients in this area now</h2>
+        <div style="font-size: 13px; color: #5B6560">Current readings against each profile.</div>
+
+        <div style="border-top: 1px solid #E4E7E3; margin-top: 14px; padding-top: 14px">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600">1042</span>
+            <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #F2D9D0; color: #8A3219">7 dB OVER</span>
+          </div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 6px">In the room 46 minutes. Sound limit 65 dB. Triggers recorded: sudden sound, several people speaking at once. The sensory room is free.</div>
+        </div>
+
+        <div style="border-top: 1px solid #E4E7E3; margin-top: 14px; padding-top: 14px">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600">1061</span>
+            <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #F2D9D0; color: #8A3219">10 dB OVER</span>
+          </div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 6px">In the room 51 minutes. Sound limit 62 dB. Also sensitive to bright artificial light; 440 lux of the 620 is artificial.</div>
+        </div>
+
+        <div style="border-top: 1px solid #E4E7E3; margin-top: 14px; padding-top: 14px">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600">1055</span>
+            <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #FAEBCB; color: #7A4F0C">CROWDING</span>
+          </div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 6px">In the room 22 minutes. Sound limit 70 dB, within. Crowding limit 10 people; 14 are present.</div>
+        </div>
+
+        <div style="border-top: 1px solid #E4E7E3; margin-top: 14px; padding-top: 14px">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600">1038</span>
+            <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 5px; background: #E7EEEA; color: #185D55">WITHIN</span>
+          </div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 6px">In the room 8 minutes. Sound limit 75 dB. No light or crowding limits recorded.</div>
+        </div>
+
+        <a href="Patient.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; margin-top: 16px; border-radius: 8px; border: 1px solid #CBD2CC; background: #FFFFFF; color: #2C3833; font-size: 13px; font-weight: 500; text-decoration: none">Open a patient profile</a>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">Responses recorded by staff</h2>
+        <div style="font-size: 13px; color: #5B6560">Entered on the handheld, timed against the readings above.</div>
+        <ul style="list-style: none; margin: 14px 0 0; padding: 0">
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">16:06</span>
+            <span style="font-size: 13px; line-height: 20px">1061 covered ears and moved to the window — [NAME]</span>
+          </li>
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">15:58</span>
+            <span style="font-size: 13px; line-height: 20px">1042 left the lounge, returned after four minutes — [NAME]</span>
+          </li>
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">15:41</span>
+            <span style="font-size: 13px; line-height: 20px">1055 asked for the television to be turned down — [NAME]</span>
+          </li>
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">12:40</span>
+            <span style="font-size: 13px; line-height: 20px">No responses recorded between 12:40 and 15:41</span>
+          </li>
+        </ul>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">Adjustments made</h2>
+        <div style="font-size: 13px; color: #5B6560">What was changed in this area today.</div>
+        <ul style="list-style: none; margin: 14px 0 0; padding: 0">
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">16:09</span>
+            <span style="font-size: 13px; line-height: 20px">Television volume reduced — [NAME]</span>
+          </li>
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">15:45</span>
+            <span style="font-size: 13px; line-height: 20px">Sensory room opened and offered to 1042 — [NAME]</span>
+          </li>
+          <li style="display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #E4E7E3">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5B6560; flex: none; width: 42px">12:40</span>
+            <span style="font-size: 13px; line-height: 20px">South blinds lowered to cut glare — [NAME]</span>
+          </li>
+        </ul>
+        <p style="margin: 14px 0 0; font-size: 12px; line-height: 19px; color: #5B6560">Each adjustment is held against the readings that followed it, so the ward can see which changes made a difference.</p>
+      </section>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
