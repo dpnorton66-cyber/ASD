@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patterns and thresholds</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'IBM Plex Sans', system-ui, sans-serif; background: #EEF0EC; color: #18211F; -webkit-font-smoothing: antialiased; }
+a { color: #1D6B62; }
+a:hover { color: #14504a; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #E4E7E3; font-size: 13px; }
+th { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #4A544F; font-weight: 600; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="dc-root"><div style="max-width: 1440px; margin: 0 auto; padding: 28px 32px 44px; display: flex; flex-direction: column; gap: 20px">
+
+  <header style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between">
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #5B6560; font-weight: 600">Beech Ward · patterns over time</div>
+      <h1 style="margin: 6px 0 0; font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.01em">When the ward gets difficult</h1>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end">
+      <div>
+        <label for="rangepick" style="display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600; margin-bottom: 5px">Period</label>
+        <select id="rangepick" style="font: inherit; font-size: 14px; min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #CBD2CC; background: #FFFFFF; color: #18211F">
+          <option selected>Last 7 days, weekdays</option>
+          <option>Last 7 days, all days</option>
+          <option>Last 28 days, weekdays</option>
+          <option>Last 28 days, all days</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <nav style="display: flex; flex-wrap: wrap; gap: 8px" aria-label="Screens">
+    <a href="index.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Live ward</a>
+    <a href="zone.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Zone detail</a>
+    <a href="patient.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Patient match</a>
+    <span aria-current="page" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 600; background: #18211F; color: #FFFFFF">Patterns and thresholds</span>
+    <a href="handheld.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Handheld</a>
+  </nav>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+    <div style="flex: 999 1 700px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between">
+          <div>
+            <h2 style="margin: 0; font-size: 17px; font-weight: 600">Sound by area and hour</h2>
+            <div style="font-size: 13px; color: #5B6560; margin-top: 3px">Weekday average, dB LAeq, last seven days.</div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; color: #4A544F">
+            <span>Quieter</span>
+            <span style="width: 22px; height: 12px; border-radius: 2px; background: #EDF2EF"></span>
+            <span style="width: 22px; height: 12px; border-radius: 2px; background: #D3E2DC"></span>
+            <span style="width: 22px; height: 12px; border-radius: 2px; background: #F6E5C2"></span>
+            <span style="width: 22px; height: 12px; border-radius: 2px; background: #E8B86A"></span>
+            <span style="width: 22px; height: 12px; border-radius: 2px; background: #D4793F"></span>
+            <span style="width: 22px; height: 12px; border-radius: 2px; background: #A8411F"></span>
+            <span>Louder</span>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto; margin-top: 16px">
+          <div style="min-width: 760px">
+            <div style="display: flex; gap: 2px; align-items: center">
+              <span style="width: 118px; flex: none"></span>
+              <sc-for list="{{hours}}" as="h" hint-placeholder-count="17">
+                <span style="flex: 1 1 0; min-width: 0; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #5B6560; padding-bottom: 5px">{{h}}</span>
+              </sc-for>
+            </div>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="11">
+              <div style="display: flex; gap: 2px; align-items: center; margin-bottom: 2px">
+                <span style="width: 118px; flex: none; font-size: 12px; padding-right: 8px">{{r.name}}</span>
+                <sc-for list="{{r.cells}}" as="c" hint-placeholder-count="17">
+                  <span style="flex: 1 1 0; min-width: 0; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 3px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: {{c.bg}}; color: {{c.ink}}">{{c.v}}</span>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <p style="margin: 14px 0 0; font-size: 12px; line-height: 19px; color: #5B6560">Figures are averages, so a single loud afternoon does not show here. Use the live view for what is happening now and this view to plan the day.</p>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">Levels set for each area</h2>
+        <div style="font-size: 13px; color: #5B6560">A reading above the level for an area raises an alert on the live view and on the handheld.</div>
+        <div style="overflow-x: auto; margin-top: 14px">
+          <table>
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>Sound</th>
+                <th>People</th>
+                <th>Light</th>
+                <th>Set by</th>
+                <th>Last reviewed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{levels}}" as="l" hint-placeholder-count="11">
+                <tr>
+                  <td style="font-weight: 500">{{l.name}}</td>
+                  <td style="font-family: 'IBM Plex Mono', monospace">{{l.sound}}</td>
+                  <td style="font-family: 'IBM Plex Mono', monospace">{{l.people}}</td>
+                  <td style="font-family: 'IBM Plex Mono', monospace">{{l.light}}</td>
+                  <td style="color: #4A544F">{{l.by}}</td>
+                  <td style="color: #4A544F; font-family: 'IBM Plex Mono', monospace">{{l.rev}}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin: 14px 0 0; font-size: 12px; line-height: 19px; color: #5B6560">Levels are set for the area, not for an individual. Individual limits sit in each patient's profile and are compared with these readings on the patient screen.</p>
+      </section>
+    </div>
+
+    <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">The same points every day</h2>
+        <div style="font-size: 13px; color: #5B6560">Stretches where an area has been above its level on four weekdays in five.</div>
+
+        <div style="padding: 13px 0; border-top: 1px solid #E4E7E3; margin-top: 12px">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600">07:15 — 08:30</div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 4px">Morning handover, then breakfast. The corridor reaches 62 dB and dining 64 dB, with the supervised kitchen at 66 dB. All three are above their levels on four days in five.</div>
+        </div>
+        <div style="padding: 13px 0; border-top: 1px solid #E4E7E3">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600">12:00 — 13:00</div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 4px">Lunch. Dining averages 68 dB against a level of 65, every weekday without exception, and the kitchen reaches 70 dB.</div>
+        </div>
+        <div style="padding: 13px 0; border-top: 1px solid #E4E7E3">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600">15:30 — 17:30</div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 4px">Visiting, then the evening meal. The longest difficult stretch on the ward: the lounge reaches 71 dB at 16:00 and dining 69 dB at 17:00.</div>
+        </div>
+        <div style="padding: 13px 0; border-top: 1px solid #E4E7E3">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600">20:00 — 20:30</div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 4px">Evening handover. The corridor returns to 62 dB and bedroom wings A and C to 47 dB as patients settle.</div>
+        </div>
+        <div style="padding: 13px 0; border-top: 1px solid #E4E7E3">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600">After 15:00</div>
+          <div style="font-size: 13px; line-height: 20px; color: #4A544F; margin-top: 4px">Bedroom wing A and the main corridor record no daylight at all from mid-afternoon. Both run on artificial light for the rest of the day. The garden access corridor keeps daylight an hour longer than anywhere else indoors.</div>
+        </div>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 4px; font-size: 17px; font-weight: 600">Sensors</h2>
+        <div style="font-size: 13px; color: #5B6560">Nineteen fitted. Eighteen reporting.</div>
+
+        <div style="background: #FDF2EE; border-radius: 8px; padding: 13px 15px; margin-top: 14px">
+          <div style="font-size: 11px; font-weight: 600; color: #8A3219; text-transform: uppercase; letter-spacing: 0.06em">Not reporting</div>
+          <div style="font-size: 13px; line-height: 20px; margin-top: 5px">De-escalation suite, sound. No reading since 11:42 today. Battery was at 4% yesterday. Estates job raised, reference BW-2211.</div>
+        </div>
+
+        <div style="margin-top: 14px">
+          <div style="display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-top: 1px solid #E4E7E3; font-size: 13px">
+            <span>Sound sensors</span><span style="font-family: 'IBM Plex Mono', monospace; color: #4A544F">9 of 10</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-top: 1px solid #E4E7E3; font-size: 13px">
+            <span>Foot-traffic sensors</span><span style="font-family: 'IBM Plex Mono', monospace; color: #4A544F">4 of 4</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-top: 1px solid #E4E7E3; font-size: 13px">
+            <span>Light meters</span><span style="font-family: 'IBM Plex Mono', monospace; color: #4A544F">5 of 5</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-top: 1px solid #E4E7E3; font-size: 13px">
+            <span>Battery below 20%</span><span style="font-family: 'IBM Plex Mono', monospace; color: #8A3219">2</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-top: 1px solid #E4E7E3; font-size: 13px">
+            <span>Last calibration</span><span style="font-family: 'IBM Plex Mono', monospace; color: #4A544F">22 Sep 2026</span>
+          </div>
+        </div>
+        <p style="margin: 14px 0 0; font-size: 12px; line-height: 19px; color: #5B6560">An area with no reading is shown as not reporting on the ward plan rather than as within its level, so a silent sensor is never read as a quiet room.</p>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+        <h2 style="margin: 0 0 10px; font-size: 17px; font-weight: 600">What the sensors record</h2>
+        <p style="margin: 0; font-size: 13px; line-height: 21px; color: #4A544F">Sound sensors measure sound pressure only. They do not record speech and hold no audio. Foot-traffic sensors count people crossing a line and hold no images. Light meters measure illuminance and the share of it that is daylight.</p>
+        <p style="margin: 10px 0 0; font-size: 13px; line-height: 21px; color: #4A544F">Readings are held for 90 days at full detail and as hourly averages after that. A patient's location history is visible only to the clinical team caring for them.</p>
+      </section>
+    </div>
+  </div>
+</div></div>
+<script src="dc-lite.js"></script>
+<script>
+class Component extends DCLogic {
+  shade(v) {
+    if (v <= 40) { return { bg: '#EDF2EF', ink: '#4A544F' }; }
+    if (v <= 48) { return { bg: '#D3E2DC', ink: '#2A4F49' }; }
+    if (v <= 55) { return { bg: '#F6E5C2', ink: '#5E441A' }; }
+    if (v <= 62) { return { bg: '#E8B86A', ink: '#4A3310' }; }
+    if (v <= 69) { return { bg: '#D4793F', ink: '#FFFFFF' }; }
+    return { bg: '#A8411F', ink: '#FFFFFF' };
+  }
+
+  renderVals() {
+    var self = this;
+    var hours = ['06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22'];
+
+    var data = [
+      { name: 'Lounge',              v: [38, 48, 56, 54, 56, 58, 66, 62, 60, 66, 71, 64, 62, 66, 58, 48, 40] },
+      { name: 'Dining',              v: [36, 56, 64, 46, 42, 52, 68, 62, 44, 42, 56, 69, 66, 48, 42, 38, 34] },
+      { name: 'Supervised kitchen',  v: [34, 58, 66, 48, 44, 56, 70, 60, 42, 46, 62, 70, 64, 46, 40, 36, 32] },
+      { name: 'Main corridor',       v: [42, 62, 60, 54, 52, 54, 62, 58, 56, 58, 64, 62, 58, 56, 62, 48, 40] },
+      { name: 'Garden corridor',     v: [36, 46, 50, 52, 54, 56, 54, 52, 54, 56, 56, 52, 48, 44, 42, 38, 34] },
+      { name: 'Secure garden',       v: [32, 34, 40, 44, 48, 50, 48, 50, 48, 46, 44, 42, 38, 34, 30, 28, 26] },
+      { name: 'Bedroom wing A',      v: [40, 48, 46, 38, 34, 34, 36, 36, 36, 36, 38, 40, 42, 44, 48, 46, 38] },
+      { name: 'Bedroom wing B',      v: [38, 46, 44, 36, 32, 32, 34, 34, 34, 34, 36, 38, 40, 42, 46, 44, 36] },
+      { name: 'Bedroom wing C',      v: [40, 47, 45, 37, 33, 33, 35, 35, 35, 35, 37, 39, 41, 43, 47, 45, 37] },
+      { name: 'Sensory room',        v: [28, 32, 34, 32, 32, 34, 34, 32, 34, 34, 34, 34, 32, 30, 30, 28, 26] },
+      { name: 'De-escalation',       v: [26, 28, 30, 30, 28, 30, 32, 30, 34, 36, 32, 30, 28, 28, 30, 28, 26] }
+    ];
+
+    var rows = data.map(function (d) {
+      return {
+        name: d.name,
+        cells: d.v.map(function (n) {
+          var s = self.shade(n);
+          return { v: n, bg: s.bg, ink: s.ink };
+        })
+      };
+    });
+
+    var levels = [
+      { name: 'Lounge',                  sound: '65 dB', people: '12', light: '700 lux',    by: 'Occupational therapist', rev: '02 Sep 2026' },
+      { name: 'Dining',                  sound: '65 dB', people: '14', light: '600 lux',    by: 'Occupational therapist', rev: '02 Sep 2026' },
+      { name: 'Supervised kitchen',      sound: '70 dB', people: '6',  light: '600 lux',    by: 'Ward manager',           rev: '02 Sep 2026' },
+      { name: 'Main corridor',           sound: '70 dB', people: '10', light: '500 lux',    by: 'Ward manager',           rev: '02 Sep 2026' },
+      { name: 'Garden access corridor',  sound: '70 dB', people: '8',  light: '900 lux',    by: 'Ward manager',           rev: '14 Aug 2026' },
+      { name: 'Secure garden',           sound: '75 dB', people: '10', light: '20,000 lux', by: 'Occupational therapist', rev: '14 Aug 2026' },
+      { name: 'Bedroom wing A (B01–B06)', sound: '45 dB', people: '8', light: '450 lux',    by: 'Occupational therapist', rev: '02 Sep 2026' },
+      { name: 'Bedroom wing B (B07–B10)', sound: '45 dB', people: '8', light: '450 lux',    by: 'Occupational therapist', rev: '02 Sep 2026' },
+      { name: 'Bedroom wing C (B11–B14)', sound: '45 dB', people: '8', light: '450 lux',    by: 'Occupational therapist', rev: '02 Sep 2026' },
+      { name: 'Sensory / quiet room',    sound: '40 dB', people: '2',  light: '250 lux',    by: 'Occupational therapist', rev: '02 Sep 2026' },
+      { name: 'De-escalation suite',     sound: '45 dB', people: '4',  light: '300 lux',    by: 'Occupational therapist', rev: '02 Sep 2026' }
+    ];
+
+    return { hours: hours, rows: rows, levels: levels };
+  }
+}
+window.__dcProps = {};
+window.__dcBoot();
+</script>
+</body>
+</html>

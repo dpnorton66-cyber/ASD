@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handheld alerts</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'IBM Plex Sans', system-ui, sans-serif; background: #EEF0EC; color: #18211F; -webkit-font-smoothing: antialiased; }
+a { color: #1D6B62; }
+a:hover { color: #14504a; }
+</style>
+<style>
+#dc-root { display: flex; justify-content: center; padding: 24px 16px; }
+</style>
+</head>
+<body>
+<div id="dc-root"><div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #EEF0EC; overflow: hidden">
+
+  <header style="flex: none; background: #18211F; color: #FFFFFF; padding: 18px 20px 16px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px">
+      <span style="font-size: 17px; font-weight: 600">Beech Ward</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #C7CFC9">16:12</span>
+    </div>
+    <div style="font-size: 13px; color: #C7CFC9; margin-top: 3px">Sensory environment · 17 of 18 sensors reporting</div>
+  </header>
+
+  <div style="flex: none; background: #F2D9D0; padding: 13px 20px; display: flex; gap: 10px; align-items: center">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex: none" role="img" aria-label="Warning">
+      <path d="M12 3.5 21.5 20H2.5L12 3.5Z" stroke="#8A3219" stroke-width="2" stroke-linejoin="round"></path>
+      <path d="M12 9.5v4.5" stroke="#8A3219" stroke-width="2" stroke-linecap="round"></path>
+      <circle cx="12" cy="17" r="1.2" fill="#8A3219"></circle>
+    </svg>
+    <span style="font-size: 14px; font-weight: 600; color: #6E2A14; line-height: 19px">Two areas above level, two approaching</span>
+  </div>
+
+  <div style="flex: none; display: flex; gap: 7px; padding: 14px 20px 12px; background: #EEF0EC; border-bottom: 1px solid #DEE2DC" role="group" aria-label="Filter alerts by measurement">
+    <button type="button" data-on-click="{{pickAll}}" style="{{btnAll}}">All 4</button>
+    <button type="button" data-on-click="{{pickSound}}" style="{{btnSound}}">Sound 2</button>
+    <button type="button" data-on-click="{{pickTraffic}}" style="{{btnTraffic}}">Traffic 1</button>
+    <button type="button" data-on-click="{{pickLight}}" style="{{btnLight}}">Light 1</button>
+  </div>
+
+  <div style="flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 14px 20px 18px; display: flex; flex-direction: column; gap: 12px">
+    <sc-for list="{{alerts}}" as="a" hint-placeholder-count="4">
+      <article style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 12px; padding: 14px 16px 15px">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+          <span style="font-size: 15px; font-weight: 600">{{a.zone}}</span>
+          <span style="flex: none; font-size: 10px; font-weight: 600; padding: 4px 7px; border-radius: 5px; background: {{a.chipBg}}; color: {{a.chipInk}}">{{a.chip}}</span>
+        </div>
+        <div style="font-size: 13px; color: #5B6560; margin-top: 2px">{{a.channel}}</div>
+        <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 9px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 600; line-height: 32px">{{a.value}}</span>
+          <span style="font-size: 13px; color: #5B6560">{{a.against}}</span>
+        </div>
+        <div style="font-size: 13px; line-height: 19px; color: #4A544F; margin-top: 7px">{{a.detail}}</div>
+        <div style="background: #F5F7F4; border-radius: 8px; padding: 10px 12px; margin-top: 11px">
+          <div style="font-size: 10px; font-weight: 600; color: #4A544F; text-transform: uppercase; letter-spacing: 0.06em">Do first</div>
+          <div style="font-size: 13px; line-height: 19px; margin-top: 3px">{{a.action}}</div>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 12px">
+          <sc-if value="{{a.open}}" hint-placeholder-val="{{true}}">
+            <button type="button" data-on-click="{{a.ack}}" style="appearance: none; font: inherit; flex: 1 1 auto; font-size: 13px; font-weight: 600; min-height: 44px; border-radius: 8px; border: 1px solid #1D6B62; background: #1D6B62; color: #FFFFFF; cursor: pointer">Acknowledge</button>
+          </sc-if>
+          <sc-if value="{{a.done}}" hint-placeholder-val="{{false}}">
+            <span style="flex: 1 1 auto; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 8px; background: #E7EEEA; font-size: 13px; font-weight: 600; color: #185D55">Acknowledged 16:12</span>
+          </sc-if>
+          <a href="zone.html" style="flex: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid #CBD2CC; background: #FFFFFF; color: #2C3833; font-size: 13px; font-weight: 500; text-decoration: none">Open</a>
+        </div>
+      </article>
+    </sc-for>
+
+    <p style="margin: 2px 0 0; font-size: 12px; line-height: 18px; color: #5B6560">Acknowledging records who saw the alert and when. Record what you did, or a patient's response, from the area screen.</p>
+  </div>
+
+  <nav style="flex: none; display: flex; background: #FFFFFF; border-top: 1px solid #D6DAD4" aria-label="Screens">
+    <span aria-current="page" style="flex: 1 1 0; min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 600; color: #18211F">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11" stroke="#18211F" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9 20v-6h6v6" stroke="#18211F" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+      Ward
+    </span>
+    <a href="zone.html" style="flex: 1 1 0; min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 500; color: #5B6560; text-decoration: none">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2" stroke="#5B6560" stroke-width="1.8"></rect><path d="M3.5 10h17M10 10v10.5" stroke="#5B6560" stroke-width="1.8"></path></svg>
+      Areas
+    </a>
+    <a href="patient.html" style="flex: 1 1 0; min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 500; color: #5B6560; text-decoration: none">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.6" stroke="#5B6560" stroke-width="1.8"></circle><path d="M5 20c0-3.6 3.1-5.6 7-5.6s7 2 7 5.6" stroke="#5B6560" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      Patients
+    </a>
+    <a href="patterns.html" style="flex: 1 1 0; min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; font-weight: 500; color: #5B6560; text-decoration: none">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V11M9.3 19V6M14.7 19v-9M20 19v-5" stroke="#5B6560" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      Patterns
+    </a>
+  </nav>
+</div></div>
+<script src="dc-lite.js"></script>
+<script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'all', acked: {} };
+  }
+
+  all() {
+    return [
+      {
+        id: 'a1', kind: 'sound', zone: 'Lounge', channel: 'Sound above level',
+        chip: 'ABOVE', chipBg: '#F2D9D0', chipInk: '#8A3219',
+        value: '72 dB', against: 'against 65 · 18 min',
+        detail: 'Thirteen people where 12 is the level: eleven patients and two staff. Eleven of the ward’s fourteen patients are in this one room.',
+        action: 'Turn the television down, then open the sensory room for 1042 and 1061. The group therapy room is empty if the 16:30 group can move there.'
+      },
+      {
+        id: 'a2', kind: 'traffic', zone: 'Main corridor', channel: 'Foot traffic above level',
+        chip: 'ABOVE', chipBg: '#F2D9D0', chipInk: '#8A3219',
+        value: '13/min', against: 'against 8 · 6 min',
+        detail: 'Only two people are in the corridor, so this is repeated movement between the lounge and the bedroom wings as visiting ends.',
+        action: 'Let the lounge empty in twos. Walk 1049 from B09 to dining before the 17:00 call.'
+      },
+      {
+        id: 'a3', kind: 'sound', zone: 'Dining', channel: 'Sound rising',
+        chip: 'APPROACHING', chipBg: '#FAEBCB', chipInk: '#7A4F0C',
+        value: '58 dB', against: 'up 9 dB in 10 min',
+        detail: 'Setting up for the 17:00 meal, with the kitchen at 62 dB next door. On this pattern the 65 dB level is reached at about 16:40.',
+        action: 'Close the kitchen hatch and finish setting the tables before patients come in. Seat 1055 and 1061 first.'
+      },
+      {
+        id: 'a4', kind: 'light', zone: 'Bedroom wing A', channel: 'Artificial light only',
+        chip: 'APPROACHING', chipBg: '#FAEBCB', chipInk: '#7A4F0C',
+        value: '410 lx', against: 'no daylight since 15:05',
+        detail: 'B01 to B06 face away from the garden. All of it artificial, against a level of 450 lux for the wing.',
+        action: 'Drop the wing lighting to the evening level at 18:00.'
+      }
+    ];
+  }
+
+  renderVals() {
+    var self = this;
+    var filter = this.state.filter;
+    var acked = this.state.acked;
+
+    var list = this.all().filter(function (a) {
+      return filter === 'all' || a.kind === filter;
+    }).map(function (a) {
+      return {
+        zone: a.zone, channel: a.channel, chip: a.chip, chipBg: a.chipBg, chipInk: a.chipInk,
+        value: a.value, against: a.against, detail: a.detail, action: a.action,
+        open: !acked[a.id], done: !!acked[a.id],
+        ack: function () {
+          var next = Object.assign({}, self.state.acked);
+          next[a.id] = true;
+          self.setState({ acked: next });
+        }
+      };
+    });
+
+    var off = 'appearance: none; font: inherit; flex: 1 1 0; min-width: 0; font-size: 12px; font-weight: 500; min-height: 44px; padding: 0 4px; border-radius: 8px; cursor: pointer; border: 1px solid #CBD2CC; background: #FFFFFF; color: #2C3833';
+    var on = 'appearance: none; font: inherit; flex: 1 1 0; min-width: 0; font-size: 12px; font-weight: 600; min-height: 44px; padding: 0 4px; border-radius: 8px; cursor: pointer; border: 1px solid #18211F; background: #18211F; color: #FFFFFF';
+
+    return {
+      alerts: list,
+      btnAll: filter === 'all' ? on : off,
+      btnSound: filter === 'sound' ? on : off,
+      btnTraffic: filter === 'traffic' ? on : off,
+      btnLight: filter === 'light' ? on : off,
+      pickAll: function () { self.setState({ filter: 'all' }); },
+      pickSound: function () { self.setState({ filter: 'sound' }); },
+      pickTraffic: function () { self.setState({ filter: 'traffic' }); },
+      pickLight: function () { self.setState({ filter: 'light' }); }
+    };
+  }
+}
+window.__dcProps = {};
+window.__dcBoot();
+</script>
+</body>
+</html>

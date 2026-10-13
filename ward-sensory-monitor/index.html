@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live ward sensory conditions</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'IBM Plex Sans', system-ui, sans-serif; background: #EEF0EC; color: #18211F; -webkit-font-smoothing: antialiased; }
+a { color: #1D6B62; }
+a:hover { color: #14504a; }
+</style>
+</head>
+<body>
+<div id="dc-root"><div style="max-width: 1440px; margin: 0 auto; padding: 28px 32px 44px; display: flex; flex-direction: column; gap: 20px">
+
+  <header style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between">
+    <div>
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #5B6560; font-weight: 600">Sensory environment monitor</div>
+      <h1 style="margin: 6px 0 0; font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.01em">Beech Ward — live conditions</h1>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-end">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600">Reading taken</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 500; margin-top: 4px">16:12</div>
+      </div>
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600">On the ward</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 500; margin-top: 4px">14 patients · 5 staff</div>
+      </div>
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600">Sensors reporting</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 500; margin-top: 4px">18 of 19</div>
+      </div>
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #5B6560; font-weight: 600">Nurse in charge</div>
+        <div style="font-size: 16px; font-weight: 500; margin-top: 7px">[NAME]</div>
+      </div>
+    </div>
+  </header>
+
+  <nav style="display: flex; flex-wrap: wrap; gap: 8px" aria-label="Screens">
+    <span aria-current="page" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 600; background: #18211F; color: #FFFFFF">Live ward</span>
+    <a href="zone.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Zone detail</a>
+    <a href="patient.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Patient match</a>
+    <a href="patterns.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Patterns and thresholds</a>
+    <a href="handheld.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; font-size: 13px; font-weight: 500; background: #FFFFFF; border: 1px solid #CBD2CC; color: #2C3833; text-decoration: none">Handheld</a>
+  </nav>
+
+  <div style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 22px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between">
+    <div style="display: flex; gap: 14px; align-items: flex-start; flex: 1 1 520px; min-width: 0">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex: none; margin-top: 2px" role="img" aria-label="Warning">
+        <path d="M12 3.5 21.5 20H2.5L12 3.5Z" stroke="#9E3B22" stroke-width="1.8" stroke-linejoin="round"></path>
+        <path d="M12 9.5v4.5" stroke="#9E3B22" stroke-width="1.8" stroke-linecap="round"></path>
+        <circle cx="12" cy="17" r="1.1" fill="#9E3B22"></circle>
+      </svg>
+      <div>
+        <div style="font-size: 18px; font-weight: 600; line-height: 24px">Two areas are above the levels set for this ward</div>
+        <div style="font-size: 14px; line-height: 21px; color: #5B6560; margin-top: 4px">The lounge — sound and crowding: thirteen people in a room set for twelve, eleven of them patients. The main corridor — foot traffic as visiting ends. Five patients have profiles affected by one or both.</div>
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px; flex: none">
+      <div style="background: #F2D9D0; border-radius: 8px; padding: 12px 18px; text-align: center; min-width: 94px">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; color: #8A3219; line-height: 30px">2</div>
+        <div style="font-size: 11px; font-weight: 600; color: #6E3A28; margin-top: 2px">Above</div>
+      </div>
+      <div style="background: #FAEBCB; border-radius: 8px; padding: 12px 18px; text-align: center; min-width: 94px">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; color: #7A4F0C; line-height: 30px">3</div>
+        <div style="font-size: 11px; font-weight: 600; color: #6B4A14; margin-top: 2px">Approaching</div>
+      </div>
+      <div style="background: #E7EEEA; border-radius: 8px; padding: 12px 18px; text-align: center; min-width: 94px">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 600; color: #185D55; line-height: 30px">7</div>
+        <div style="font-size: 11px; font-weight: 600; color: #2A4F49; margin-top: 2px">Within</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+    <div style="flex: 999 1 620px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 20px 22px 22px">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-bottom: 4px">
+        <div>
+          <h2 style="margin: 0; font-size: 18px; font-weight: 600">Ward plan</h2>
+          <div style="font-size: 13px; color: #5B6560; margin-top: 3px">{{layerNote}}</div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px" role="group" aria-label="Measurement shown on the plan">
+          <button type="button" data-on-click="{{pickCombined}}" style="{{btnCombined}}">Combined</button>
+          <button type="button" data-on-click="{{pickSound}}" style="{{btnSound}}">Sound</button>
+          <button type="button" data-on-click="{{pickTraffic}}" style="{{btnTraffic}}">Foot traffic</button>
+          <button type="button" data-on-click="{{pickLight}}" style="{{btnLight}}">Light</button>
+        </div>
+      </div>
+
+      <div style="position: relative; width: 100%; aspect-ratio: 1536 / 1024; margin-top: 14px; background: #F7F8F6; border: 1px solid #E4E7E3; border-radius: 6px; overflow: hidden">
+        <img src="ward-plan.png" alt="Two-dimensional concept plan of a low to medium secure mental health ward. Bedrooms B01 to B06 run down the left side and B07 to B10 in a second column. A large secure garden fills the upper middle and right. Below it, a central band holds staff observation, the lounge, a garden access corridor, dining, a supervised kitchen, locked storage and a staff point. The lower row holds group therapy, consultation, treatment, bedrooms B11 to B14, a de-escalation room, a seclusion suite and a WC. A support wing on the right holds clean and dirty utility, linen and equipment stores, medicines and a staff rest room. The sensory and quiet room, family visits room, reception and secure entry are at the lower left. All corridors are at least four metres clear. The readings for every monitored area are also listed in the three panels below this plan." style="width: 100%; height: 100%; display: block; object-fit: contain">
+
+        <div style="position: absolute; left: 2.7%; top: 3.7%; width: 11.2%; height: 59.0%; border-radius: 3px; background: {{t.wingA}}; border: 1.5px solid {{b.wingA}}"></div>
+        <div style="position: absolute; left: 18.4%; top: 5.8%; width: 8.9%; height: 39.8%; border-radius: 3px; background: {{t.wingB}}; border: 1.5px solid {{b.wingB}}"></div>
+        <div style="position: absolute; left: 14.0%; top: 3.7%; width: 4.4%; height: 81.0%; border-radius: 3px; background: {{t.corridor}}; border: 1.5px solid {{b.corridor}}"></div>
+        <div style="position: absolute; left: 18.4%; top: 65.0%; width: 66.0%; height: 8.3%; border-radius: 3px; background: {{t.corridor}}; border: 1.5px solid {{b.corridor}}"></div>
+        <div style="position: absolute; left: 28.4%; top: 5.6%; width: 53.3%; height: 42.0%; border-radius: 3px; background: {{t.garden}}; border: 1.5px solid {{b.garden}}"></div>
+        <div style="position: absolute; left: 30.0%; top: 48.5%; width: 13.6%; height: 16.3%; border-radius: 3px; background: {{t.lounge}}; border: 1.5px solid {{b.lounge}}"></div>
+        <div style="position: absolute; left: 43.8%; top: 46.6%; width: 6.5%; height: 18.3%; border-radius: 3px; background: {{t.gardencor}}; border: 1.5px solid {{b.gardencor}}"></div>
+        <div style="position: absolute; left: 50.6%; top: 48.5%; width: 10.7%; height: 16.3%; border-radius: 3px; background: {{t.dining}}; border: 1.5px solid {{b.dining}}"></div>
+        <div style="position: absolute; left: 61.6%; top: 48.5%; width: 11.2%; height: 16.3%; border-radius: 3px; background: {{t.kitchen}}; border: 1.5px solid {{b.kitchen}}"></div>
+        <div style="position: absolute; left: 18.5%; top: 73.3%; width: 6.2%; height: 18.9%; border-radius: 3px; background: {{t.therapy}}; border: 1.5px solid {{b.therapy}}"></div>
+        <div style="position: absolute; left: 38.0%; top: 73.3%; width: 24.7%; height: 18.9%; border-radius: 3px; background: {{t.wingC}}; border: 1.5px solid {{b.wingC}}"></div>
+        <div style="position: absolute; left: 64.0%; top: 73.3%; width: 9.1%; height: 18.9%; border-radius: 3px; background: {{t.deesc}}; border: 1.5px solid {{b.deesc}}"></div>
+        <div style="position: absolute; left: 2.7%; top: 61.2%; width: 11.2%; height: 9.2%; border-radius: 3px; background: {{t.sensory}}; border: 1.5px solid {{b.sensory}}"></div>
+
+        <sc-if value="{{showPins}}" hint-placeholder-val="{{true}}">
+          <span style="position: absolute; left: 42.5%; top: 50.5%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 59.5%; top: 50.5%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 69.5%; top: 50.5%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 50.0%; top: 66.0%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 12.0%; top: 20.0%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 26.0%; top: 20.0%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 12.0%; top: 63.0%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 50.3%; top: 75.0%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 21.6%; top: 75.0%; width: 11px; height: 11px; border-radius: 50%; background: #3E6485; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 47.0%; top: 66.0%; width: 10px; height: 10px; background: #18211F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 21.0%; top: 66.0%; width: 10px; height: 10px; background: #18211F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 82.0%; top: 66.0%; width: 10px; height: 10px; background: #18211F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 16.0%; top: 90.0%; width: 10px; height: 10px; background: #18211F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%)"></span>
+          <span style="position: absolute; left: 31.5%; top: 50.5%; width: 10px; height: 10px; background: #B8861F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%) rotate(45deg)"></span>
+          <span style="position: absolute; left: 31.0%; top: 10.0%; width: 10px; height: 10px; background: #B8861F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%) rotate(45deg)"></span>
+          <span style="position: absolute; left: 12.0%; top: 55.0%; width: 10px; height: 10px; background: #B8861F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%) rotate(45deg)"></span>
+          <span style="position: absolute; left: 62.0%; top: 75.0%; width: 10px; height: 10px; background: #B8861F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%) rotate(45deg)"></span>
+          <span style="position: absolute; left: 44.5%; top: 50.0%; width: 10px; height: 10px; background: #B8861F; border: 1.5px solid #FFFFFF; transform: translate(-50%, -50%) rotate(45deg)"></span>
+          <span style="position: absolute; left: 65.0%; top: 75.0%; width: 11px; height: 11px; border-radius: 50%; background: #FFFFFF; border: 1.5px dashed #8A8F8A; transform: translate(-50%, -50%)"></span>
+        </sc-if>
+
+        <div style="position: absolute; left: 8.3%; top: 29.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.wingA}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.wingA}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.wingA}}</span>
+        </div>
+        <div style="position: absolute; left: 22.9%; top: 25.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.wingB}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.wingB}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.wingB}}</span>
+        </div>
+        <div style="position: absolute; left: 55.0%; top: 38.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.garden}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.garden}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.garden}}</span>
+        </div>
+        <div style="position: absolute; left: 47.0%; top: 51.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.gardencor}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.gardencor}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.gardencor}}</span>
+        </div>
+        <div style="position: absolute; left: 36.8%; top: 59.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.lounge}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.lounge}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.lounge}}</span>
+        </div>
+        <div style="position: absolute; left: 55.9%; top: 59.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.dining}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.dining}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.dining}}</span>
+        </div>
+        <div style="position: absolute; left: 67.2%; top: 52.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.kitchen}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.kitchen}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.kitchen}}</span>
+        </div>
+        <div style="position: absolute; left: 28.0%; top: 69.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.corridor}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.corridor}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.corridor}}</span>
+        </div>
+        <div style="position: absolute; left: 8.3%; top: 65.8%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.sensory}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.sensory}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.sensory}}</span>
+        </div>
+        <div style="position: absolute; left: 21.6%; top: 89.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.therapy}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.therapy}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.therapy}}</span>
+        </div>
+        <div style="position: absolute; left: 50.3%; top: 90.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.wingC}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.wingC}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.wingC}}</span>
+        </div>
+        <div style="position: absolute; left: 68.5%; top: 90.0%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #AFB8B2; border-radius: 7px; padding: 4px 8px; white-space: nowrap; box-shadow: 0 1px 4px rgba(24, 33, 31, 0.22)">
+          <span style="width: 9px; height: 9px; border-radius: 50%; flex: none; background: {{b.deesc}}"></span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600">{{v.deesc}}</span>
+          <span style="font-size: 11px; color: #5B6560">{{o.deesc}}</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 18px; padding-top: 16px; border-top: 1px solid #E4E7E3; font-size: 12px; color: #4A544F">
+        <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 16px; border-radius: 3px; background: rgba(29, 107, 98, 0.16); border: 1.5px solid #1D6B62"></span>Within set level</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 16px; border-radius: 3px; background: rgba(227, 169, 59, 0.34); border: 1.5px solid #B5801C"></span>Approaching</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 16px; border-radius: 3px; background: rgba(168, 65, 31, 0.30); border: 1.5px solid #A8411F"></span>Above</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 11px; height: 11px; border-radius: 50%; background: #3E6485"></span>Sound sensor</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 10px; height: 10px; background: #18211F"></span>Foot-traffic sensor</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 11px; height: 11px; background: #B8861F; transform: rotate(45deg)"></span>Light meter</span>
+        <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 11px; height: 11px; border-radius: 50%; border: 1.5px dashed #8A8F8A"></span>Not reporting</span>
+      </div>
+      <p style="margin: 12px 0 0; font-size: 12px; line-height: 19px; color: #5B6560">Twelve areas are monitored. Each pill carries the reading and, after it, the people in that area as patients plus staff. Bedrooms are measured at wing level, not individually. Bathrooms, the seclusion suite, the family visits room, consultation and treatment rooms, and the support wing carry no sensors.</p>
+      </section>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 18px 20px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 600">Sound</h2>
+        <div style="font-size: 13px; color: #5B6560; margin-top: 4px">dB LAeq over the last minute. The mark on each bar is the level set for that area.</div>
+        <div style="margin-top: 16px">
+          <sc-for list="{{soundRows}}" as="r" hint-placeholder-count="12">
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 0">
+              <span style="width: 96px; flex: none; font-size: 12px">{{r.name}}</span>
+              <span style="flex: 1 1 auto; min-width: 0; position: relative; height: 10px; background: #E4E7E3; border-radius: 5px">
+                <span style="position: absolute; left: 0; top: 0; height: 10px; border-radius: 5px; background: {{r.fill}}; width: {{r.pct}}"></span>
+                <span style="position: absolute; top: -4px; width: 2px; height: 18px; background: #18211F; left: {{r.tick}}"></span>
+              </span>
+              <span style="width: 58px; flex: none; text-align: right; white-space: nowrap; font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500">{{r.val}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 18px 20px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 600">Foot traffic</h2>
+        <div style="font-size: 13px; color: #5B6560; margin-top: 4px">Passes a minute, then the people in the area as patients plus staff.</div>
+        <div style="margin-top: 16px">
+          <sc-for list="{{trafficRows}}" as="r" hint-placeholder-count="12">
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 0">
+              <span style="width: 96px; flex: none; font-size: 12px">{{r.name}}</span>
+              <span style="flex: 1 1 auto; min-width: 0; position: relative; height: 10px; background: #E4E7E3; border-radius: 5px">
+                <span style="position: absolute; left: 0; top: 0; height: 10px; border-radius: 5px; background: {{r.fill}}; width: {{r.pct}}"></span>
+                <span style="position: absolute; top: -4px; width: 2px; height: 18px; background: #18211F; left: {{r.tick}}"></span>
+              </span>
+              <span style="width: 52px; flex: none; text-align: right; white-space: nowrap; font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500">{{r.val}}</span>
+              <span style="width: 42px; flex: none; text-align: right; white-space: nowrap; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5B6560">{{r.split}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 18px; margin-top: 14px; padding-top: 14px; border-top: 1px solid #E4E7E3; font-size: 12px; color: #4A544F">
+          <span>Split shown as patients + staff. Set levels count everyone in the room.</span>
+        </div>
+      </section>
+
+      <section style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 18px 20px">
+        <h2 style="margin: 0; font-size: 17px; font-weight: 600">Light</h2>
+        <div style="font-size: 13px; color: #5B6560; margin-top: 4px">Lux at seated height, split into daylight and artificial light.</div>
+        <div style="margin-top: 16px">
+          <sc-for list="{{lightRows}}" as="r" hint-placeholder-count="12">
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 0">
+              <span style="width: 96px; flex: none; font-size: 12px">{{r.name}}</span>
+              <span style="flex: 1 1 auto; min-width: 0; display: flex; height: 10px; background: #E4E7E3; border-radius: 5px; overflow: hidden">
+                <span style="height: 10px; background: #C8942E; width: {{r.natPct}}"></span>
+                <span style="height: 10px; background: #4C6E90; width: {{r.artPct}}"></span>
+              </span>
+              <span style="width: 58px; flex: none; text-align: right; white-space: nowrap; font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500">{{r.val}}</span>
+              <span style="width: 32px; flex: none; text-align: right; white-space: nowrap; font-size: 11px; color: #5B6560">{{r.natShare}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 18px; margin-top: 14px; padding-top: 14px; border-top: 1px solid #E4E7E3; font-size: 12px; color: #4A544F">
+          <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 10px; border-radius: 5px; background: #C8942E"></span>Daylight, and its share of the total</span>
+          <span style="display: inline-flex; align-items: center; gap: 7px"><span style="width: 16px; height: 10px; border-radius: 5px; background: #4C6E90"></span>Artificial</span>
+        </div>
+        <p style="margin: 12px 0 0; font-size: 12px; line-height: 19px; color: #5B6560">Bars are drawn to 1,300 lux. The secure garden reads far above that and fills its bar.</p>
+      </section>
+    </div>
+    </div>
+
+    <section style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+        <h2 style="margin: 0; font-size: 18px; font-weight: 600">Needs attention</h2>
+        <span style="font-size: 13px; color: #5B6560">Ordered by effect on patients</span>
+      </div>
+
+      <article style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 20px">
+        <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between">
+          <h3 style="margin: 0; font-size: 16px; font-weight: 600">Lounge — sound</h3>
+          <span style="font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 5px; background: #F2D9D0; color: #8A3219">ABOVE</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-top: 12px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 34px; font-weight: 600; line-height: 36px">72</span>
+          <span style="font-size: 14px; color: #5B6560">dB LAeq, against 65 set for this area</span>
+        </div>
+        <div style="font-size: 13px; color: #5B6560; margin-top: 6px">Above for 18 minutes, with peaks of 81 dB. Thirteen people are present where 12 is the set level: eleven patients and two staff.</div>
+        <div style="background: #F5F7F4; border-radius: 8px; padding: 12px 14px; margin-top: 14px">
+          <div style="font-size: 12px; font-weight: 600; color: #4A544F; text-transform: uppercase; letter-spacing: 0.06em">Worth knowing</div>
+          <div style="font-size: 13px; line-height: 20px; margin-top: 5px">Eleven of the ward's fourteen patients are in this one room, with two of the five staff on shift. The group therapy room and the sensory room are both empty and within every limit in all three affected profiles.</div>
+        </div>
+        <div style="background: #F5F7F4; border-radius: 8px; padding: 12px 14px; margin-top: 10px">
+          <div style="font-size: 12px; font-weight: 600; color: #4A544F; text-transform: uppercase; letter-spacing: 0.06em">Patients affected</div>
+          <div style="font-size: 13px; line-height: 20px; margin-top: 5px">1042, 1055 and 1061 are in the lounge. All three have sound above 65 dB recorded as a trigger in their profiles.</div>
+        </div>
+        <div style="margin-top: 14px">
+          <div style="font-size: 12px; font-weight: 600; color: #4A544F; text-transform: uppercase; letter-spacing: 0.06em">Adjustments in their care plans</div>
+          <ul style="margin: 7px 0 0; padding-left: 20px; font-size: 13px; line-height: 21px">
+            <li>Lower the television volume or turn it off</li>
+            <li>Open the sensory room and offer it to 1042 and 1061</li>
+            <li>Take the 16:30 group into the group therapy room, which is empty</li>
+          </ul>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #E4E7E3">
+          <sc-if value="{{a1open}}" hint-placeholder-val="{{true}}">
+            <button type="button" data-on-click="{{ack1}}" style="appearance: none; font: inherit; font-size: 13px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #1D6B62; background: #1D6B62; color: #FFFFFF; cursor: pointer">Acknowledge</button>
+          </sc-if>
+          <sc-if value="{{a1done}}" hint-placeholder-val="{{false}}">
+            <span style="display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; font-weight: 600; color: #185D55">Acknowledged at 16:12 by [NAME]</span>
+          </sc-if>
+          <a href="zone.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #CBD2CC; background: #FFFFFF; color: #2C3833; font-size: 13px; font-weight: 500; text-decoration: none">Open area</a>
+        </div>
+      </article>
+
+      <article style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 20px">
+        <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between">
+          <h3 style="margin: 0; font-size: 16px; font-weight: 600">Main corridor — foot traffic</h3>
+          <span style="font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 5px; background: #F2D9D0; color: #8A3219">ABOVE</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-top: 12px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 34px; font-weight: 600; line-height: 36px">13</span>
+          <span style="font-size: 14px; color: #5B6560">passes a minute, against 8 set for this area</span>
+        </div>
+        <div style="font-size: 13px; color: #5B6560; margin-top: 6px">Above for 6 minutes. Only two people are in the corridor, so this is repeated movement between the lounge and the bedroom wings as visiting ends, not a crowd.</div>
+        <div style="background: #F5F7F4; border-radius: 8px; padding: 12px 14px; margin-top: 14px">
+          <div style="font-size: 12px; font-weight: 600; color: #4A544F; text-transform: uppercase; letter-spacing: 0.06em">Patients affected</div>
+          <div style="font-size: 13px; line-height: 20px; margin-top: 5px">1049 must cross the corridor from B09 to reach dining at 17:00. Unpredictable movement in corridors is recorded as a trigger.</div>
+        </div>
+        <div style="margin-top: 14px">
+          <div style="font-size: 12px; font-weight: 600; color: #4A544F; text-transform: uppercase; letter-spacing: 0.06em">Adjustments in their care plans</div>
+          <ul style="margin: 7px 0 0; padding-left: 20px; font-size: 13px; line-height: 21px">
+            <li>Let the lounge empty in twos rather than all at once</li>
+            <li>Walk 1049 to dining before the 17:00 call</li>
+          </ul>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #E4E7E3">
+          <sc-if value="{{a2open}}" hint-placeholder-val="{{true}}">
+            <button type="button" data-on-click="{{ack2}}" style="appearance: none; font: inherit; font-size: 13px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #1D6B62; background: #1D6B62; color: #FFFFFF; cursor: pointer">Acknowledge</button>
+          </sc-if>
+          <sc-if value="{{a2done}}" hint-placeholder-val="{{false}}">
+            <span style="display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; font-weight: 600; color: #185D55">Acknowledged at 16:12 by [NAME]</span>
+          </sc-if>
+          <a href="zone.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #CBD2CC; background: #FFFFFF; color: #2C3833; font-size: 13px; font-weight: 500; text-decoration: none">Open area</a>
+        </div>
+      </article>
+
+      <article style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 20px">
+        <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between">
+          <h3 style="margin: 0; font-size: 16px; font-weight: 600">Dining — sound rising</h3>
+          <span style="font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 5px; background: #FAEBCB; color: #7A4F0C">APPROACHING</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-top: 12px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 34px; font-weight: 600; line-height: 36px">58</span>
+          <span style="font-size: 14px; color: #5B6560">dB LAeq, up 9 dB in ten minutes</span>
+        </div>
+        <div style="font-size: 13px; color: #5B6560; margin-top: 6px">One member of staff setting tables for the 17:00 meal, with the supervised kitchen at 62 dB next door and no patients in the room yet. On this pattern the 65 dB level is reached at about 16:40.</div>
+        <div style="margin-top: 14px">
+          <div style="font-size: 12px; font-weight: 600; color: #4A544F; text-transform: uppercase; letter-spacing: 0.06em">Adjustments in their care plans</div>
+          <ul style="margin: 7px 0 0; padding-left: 20px; font-size: 13px; line-height: 21px">
+            <li>Stagger entry — seat 1055 and 1061 first, before the main call</li>
+            <li>Close the kitchen hatch and finish setting tables before patients come in</li>
+          </ul>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #E4E7E3">
+          <sc-if value="{{a3open}}" hint-placeholder-val="{{true}}">
+            <button type="button" data-on-click="{{ack3}}" style="appearance: none; font: inherit; font-size: 13px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #1D6B62; background: #1D6B62; color: #FFFFFF; cursor: pointer">Acknowledge</button>
+          </sc-if>
+          <sc-if value="{{a3done}}" hint-placeholder-val="{{false}}">
+            <span style="display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; font-weight: 600; color: #185D55">Acknowledged at 16:12 by [NAME]</span>
+          </sc-if>
+        </div>
+      </article>
+
+      <article style="background: #FFFFFF; border: 1px solid #D6DAD4; border-radius: 10px; padding: 18px 20px">
+        <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between">
+          <h3 style="margin: 0; font-size: 16px; font-weight: 600">Bedroom wing A — artificial light only</h3>
+          <span style="font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 5px; background: #FAEBCB; color: #7A4F0C">APPROACHING</span>
+        </div>
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-top: 12px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 34px; font-weight: 600; line-height: 36px">410</span>
+          <span style="font-size: 14px; color: #5B6560">lux, all of it artificial since 15:05</span>
+        </div>
+        <div style="font-size: 13px; color: #5B6560; margin-top: 6px">B01 to B06 face away from the garden. The meter has recorded no daylight for three hours. Level set for this wing is 450 lux.</div>
+        <div style="margin-top: 14px">
+          <div style="font-size: 12px; font-weight: 600; color: #4A544F; text-transform: uppercase; letter-spacing: 0.06em">Adjustments in their care plans</div>
+          <ul style="margin: 7px 0 0; padding-left: 20px; font-size: 13px; line-height: 21px">
+            <li>Drop wing lighting to the evening level at 18:00</li>
+            <li>Offer 1049 time in the secure garden while daylight lasts</li>
+          </ul>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #E4E7E3">
+          <sc-if value="{{a4open}}" hint-placeholder-val="{{true}}">
+            <button type="button" data-on-click="{{ack4}}" style="appearance: none; font: inherit; font-size: 13px; font-weight: 600; min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid #1D6B62; background: #1D6B62; color: #FFFFFF; cursor: pointer">Acknowledge</button>
+          </sc-if>
+          <sc-if value="{{a4done}}" hint-placeholder-val="{{false}}">
+            <span style="display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; font-weight: 600; color: #185D55">Acknowledged at 16:12 by [NAME]</span>
+          </sc-if>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <p style="margin: 0; font-size: 12px; line-height: 19px; color: #5B6560">Readings refresh every 30 seconds. Levels for each area are set by the ward's occupational therapist and reviewed monthly. Sensors count people and measure sound pressure, movement and illuminance; they do not record speech or images. Patients and staff are told apart by the staff badge readers at each sensor, not by identifying anyone.</p>
+</div></div>
+<script src="dc-lite.js"></script>
+<script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { layer: 'combined', acked: {} };
+  }
+
+  zones() {
+    return [
+      { key: 'lounge',    name: 'Lounge',             sound: 72, soundT: 65, pass: 5,  passT: 8,  pat: 11, staff: 2, occT: 12, lux: 620,  luxT: 700,   nat: 180,  art: 440 },
+      { key: 'corridor',  name: 'Main corridor',      sound: 61, soundT: 70, pass: 13, passT: 8,  pat: 1,  staff: 1, occT: 10, lux: 430,  luxT: 500,   nat: 0,    art: 430 },
+      { key: 'dining',    name: 'Dining',             sound: 58, soundT: 65, pass: 3,  passT: 10, pat: 0,  staff: 1, occT: 14, lux: 480,  luxT: 600,   nat: 90,   art: 390 },
+      { key: 'kitchen',   name: 'Kitchen',           sound: 62, soundT: 70, pass: 2,  passT: 8,  pat: 0,  staff: 1, occT: 6,  lux: 540,  luxT: 600,   nat: 60,   art: 480 },
+      { key: 'wingA',     name: 'Bedroom wing A',     sound: 38, soundT: 45, pass: 2,  passT: 6,  pat: 1,  staff: 0, occT: 8,  lux: 410,  luxT: 450,   nat: 0,    art: 410 },
+      { key: 'gardencor', name: 'Garden corridor',    sound: 51, soundT: 70, pass: 4,  passT: 10, pat: 0,  staff: 0, occT: 8,  lux: 760,  luxT: 900,   nat: 520,  art: 240 },
+      { key: 'garden',    name: 'Secure garden',      sound: 44, soundT: 75, pass: 1,  passT: 8,  pat: 1,  staff: 0, occT: 10, lux: 9800, luxT: 20000, nat: 9720, art: 80 },
+      { key: 'therapy',   name: 'Group therapy',      sound: 48, soundT: 60, pass: 0,  passT: 6,  pat: 0,  staff: 0, occT: 8,  lux: 420,  luxT: 500,   nat: 90,   art: 330 },
+      { key: 'wingB',     name: 'Bedroom wing B',     sound: 35, soundT: 45, pass: 1,  passT: 6,  pat: 0,  staff: 0, occT: 8,  lux: 290,  luxT: 450,   nat: 60,   art: 230 },
+      { key: 'wingC',     name: 'Bedroom wing C',     sound: 37, soundT: 45, pass: 1,  passT: 6,  pat: 1,  staff: 0, occT: 8,  lux: 380,  luxT: 450,   nat: 40,   art: 340 },
+      { key: 'sensory',   name: 'Sensory room',       sound: 32, soundT: 40, pass: 0,  passT: 4,  pat: 0,  staff: 0, occT: 2,  lux: 180,  luxT: 250,   nat: 40,   art: 140 },
+      { key: 'deesc',     name: 'De-escalation',      sound: 29, soundT: 45, pass: 0,  passT: 4,  pat: 0,  staff: 0, occT: 4,  lux: 200,  luxT: 300,   nat: 0,    art: 200 }
+    ];
+  }
+
+  fmt(n) {
+    if (n < 1000) { return String(n); }
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  statusOf(v, t) {
+    if (v > t) { return 'breach'; }
+    if (v >= t * 0.85) { return 'watch'; }
+    return 'calm';
+  }
+
+  rank(s) { return s === 'breach' ? 2 : (s === 'watch' ? 1 : 0); }
+
+  worst(list) {
+    var out = 'calm';
+    for (var i = 0; i < list.length; i++) {
+      if (this.rank(list[i]) > this.rank(out)) { out = list[i]; }
+    }
+    return out;
+  }
+
+  tintFor(s) {
+    if (s === 'breach') { return 'rgba(168, 65, 31, 0.30)'; }
+    if (s === 'watch') { return 'rgba(227, 169, 59, 0.34)'; }
+    return 'rgba(29, 107, 98, 0.16)';
+  }
+
+  edgeFor(s) {
+    if (s === 'breach') { return '#A8411F'; }
+    if (s === 'watch') { return '#B5801C'; }
+    return '#1D6B62';
+  }
+
+  barFor(s) {
+    if (s === 'breach') { return '#C8502F'; }
+    if (s === 'watch') { return '#E3A93B'; }
+    return '#1D6B62';
+  }
+
+  pct(v, max) {
+    var p = (v / max) * 100;
+    if (p > 100) { p = 100; }
+    if (p < 0) { p = 0; }
+    return Math.round(p * 10) / 10 + '%';
+  }
+
+  meterRows(channel) {
+    var self = this;
+    var max = channel === 'sound' ? 85 : 20;
+    var list = this.zones().slice().sort(function (a, b) {
+      return channel === 'sound' ? b.sound - a.sound : b.pass - a.pass;
+    });
+    return list.map(function (z) {
+      if (channel === 'sound') {
+        var s = self.statusOf(z.sound, z.soundT);
+        return { name: z.name, val: z.sound + ' dB', pct: self.pct(z.sound, max), tick: self.pct(z.soundT, max), fill: self.barFor(s) };
+      }
+      var st = self.worst([self.statusOf(z.pass, z.passT), self.statusOf(z.pat + z.staff, z.occT)]);
+      return {
+        name: z.name,
+        val: z.pass + '/min',
+        split: z.pat + ' + ' + z.staff,
+        pct: self.pct(z.pass, max),
+        tick: self.pct(z.passT, max),
+        fill: self.barFor(st)
+      };
+    });
+  }
+
+  renderVals() {
+    var self = this;
+    var layer = this.state.layer;
+    var zs = this.zones();
+    var t = {};
+    var b = {};
+    var v = {};
+    var o = {};
+
+    zs.forEach(function (z) {
+      var people = z.pat + z.staff;
+      var sSound = self.statusOf(z.sound, z.soundT);
+      var sTraffic = self.worst([self.statusOf(z.pass, z.passT), self.statusOf(people, z.occT)]);
+      var sLight = self.statusOf(z.lux, z.luxT);
+      var status;
+      var label;
+      if (layer === 'sound') {
+        status = sSound; label = z.sound + ' dB';
+      } else if (layer === 'traffic') {
+        status = sTraffic; label = z.pass + '/min';
+      } else if (layer === 'light') {
+        status = sLight; label = self.fmt(z.lux) + ' lx';
+      } else {
+        status = self.worst([sSound, sTraffic, sLight]);
+        if (self.rank(status) === 0) { label = 'within'; }
+        else if (status === sSound) { label = z.sound + ' dB'; }
+        else if (status === sTraffic) { label = z.pass + '/min'; }
+        else { label = self.fmt(z.lux) + ' lx'; }
+      }
+      t[z.key] = self.tintFor(status);
+      b[z.key] = self.edgeFor(status);
+      v[z.key] = label;
+      o[z.key] = people === 0 ? '· empty' : '· ' + z.pat + 'p + ' + z.staff + 's';
+    });
+
+    var notes = {
+      combined: 'Shaded by the channel furthest from the level set for each area.',
+      sound: 'Shaded by sound against the level set for each area.',
+      traffic: 'Shaded by foot traffic and the number of people present.',
+      light: 'Shaded by total light against the level set for each area.'
+    };
+
+    var off = 'appearance: none; font: inherit; font-size: 13px; font-weight: 500; min-height: 44px; padding: 0 14px; border-radius: 8px; cursor: pointer; border: 1px solid #CBD2CC; background: #FFFFFF; color: #2C3833';
+    var on = 'appearance: none; font: inherit; font-size: 13px; font-weight: 600; min-height: 44px; padding: 0 14px; border-radius: 8px; cursor: pointer; border: 1px solid #18211F; background: #18211F; color: #FFFFFF';
+
+    var lightMax = 1300;
+    var lightRows = zs.slice().sort(function (x, y) { return y.lux - x.lux; }).map(function (z) {
+      return {
+        name: z.name,
+        val: self.fmt(z.lux) + ' lx',
+        natPct: self.pct(z.nat, lightMax),
+        artPct: self.pct(z.art, lightMax),
+        natShare: Math.round((z.nat / z.lux) * 100) + '%'
+      };
+    });
+
+    var acked = this.state.acked;
+
+    return {
+      showPins: this.props.showSensors !== false,
+      t: t, b: b, v: v, o: o,
+      layerNote: notes[layer],
+      btnCombined: layer === 'combined' ? on : off,
+      btnSound: layer === 'sound' ? on : off,
+      btnTraffic: layer === 'traffic' ? on : off,
+      btnLight: layer === 'light' ? on : off,
+      pickCombined: function () { self.setState({ layer: 'combined' }); },
+      pickSound: function () { self.setState({ layer: 'sound' }); },
+      pickTraffic: function () { self.setState({ layer: 'traffic' }); },
+      pickLight: function () { self.setState({ layer: 'light' }); },
+      soundRows: this.meterRows('sound'),
+      trafficRows: this.meterRows('pass'),
+      lightRows: lightRows,
+      a1open: !acked.a1, a1done: !!acked.a1,
+      a2open: !acked.a2, a2done: !!acked.a2,
+      a3open: !acked.a3, a3done: !!acked.a3,
+      a4open: !acked.a4, a4done: !!acked.a4,
+      ack1: function () { self.setState({ acked: Object.assign({}, self.state.acked, { a1: true }) }); },
+      ack2: function () { self.setState({ acked: Object.assign({}, self.state.acked, { a2: true }) }); },
+      ack3: function () { self.setState({ acked: Object.assign({}, self.state.acked, { a3: true }) }); },
+      ack4: function () { self.setState({ acked: Object.assign({}, self.state.acked, { a4: true }) }); }
+    };
+  }
+}
+window.__dcProps = {"showSensors": true};
+window.__dcBoot();
+</script>
+</body>
+</html>
