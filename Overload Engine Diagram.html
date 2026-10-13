@@ -1,0 +1,744 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Overload Engine Diagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one working column (max 1200px); diagram panel full width with its explanation above, evidence tables beneath */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --surface-2:#eef1f5;
+  --ink:#18202b; --ink-2:#4b5666; --ink-3:#778293; --rule:#d6dce4;
+  --accent:#0f6e6a; --accent-soft:#dcefed;
+  --lever:#a3640c; --lever-soft:#fbf0dd; --linked:#8d96a3;
+  --rtag:#7b3f6e; --btag:#2d5d8a; --prop:#a3640c;
+  --gb:#1f3b5c; --gc:#8593a6; --gd:#b4553a;
+  --sec-env:#e8f1ec; --sec-load:#e9eef6; --sec-cap:#f4efe5; --sec-reg:#f1ecf3; --sec-stroke:#d0d8e1;
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151b; --surface:#181e26; --surface-2:#1f2630;
+    --ink:#e4e9ef; --ink-2:#a9b3c0; --ink-3:#7f8a99; --rule:#2d3541;
+    --accent:#4fbdb4; --accent-soft:#163331;
+    --lever:#e3a64f; --lever-soft:#2f2515; --linked:#6c7684;
+    --rtag:#d993c6; --btag:#86b6e4; --prop:#e3a64f;
+    --gb:#a9cdf2; --gc:#6f7b8b; --gd:#e48f72;
+    --sec-env:#152019; --sec-load:#151b25; --sec-cap:#211d16; --sec-reg:#1d1822; --sec-stroke:#2a323d;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151b; --surface:#181e26; --surface-2:#1f2630;
+  --ink:#e4e9ef; --ink-2:#a9b3c0; --ink-3:#7f8a99; --rule:#2d3541;
+  --accent:#4fbdb4; --accent-soft:#163331;
+  --lever:#e3a64f; --lever-soft:#2f2515; --linked:#6c7684;
+  --rtag:#d993c6; --btag:#86b6e4; --prop:#e3a64f;
+  --gb:#a9cdf2; --gc:#6f7b8b; --gd:#e48f72;
+  --sec-env:#152019; --sec-load:#151b25; --sec-cap:#211d16; --sec-reg:#1d1822; --sec-stroke:#2a323d;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:1200px;margin:0 auto}
+a{color:var(--accent)}
+header.top{padding-block:36px 20px;border-bottom:1px solid var(--rule);display:grid;gap:12px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1.15;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:24px;margin:0;text-wrap:balance}
+h3{font-size:15px;font-weight:600;margin:0}
+p{margin:0;max-width:72ch}
+.lede{display:grid;gap:8px;color:var(--ink-2)}
+.gate{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-family:var(--f-mono);font-size:12.5px;color:var(--ink-2)}
+.gate .pill{border:1px solid var(--accent);color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 10px;font-weight:500}
+section{padding-block:28px 8px;display:grid;gap:16px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.group-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+button,select{font:inherit}
+button{cursor:pointer}
+.lbtn{font-family:var(--f-mono);font-size:13px;font-weight:500;border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:6px;padding:5px 10px;display:inline-flex;gap:6px;align-items:center}
+.lbtn .t{font-weight:600}
+.lbtn[data-type="R"] .t{color:var(--rtag)}
+.lbtn[data-type="B"] .t{color:var(--btag)}
+.lbtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.lbtn:hover{border-color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tick{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2)}
+.tick input{accent-color:var(--accent);width:16px;height:16px}
+.tick select{border:1px solid var(--rule);border-radius:6px;background:var(--surface);color:var(--ink);padding:3px 6px;font-size:14px}
+.help{width:20px;height:20px;border-radius:50%;border:1px solid var(--rule);background:var(--surface-2);color:var(--ink-2);font-size:12px;font-weight:600;line-height:1;padding:0;display:inline-grid;place-items:center}
+.help:hover{border-color:var(--ink-3)}
+.pop{position:absolute;z-index:20;max-width:340px;background:var(--surface);color:var(--ink);border:1px solid var(--rule);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.18);padding:12px 14px;font-size:14px;display:grid;gap:6px}
+.pop .x{justify-self:end;border:none;background:none;color:var(--ink-3);font-size:13px;padding:0}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;gap:10px;min-height:150px}
+.panel .head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
+.tag{font-family:var(--f-mono);font-size:12px;border-radius:4px;padding:1px 7px;border:1px solid currentColor;white-space:nowrap}
+.tag.R{color:var(--rtag)} .tag.B{color:var(--btag)}
+.grade{font-family:var(--f-mono);font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;white-space:nowrap;border:1px solid}
+.grade.gB{color:var(--gb);border-color:var(--gb)} .grade.gC{color:var(--ink-2);border-color:var(--gc)} .grade.gD{color:var(--gd);border-color:var(--gd);border-style:dashed}
+.trace{font-family:var(--f-mono);font-size:13px;color:var(--ink-2);display:grid;gap:2px}
+.trace .sg{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1px solid var(--ink-3);font-size:12px;margin:0 2px;vertical-align:-3px;color:var(--ink)}
+.dl{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 16px}
+.dl dt{font-weight:600;font-size:13.5px;color:var(--ink-2)}
+.dl dd{margin:0;min-width:0}
+.dl dd.act{background:var(--accent-soft);border-radius:6px;padding:4px 8px;margin-left:-8px}
+.dl ul{margin:0;padding-left:18px}
+@media (max-width:640px){.dl{grid-template-columns:1fr}.dl dd.act{margin-left:0}}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.diagram{background:var(--surface);border:1px solid var(--rule);border-radius:10px;overflow-x:auto}
+#cld{display:block;width:100%;min-width:880px;height:auto}
+#cld text{font-family:var(--f-body)}
+.sector rect{fill:var(--sec);stroke:var(--sec-stroke)}
+.sector text{font-family:var(--f-mono)!important;font-size:11.5px;letter-spacing:.08em;fill:var(--ink-3);text-transform:uppercase}
+.node{cursor:pointer}
+.node rect.box{fill:var(--surface);stroke:var(--ink-2);stroke-width:1.3}
+.node text.lab{fill:var(--ink);font-size:13.5px;font-weight:500}
+.node text.cap{font-family:var(--f-mono)!important;font-size:10px;fill:var(--lever);letter-spacing:.04em}
+.node.lever rect.box{stroke:var(--lever);stroke-width:2.2;fill:var(--lever-soft)}
+.node.linked rect.box{stroke-dasharray:4 3}
+.node.linked text.lab{fill:var(--ink-2)}
+.node.linked.lever rect.box{stroke:var(--linked);fill:var(--surface-2)}
+.node.linked text.cap{fill:var(--ink-3)}
+.node.shadow rect.box{stroke:none;fill:var(--sec)}
+.node.shadow text.lab{fill:var(--ink-3);font-style:italic;font-weight:400}
+.node:focus{outline:none}
+.node:focus-visible rect.box,.node.sel rect.box{stroke:var(--accent);stroke-width:2.6}
+.link{cursor:pointer}
+.link path.hit{fill:none;stroke:transparent;stroke-width:12}
+.link path.ln{fill:none;stroke:var(--ink-2);stroke-width:1.6}
+.link path.ah{fill:var(--ink-2)}
+.link line.dl{stroke:var(--ink-2);stroke-width:1.8}
+.link circle.pc{fill:var(--surface);stroke:var(--ink-2);stroke-width:1.1}
+.link text.pt{fill:var(--ink);font-size:13px;font-weight:600;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+#cld.c-grade .link.gB path.ln{stroke:var(--gb);stroke-width:2.4}
+#cld.c-grade .link.gB path.ah{fill:var(--gb)}
+#cld.c-grade .link.gC path.ln{stroke:var(--gc);stroke-width:1.6}
+#cld.c-grade .link.gC path.ah{fill:var(--gc)}
+#cld.c-grade .link.gD path.ln{stroke:var(--gd);stroke-width:1.6;stroke-dasharray:6 4}
+#cld.c-grade .link.gD path.ah{fill:var(--gd)}
+#cld.c-added .link.added path.ln{stroke:var(--prop);stroke-width:2.4}
+#cld.c-added .link.added path.ah{fill:var(--prop)}
+#cld.c-added .link:not(.added){opacity:.45}
+.link.hl path.ln{stroke:var(--accent)!important;stroke-width:2.6!important;stroke-dasharray:none!important}
+.link.hl path.ah{fill:var(--accent)!important}
+.link.hl circle.pc{fill:var(--accent);stroke:var(--accent)}
+.link.hl text.pt{fill:var(--surface)}
+.link.hl line.dl{stroke:var(--accent)}
+.link.hl{opacity:1!important}
+.dim{opacity:.14!important}
+.marker{cursor:pointer}
+.marker circle.mc{fill:var(--surface);stroke-width:1.6}
+.marker.R circle.mc{stroke:var(--rtag)} .marker.B circle.mc{stroke:var(--btag)}
+.marker text{font-family:var(--f-mono)!important;font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.marker.R text,.marker.R path{fill:var(--rtag)} .marker.B text,.marker.B path{fill:var(--btag)}
+.marker path.arc{fill:none!important;stroke-width:1.4}
+.marker.R path.arc{stroke:var(--rtag)} .marker.B path.arc{stroke:var(--btag)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--ink-2);align-items:center}
+.legend svg{vertical-align:middle;margin-right:6px}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:500;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-size:13px;color:var(--ink-3)}
+td.mono{font-family:var(--f-mono);font-size:13px;white-space:nowrap}
+td.wide{min-width:280px}
+tr.added td{background:var(--lever-soft)}
+.stock{font-weight:600}
+.badge{font-family:var(--f-mono);font-size:11px;border:1px solid var(--rule);border-radius:4px;padding:0 5px;color:var(--ink-2);white-space:nowrap}
+.badge.lev{border-color:var(--lever);color:var(--lever)}
+ol.q{margin:0;padding-left:22px;display:grid;gap:8px;max-width:80ch}
+.note{font-size:13.5px;color:var(--ink-3)}
+footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3);display:grid;gap:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Autism environment model · View 1 of 3 · Overload engine</div>
+  <h1>How overload builds, and how stress is brought back down</h1>
+  <div class="lede">
+    <p>This view shows the core feedback structure behind stress and dysregulation in autistic people. Load from the setting raises stress. Sustained stress wears down the capacity to cope. Rest, retreat, self-regulation, meltdown and shutdown bring stress back down, some at a cost. View 2 covers masking, burnout and support. View 3 covers the environment in detail.</p>
+    <p>Every link has been checked against published research and given an evidence grade. Select a + or − sign on the diagram to see the evidence and sources for that link. The full review is in the <a href="https://claude.ai/code/artifact/cffc60ce-7727-46d7-a5fc-e58507ddd2a6" target="_blank" rel="noopener">evidence review report</a>.</p>
+  </div>
+  <div class="gate"><span class="pill">Stage 3 · Evidence reviewed</span><span>15 variables · 27 links · 8 loop groups</span><span>8 links added from evidence</span></div>
+</header>
+
+<section id="diagram-section" aria-labelledby="h-diagram">
+  <h2 id="h-diagram">Causal loop diagram</h2>
+  <div class="toolbar">
+    <div class="group" role="group" aria-label="Loops">
+      <span class="group-label">Loops</span>
+      <div class="group" id="loopbtns"></div>
+      <button class="lbtn" id="showall" aria-pressed="true">Show all</button>
+      <button class="help" data-help="loops" aria-label="Help: loop buttons">?</button>
+    </div>
+    <div class="group">
+      <label class="tick"><input type="checkbox" id="tg-levers" checked> Show levers</label>
+      <button class="help" data-help="levers" aria-label="Help: levers">?</button>
+      <label class="tick" for="colour">Colour links by
+        <select id="colour"><option value="none">nothing</option><option value="grade">evidence grade</option><option value="added">added from evidence</option></select></label>
+      <button class="help" data-help="colour" aria-label="Help: link colouring">?</button>
+    </div>
+  </div>
+  <div class="panel" id="info" aria-live="polite"></div>
+  <div class="diagram"><svg id="cld" class="c-none" viewBox="0 0 1200 845" role="img" aria-label="Causal loop diagram, View 1: overload engine"></svg></div>
+  <div class="legend">
+    <span><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="9" fill="none" stroke="currentColor"/><text x="11" y="15" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">+</text></svg>Same direction</span>
+    <span><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="9" fill="none" stroke="currentColor"/><text x="11" y="15" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">−</text></svg>Opposite direction</span>
+    <span><svg width="34" height="16" viewBox="0 0 34 16"><line x1="0" y1="8" x2="34" y2="8" stroke="currentColor" stroke-width="1.6"/><line x1="14" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.8"/><line x1="19" y1="2" x2="19" y2="14" stroke="currentColor" stroke-width="1.8"/></svg>Significant delay</span>
+    <span><svg width="30" height="18" viewBox="0 0 30 18"><rect x="1" y="1" width="28" height="16" rx="4" fill="var(--lever-soft)" stroke="var(--lever)" stroke-width="2"/></svg>Lever</span>
+    <span><svg width="30" height="18" viewBox="0 0 30 18"><rect x="1" y="1" width="28" height="16" rx="4" fill="var(--surface-2)" stroke="var(--linked)" stroke-width="1.3" stroke-dasharray="4 3"/></svg>Linked from another view</span>
+    <span><svg width="58" height="18" viewBox="0 0 58 18"><text x="29" y="13" text-anchor="middle" font-size="12" font-style="italic" fill="var(--ink-3)">&lt;Stress&gt;</text></svg>Copy of a variable drawn elsewhere</span>
+    <span id="colour-legend"></span>
+    <button class="help" data-help="diagram" aria-label="Help: reading the diagram">?</button>
+  </div>
+</section>
+
+<section aria-labelledby="h-links">
+  <h2 id="h-links">Link evidence</h2>
+  <p class="note">Grades: B, published evidence from autistic people; C, evidence from a related population or theory with partial autism-specific support; D, lived-experience accounts with little data. No grade A evidence exists yet, because it needs data from a specific setting. Shaded rows are links added by the evidence review.</p>
+  <div class="tablewrap"><table id="t-links"></table></div>
+</section>
+
+<section aria-labelledby="h-loops">
+  <h2 id="h-loops">Loop table</h2>
+  <p class="note">Each loop is graded at its weakest link. No study has measured any loop as a whole.</p>
+  <div class="tablewrap"><table id="t-loops"></table></div>
+</section>
+
+<section aria-labelledby="h-vars">
+  <h2 id="h-vars">Variable table</h2>
+  <p class="note">Types are provisional and will be settled when the stock and flow model is built. Stocks are shown in bold.</p>
+  <div class="tablewrap"><table id="t-vars"></table></div>
+</section>
+
+<section aria-labelledby="h-q">
+  <h2 id="h-q">Open questions</h2>
+  <ol class="q">
+    <li>Can we rename "Meltdown" and "Shutdown" as frequencies, and split Bd into Bd1 (meltdown) and Bd2 (shutdown)?</li>
+    <li>Are R7 and B8 free loop numbers, or do Views 2 and 3 already use them?</li>
+    <li>Do the two new levers, access to a retreat space and acceptance of regulation strategies, match what practitioners can change?</li>
+    <li>Are local records available, such as incident logs, sleep records or retreat use, to test the strongest links against real behaviour?</li>
+  </ol>
+</section>
+
+<footer>
+  <div>Overload engine · View 1 · Causal loop diagram · Stage 3, evidence reviewed · Version of 13 October 2026</div>
+  <div id="checkline">Layout check: running…</div>
+</footer>
+</div>
+
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg";
+
+const S={
+  schwarz:["Schwarzlose et al. (2026), reported in The Transmitter","https://www.thetransmitter.org/spectrum/sensory-over-responsivity-tied-to-autism-anxiety-but-not-other-conditions/"],
+  south:["South and Rodgers (2017), Frontiers in Human Neuroscience","https://www.frontiersin.org/articles/10.3389/fnhum.2017.00020/full"],
+  jenk:["Jenkinson et al. (2020), Autism","https://journals.sagepub.com/doi/abs/10.1177/1362361320932437"],
+  neil:["Neil et al. (2016), J Autism Dev Disord","https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4860201/"],
+  mouz:["Mouzakes and Thompson (2025), Behavioral Interventions","https://digitalcommons.wne.edu/casfacpubs/10/"],
+  stein:["Stein Duker et al. (2023), JAMA Network Open","https://chan.usc.edu/news/latest/sensory-adapted-dental-rooms-significantly-reduce-autistic-childrens-physiological-and-behavioral-stress-during-teeth-cleanings"],
+  ray:["Raymaker et al. (2020), Autism in Adulthood","https://pdxscholar.library.pdx.edu/socwork_fac/378"],
+  holl:["Hollocks et al. (2019), Psychological Medicine","https://ueaeprints.uea.ac.uk/id/eprint/68116/"],
+  eys:["Eysenck et al. (2007), Emotion","https://tu-dresden.de/mn/psychologie/allgpsy/ressourcen/dateien/lehre/pruefungsliteratur_KN_2013/Eysenck-2007.pdf?lang=de"],
+  arn:["Arnold et al. (2023), Autism","https://discovery.ucl.ac.uk/id/eprint/10163508/"],
+  mce:["McEwen (2005), J Psychiatry Neurosci","https://www.jpn.ca/content/30/5/315.full.pdf"],
+  hig:["Higgins et al. (2021), Autism CRC summary","https://www.autismcrc.com.au/sites/default/files/reports/3-076RI_Autistic-Burnout_Executive-summary.pdf"],
+  hirv:["Hirvikoski and Blomqvist (2015), Autism","https://behavioristbookclub.com/aba-research/autism-developmental/high-self-perceived-stress-and-poor-coping-in-intellectually-able-adul/"],
+  maz15:["Mazurek and Petroski (2015), INSAR abstract","https://insar.confex.com/insar/2015/webprogram/Paper18835.html"],
+  maz19:["Mazurek et al. (2019), reported in The Transmitter","https://www.thetransmitter.org/spectrum/autistic-childrens-sleep-problems-may-stem-sensory-issues/"],
+  uren:["Uren et al. (2019), Eur Child Adolesc Psychiatry","https://donate.telethonkids.org.au/our-research/reports-and-findings/2019/august-2019/sleep-problems-and-anxiety-from-2-to-8years-and/"],
+  cohen:["Cohen et al. (2018), Autism Research","https://behavioristbookclub.com/aba-research/assessment-research/sleep-patterns-predictive-of-daytime-challenging-behavior-in-individua/"],
+  nevA:["Neville et al. (2024), Autism in Adulthood","https://research-information.bris.ac.uk/en/publications/reacting-retreating-regulating-and-reconnecting-how-autistic-adul/"],
+  nevT:["Neville (2024), UWE thesis","https://uwe-repository.worktribe.com/output/11129780"],
+  kapp:["Kapp et al. (2019), Autism","https://researchportal.port.ac.uk/en/publications/people-should-be-allowed-to-do-what-they-like-autistic-adults-vie/"],
+  rodg:["Rodgers et al. (2012), J Autism Dev Disord","https://research.ncl.ac.uk/cargo-ne/Rodgers%20et%20all%202012%20JADD%20RB&anxiety.pdf"],
+  maz13:["Mazefsky et al. (2013), JAACAP","https://psychiatry.pitt.edu/node/1370"],
+  lewis:["Lewis and Stevens (2023), Autism","https://journals.sagepub.com/doi/abs/10.1177/13623613221145783"],
+  aspect:["Lewis and Stevens (2023), summary by Autism Spectrum Australia","https://www.aspect.org.au/resources/research-unpacked-meltdowns"],
+  phung:["Phung et al. (2021), Frontiers in Psychology","https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.741421/full"],
+  sinha:["Sinha et al. (2014), PNAS, reported by MIT News","https://news.mit.edu/2014/autism-disorder-prediction-anxiety-1007"],
+  most:["Mostafa (2014), Archnet-IJAR","https://fount.aucegypt.edu/faculty_journal_articles/756"]
+};
+
+const SECTORS=[
+  {id:"env",label:"Environment",x:20,y:40,w:220,h:795,fill:"--sec-env"},
+  {id:"load",label:"Load and stress",x:256,y:40,w:534,h:552,fill:"--sec-load"},
+  {id:"reg",label:"Regulation and release",x:256,y:608,w:534,h:227,fill:"--sec-reg"},
+  {id:"cap",label:"Capacity and recovery",x:806,y:40,w:374,h:795,fill:"--sec-cap"}
+];
+const secName=Object.fromEntries(SECTORS.map(s=>[s.id,s.label]));
+
+const NODES=[
+  {id:"sensory",label:"Sensory\nmismatch",x:130,y:170,sector:"env",lever:true,grade:"B",type:"Calculated factor (input)",units:"Index, 0 to 1",
+   construct:"Sensory over-responsivity, set against the sensory conditions of the setting",
+   desc:"The gap between the sensory conditions of the setting (noise, light, crowding, smell, touch) and what the person can tolerate. Built up in detail in View 3."},
+  {id:"acc",label:"Accommodations",x:130,y:320,sector:"env",lever:true,linked:"View 2",grade:"B",type:"Stock (in View 2)",units:"Index, 0 to 1",
+   construct:"Environmental modification and support",
+   desc:"Adjustments in place for the person, such as quiet space, adapted demands or communication support. Modelled in View 2 and brought into this view as an input."},
+  {id:"pred",label:"Predictability",x:130,y:460,sector:"env",lever:true,grade:"B",type:"Calculated factor (input)",units:"Score, 0 to 10",
+   construct:"Environmental uncertainty, acting through intolerance of uncertainty",
+   desc:"How far the person can know in advance what will happen, when, where and with whom."},
+  {id:"accept",label:"Acceptance of\nregulation strategies",x:130,y:705,sector:"env",lever:true,added:true,grade:"C",type:"Calculated factor (input)",units:"Score, 0 to 10",
+   construct:"Acceptance or suppression of stimming",
+   desc:"How far the setting accepts and supports the person's own regulation strategies, such as stimming and movement, rather than stopping them. Added by the evidence review."},
+  {id:"load",label:"Total load",x:410,y:190,sector:"load",grade:"C",type:"Calculated factor",units:"Index, 0 to 1",
+   construct:"Cumulative demand; allostatic load",
+   desc:"The combined demand on the person's processing at a point in time: sensory, social, cognitive and anticipatory."},
+  {id:"anx",label:"Anticipatory\nanxiety",x:410,y:460,sector:"load",grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Anxiety mediated by intolerance of uncertainty",
+   desc:"The learned expectation that a situation will be difficult. It builds with repeated stress and fades slowly."},
+  {id:"stress",label:"Stress",x:600,y:330,sector:"load",grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Perceived stress; physiological arousal",
+   desc:"The person's current level of arousal and distress. It moves towards the level set by load relative to coping capacity."},
+  {id:"sleep",label:"Sleep quality",x:925,y:150,sector:"cap",grade:"B",type:"Calculated factor",units:"Index, 0 to 1",
+   construct:"Sleep problems",
+   desc:"The quality and quantity of recent sleep, as an average over the last few nights. Research shows effects build over up to eight nights."},
+  {id:"coping",label:"Coping\ncapacity",x:1085,y:330,sector:"cap",grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Coping ability; tolerance of stimulus; retained skills",
+   desc:"The person's current ability to process demands without distress."},
+  {id:"exh",label:"Exhaustion",x:925,y:510,sector:"cap",grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Chronic exhaustion, the core feature of autistic burnout",
+   desc:"Accumulated depletion of physical and mental energy."},
+  {id:"rest",label:"Rest and\nwithdrawal",x:1085,y:690,sector:"cap",grade:"C",type:"Flow",units:"Hours per day",
+   construct:"Time alone to retreat, regulate and recharge",
+   desc:"Time spent resting or withdrawn from demands. Research shows people retreat both when exhausted and in direct reaction to overwhelm."},
+  {id:"access",label:"Access to\nretreat space",x:1085,y:790,sector:"cap",lever:true,added:true,grade:"C",type:"Calculated factor (input)",units:"Score, 0 to 10",
+   construct:"Escape space; protected alone time",
+   desc:"Whether the person can reach a quiet, protected space when they need to, and is allowed to use it. Added by the evidence review."},
+  {id:"selfreg",label:"Self-regulation",x:385,y:705,sector:"reg",grade:"C",type:"Flow",units:"Activity level, index 0 to 1",
+   construct:"Stimming and other regulation strategies",
+   desc:"Use of strategies that reduce arousal, such as movement, stimming, deep pressure or a preferred activity."},
+  {id:"meltdown",label:"Meltdown",x:575,y:705,sector:"reg",grade:"B",type:"Flow",units:"Episodes per week",
+   construct:"Meltdown",
+   desc:"An involuntary, outward release of overwhelming stress. It is a response to overload, not chosen behaviour."},
+  {id:"shutdown",label:"Shutdown",x:720,y:705,sector:"reg",grade:"D",type:"Flow",units:"Episodes per week",
+   construct:"Shutdown",
+   desc:"An involuntary, inward response to overwhelming stress: reduced responsiveness, speech or movement."},
+  {id:"stress_s",alias:"stress",label:"Stress",x:1120,y:565,sector:"cap"},
+  {id:"load_s",alias:"load",label:"Total load",x:920,y:780,sector:"cap"}
+];
+
+// bend: offset of the curve's control point (px); lpos: label position as a fraction of the link
+const LINKS=[
+  {n:"1",from:"sensory",to:"load",pol:"+",delay:false,bend:0,grade:"B",verdict:"Supported",src:["schwarz","south"],
+   mech:"Sensory input the person cannot filter adds directly to processing demand.",
+   ev:"Sensory over-responsivity is uniquely associated with anxiety and autism traits in 15,728 children. Autistic youth show stronger brain responses to mild sounds, in sensory areas and the amygdala."},
+  {n:"2",from:"pred",to:"anx",pol:"−",delay:false,bend:0,grade:"B",verdict:"Supported with qualification",src:["jenk","neil","mouz"],
+   mech:"When the person knows what will happen, there is less to anticipate and fear.",
+   ev:"Intolerance of uncertainty correlates with anxiety in autism (pooled r = 0.62 across 10 studies) and mediates the link between autism and anxiety. The effect depends on each person's intolerance of uncertainty. Evidence that visual schedules alone improve transitions is weak."},
+  {n:"3",from:"acc",to:"load",pol:"−",delay:true,bend:0,grade:"B",verdict:"Supported with qualification",src:["stein","ray"],
+   mech:"Adjustments remove or reduce demands once they are in place and reliable.",
+   ev:"In a randomised crossover trial with 162 autistic children, sensory adaptations reduced physiological stress and distressed behaviour. Stress fell as soon as children entered the adapted room. The delay therefore applies to putting adjustments in place and trusting them, not to their sensory effect."},
+  {n:"4",from:"load",to:"stress",pol:"+",delay:false,bend:-30,grade:"B",verdict:"Supported",src:["stein","south"],
+   mech:"Higher demand, relative to capacity, raises arousal.",
+   ev:"Physiological stress was lower in an adapted setting, and higher stress predicted more behavioural distress. Cortisol responses rise with sensory dysfunction."},
+  {n:"5",from:"stress",to:"anx",pol:"+",delay:true,bend:24,grade:"C",verdict:"Supported",src:["south","holl"],
+   mech:"Repeated stress in a setting teaches the person to expect it there.",
+   ev:"Autistic adults are less able to learn safety cues during fear extinction, so learned fear persists. Anxiety affects 42% of autistic adults over their lifetime."},
+  {n:"6",from:"anx",to:"load",pol:"+",delay:false,bend:-30,grade:"C",verdict:"Supported",src:["eys","neil"],
+   mech:"Watching for threat and preparing for difficulty use processing capacity.",
+   ev:"Anxiety reduces processing efficiency and draws attention to threat (attentional control theory, general population). In autistic children, intolerance of uncertainty explains 45% of the variance in sensory sensitivity."},
+  {n:"7",from:"stress",to:"exh",pol:"+",delay:true,bend:30,grade:"B",verdict:"Supported",src:["ray","arn","mce"],
+   mech:"Sustained arousal uses energy faster than it is restored.",
+   ev:"Autistic burnout arises from cumulative life stressors and is linked to everyday stress. Repeated stress responses produce cumulative wear on body and brain."},
+  {n:"8",from:"exh",to:"coping",pol:"−",delay:true,bend:30,grade:"B",verdict:"Supported",src:["ray","hig"],
+   mech:"Depleted energy reduces the ability to process demands.",
+   ev:"Autistic burnout is defined by chronic exhaustion with loss of skills and reduced tolerance to stimulus."},
+  {n:"9",from:"coping",to:"stress",pol:"−",delay:false,bend:0,grade:"B",verdict:"Supported",src:["hirv","ray"],
+   mech:"With more capacity, the same load produces less stress.",
+   ev:"Autistic adults report higher stress and poorer coping than comparison adults. Burnout follows when expectations exceed abilities."},
+  {n:"10",from:"stress",to:"sleep",pol:"−",delay:true,bend:-30,grade:"C",verdict:"Supported with qualification",src:["maz15","maz19","uren"],
+   mech:"High arousal delays sleep onset and increases night waking.",
+   ev:"Anxiety is associated with all five sleep problems in 1,348 autistic children. Sleep and anxiety predict each other over six years in a general cohort. A four-year study of 437 autistic children found no such link; sensory sensitivity was the more consistent predictor (link A3)."},
+  {n:"11",from:"sleep",to:"coping",pol:"+",delay:false,bend:-30,grade:"B",verdict:"Supported",src:["cohen","mce"],
+   mech:"Restorative sleep restores the next day's capacity.",
+   ev:"In 67 autistic people with more than 20,000 nights of records, prior sleep predicted challenging behaviour for 81% of individuals. Prediction improved with up to eight prior nights, and irregular sleep was the strongest predictor."},
+  {n:"12",from:"exh",to:"rest",pol:"+",delay:true,bend:70,grade:"B",verdict:"Supported with qualification",src:["hig","ray"],
+   mech:"Exhaustion increases the need to withdraw, and the person withdraws when they can.",
+   ev:"Withdrawal is a defining feature of autistic burnout, and time off or reduced expectations aid recovery. People also retreat in direct reaction to overwhelm (link A5)."},
+  {n:"13",from:"rest",to:"exh",pol:"−",delay:false,bend:70,grade:"C",verdict:"Supported with qualification",src:["nevA","nevT"],
+   mech:"Time without demands allows energy to recover.",
+   ev:"Autistic adults use time alone to regulate, recover and recharge. Recovery depends on feeling protected; the amount of alone time was not clearly linked to wellbeing."},
+  {n:"14",from:"stress",to:"selfreg",pol:"+",delay:false,bend:70,grade:"C",verdict:"Supported",src:["kapp","rodg"],
+   mech:"Rising arousal prompts the use of regulation strategies.",
+   ev:"Autistic adults describe stimming as a way to soothe intense emotions and overwhelming thoughts. In children, anxiety is linked to insistence on sameness but not to sensory-motor behaviour."},
+  {n:"15",from:"selfreg",to:"stress",pol:"−",delay:false,bend:70,lpos:.4,grade:"C",verdict:"Supported",src:["kapp","maz13"],
+   mech:"Regulation strategies reduce arousal.",
+   ev:"Stimming is described as an adaptive self-regulatory mechanism. Emotion regulation differences are a core feature of autism and limit how well this works."},
+  {n:"16",from:"stress",to:"meltdown",pol:"+",delay:false,bend:66,grade:"B",verdict:"Supported with qualification",src:["lewis","phung"],
+   mech:"Above a threshold, stress is released outwardly.",
+   ev:"Meltdowns follow overwhelm from information, sensory, social or emotional stressors. Young people describe stressors that keep stacking up. The link acts only above a threshold."},
+  {n:"17",from:"meltdown",to:"stress",pol:"−",delay:false,bend:66,lpos:.62,grade:"C",verdict:"Supported with qualification",src:["lewis","phung"],
+   mech:"The release lowers arousal in the short term.",
+   ev:"Meltdowns release intense emotion and may help regulate it. The relief is short-term: young people report embarrassment afterwards, and a meltdown can start a burnout (link A1)."},
+  {n:"18",from:"stress",to:"shutdown",pol:"+",delay:false,bend:66,grade:"C",verdict:"Supported",src:["phung"],
+   mech:"Above a threshold, the person withdraws inward.",
+   ev:"Young people link shutdown to sensory overload and describe freezing and being unable to talk."},
+  {n:"19",from:"shutdown",to:"stress",pol:"−",delay:false,bend:66,lpos:.62,grade:"D",verdict:"Supported with qualification",src:["phung"],
+   mech:"Shutting down reduces input and lowers arousal in the short term.",
+   ev:"No study measures whether shutdown lowers stress. The link rests on lived-experience accounts of shutdown as reducing input. It is the weakest link in this view."},
+  {n:"A1",from:"meltdown",to:"exh",pol:"+",delay:true,bend:-40,lpos:.5,added:true,grade:"C",verdict:"Added",src:["phung","aspect"],
+   mech:"Recovery from a meltdown takes energy, often for hours or days.",
+   ev:"Accumulated demands can lead to a meltdown, and a meltdown can start a burnout. Adults describe meltdowns as painful and exhausting, even when hidden."},
+  {n:"A2",from:"shutdown",to:"exh",pol:"+",delay:true,bend:-30,lpos:.5,added:true,grade:"D",verdict:"Added",src:["phung"],
+   mech:"Shutdown is draining and is followed by low energy.",
+   ev:"Young people describe shutdown as feeling drained, lacking energy and having a heavy body."},
+  {n:"A3",from:"sensory",to:"sleep",pol:"−",delay:false,bend:-150,lpos:.5,added:true,grade:"B",verdict:"Added",src:["maz15","maz19"],
+   mech:"Sensory sensitivity makes it harder to fall and stay asleep.",
+   ev:"Sensory over-responsivity is associated with most sleep problems in 1,348 autistic children, and sensory sensitivity predicted sleep problems four years later in young autistic children."},
+  {n:"A4",from:"pred",to:"load",pol:"−",delay:false,bend:0,lpos:.55,added:true,grade:"C",verdict:"Added",src:["sinha","south"],
+   mech:"Predictable input is easier to habituate to, so it adds less to load.",
+   ev:"Reduced prediction limits habituation, so ongoing input stays overwhelming. Unpredictable sound sequences sustain amygdala activity."},
+  {n:"A5",from:"stress_s",to:"rest",pol:"+",delay:false,bend:0,added:true,grade:"C",verdict:"Added",src:["nevA"],
+   mech:"Overwhelm prompts the person to retreat where they can.",
+   ev:"Autistic adults retreat in direct reaction to social and sensory overwhelm."},
+  {n:"A6",from:"rest",to:"load_s",pol:"−",delay:false,bend:0,added:true,grade:"C",verdict:"Added",src:["nevA","lewis"],
+   mech:"Retreat removes the person from social and sensory input.",
+   ev:"Retreating removes the person from social and sensory input. Adults isolate to prevent harm when a meltdown is building."},
+  {n:"A7",from:"access",to:"rest",pol:"+",delay:false,bend:0,added:true,grade:"C",verdict:"Added (lever)",src:["nevT","most"],
+   mech:"A protected space makes retreat possible.",
+   ev:"Retreat needs a space where the person feels protected. Escape space is one of seven autism design principles (ASPECTSS)."},
+  {n:"A8",from:"accept",to:"selfreg",pol:"+",delay:false,bend:0,added:true,grade:"C",verdict:"Added (lever)",src:["kapp"],
+   mech:"Where regulation strategies are accepted, the person can use them.",
+   ev:"Stimming is socially unaccepted in many settings, and autistic adults object to its suppression."}
+];
+
+const LOOPS=[
+  {id:"R5",type:"R",grade:"C",verdict:"Supported",name:"Anticipation adds to load",paths:[["load","stress","anx"]],
+   how:"A higher total load raises stress. Repeated stress teaches the person to expect difficulty, so anticipatory anxiety builds over time. Anticipatory anxiety is itself a demand on processing, so it adds to total load. The higher load raises stress again.",
+   dir:"Upward, the person begins to dread settings, people or transitions before they happen. Downward, a calmer and more predictable setting lowers stress, anticipation fades over weeks, and total load falls further.",
+   act:"Increase predictability: give notice of change and keep routines stable. Reduce sensory mismatch so that the starting load is lower.",
+   ind:"Distress before transitions or known events; repeated questions about what happens next; avoiding places in advance.",
+   lev:"Predictability (acts on anxiety and on load directly); sensory mismatch; accommodations."},
+  {id:"R1",type:"R",grade:"B",verdict:"Supported",name:"Exhaustion erodes coping",paths:[["stress","exh","coping"]],
+   how:"Sustained stress uses energy faster than it is restored, so exhaustion builds over days and weeks. Exhaustion then reduces coping capacity, after a further delay. With less capacity, the same load produces more stress. More stress adds to exhaustion.",
+   dir:"Upward, this is the path towards autistic burnout when load stays high. Downward, when load falls and rest is protected, exhaustion drains, capacity returns, and the same load produces less stress.",
+   act:"Watch for exhaustion before it shows as a crisis. Reduce demands early rather than after a meltdown. Protect recovery time.",
+   ind:"Greater need for rest; loss of skills that were previously managed, such as self-care or speech; lower tolerance as the day goes on.",
+   lev:"Total load, through sensory mismatch, predictability and accommodations; access to retreat space (loops B2 and B8)."},
+  {id:"R6",type:"R",grade:"C",verdict:"Supported with qualification",name:"Poor sleep erodes coping",paths:[["stress","sleep","coping"]],
+   how:"Stress disrupts sleep, with the effect seen over the following nights. Poorer sleep lowers coping capacity, with effects building over several nights. Lower capacity means more stress for the same load. More stress disrupts sleep further.",
+   dir:"Upward, a run of poor nights and difficult days. Downward, better sleep supports better days, which support better sleep.",
+   act:"Protect the sleep environment and a regular evening routine. Irregular sleep is the strongest predictor of difficult days, so treat a run of irregular nights as an early warning.",
+   ind:"Time taken to fall asleep; night waking; variation in sleep from night to night.",
+   lev:"Sensory mismatch, which also acts on sleep directly (link A3); total load during the day."},
+  {id:"B2",type:"B",grade:"C",verdict:"Supported with qualification",name:"Rest restores energy",paths:[["exh","rest"]],
+   how:"As exhaustion rises, the person needs and seeks more rest and withdrawal, after a delay. Rest and withdrawal reduce exhaustion. As exhaustion falls, the need for rest falls.",
+   dir:"This loop holds exhaustion in check when rest is possible. If rest is blocked or delayed, the loop weakens and loop R1 takes over.",
+   act:"Make rest and withdrawal possible and acceptable: a quiet space, permission to leave, and time without demands. Do not treat withdrawal as non-compliance.",
+   ind:"Time spent in retreat; whether the person can reach a quiet space when needed; recovery time after demanding periods.",
+   lev:"Access to retreat space (lever added from evidence)."},
+  {id:"B8",type:"B",grade:"C",verdict:"Added",name:"Retreat reduces exposure",paths:[["stress","rest","load"]],marker:{x:985,y:708},
+   how:"As stress rises, the person retreats from the setting where they can. Retreat removes social and sensory input, so total load falls. Lower load brings stress down. As stress falls, the need to retreat falls.",
+   dir:"This loop limits stress when retreat is possible. If there is no protected space, or leaving is not allowed, the loop is cut and stress stays high.",
+   act:"Provide a quiet, protected space and make clear the person may use it at any time. Treat retreat as regulation, not avoidance.",
+   ind:"How quickly the person can reach a retreat space; time to return; distress when retreat is refused.",
+   lev:"Access to retreat space."},
+  {id:"B3",type:"B",grade:"C",verdict:"Supported",name:"Self-regulation calms stress",paths:[["stress","selfreg"]],
+   how:"As stress rises, the person uses self-regulation strategies such as movement, stimming, deep pressure or a preferred activity. These strategies reduce stress. As stress falls, the need for them falls.",
+   dir:"This loop keeps stress within a tolerable range when strategies are available and allowed. If they are suppressed, stress stays higher for the same load.",
+   act:"Allow and support the person's own regulation strategies. Do not stop stimming or movement unless it causes harm.",
+   ind:"How often regulation strategies are used; whether they work; whether staff step in to stop them.",
+   lev:"Acceptance of regulation strategies (lever added from evidence); access to sensory tools."},
+  {id:"Bd",type:"B",grade:"D",verdict:"Supported with qualification",name:"Meltdown and shutdown release stress",paths:[["stress","meltdown"],["stress","shutdown"]],
+   how:"When stress exceeds what self-regulation and retreat can manage, it is released through a meltdown (outward) or a shutdown (inward). Either response lowers stress in the short term. Both are involuntary responses to overload.",
+   dir:"These loops act only at high stress. They limit how high stress can go, but at a cost to the person (loop R7).",
+   act:"Treat a meltdown or shutdown as a sign that load has exceeded capacity. Reduce demands and sensory input during and after the episode. Then look upstream at the loops that raised stress.",
+   ind:"Frequency and length of episodes; time to recover; what came before each episode.",
+   lev:"All upstream levers. Lowering total load reduces how often these loops are needed."},
+  {id:"R7",type:"R",grade:"C / D",verdict:"Added",name:"Relief adds to exhaustion",paths:[["stress","meltdown","exh","coping"],["stress","shutdown","exh","coping"]],marker:{x:765,y:505},
+   how:"A meltdown or shutdown lowers stress at the time, but recovery uses energy, so exhaustion rises over the following hours or days. Exhaustion reduces coping capacity. Lower capacity raises stress for the same load, which makes the next episode more likely.",
+   dir:"Upward, episodes become more frequent as recovery time shortens; research reports that a meltdown can start a burnout. Downward, fewer episodes allow energy and capacity to return.",
+   act:"Allow full recovery time after an episode before returning to normal demands.",
+   ind:"Time between episodes; recovery time after each episode.",
+   lev:"Recovery time allowed after episodes; all upstream levers that reduce load."}
+];
+
+const byId=Object.fromEntries(NODES.map(n=>[n.id,n]));
+const canon=id=>byId[id].alias||id;
+const key=(a,b)=>a+">"+b;
+const linkMap={};
+LINKS.forEach((l,i)=>{l.idx=i;l.loops=[];linkMap[key(canon(l.from),canon(l.to))]=l;});
+NODES.forEach(n=>n.loops=[]);
+LOOPS.forEach(lp=>{
+  lp.links=[];lp.nodes=new Set();lp.pathLinks=[];
+  lp.paths.forEach(p=>{
+    const pl=[];
+    p.forEach((n,i)=>{
+      lp.nodes.add(n);
+      const l=linkMap[key(n,p[(i+1)%p.length])];
+      if(!l){console.error("Missing link",n,p[(i+1)%p.length]);return;}
+      pl.push(l); if(!lp.links.includes(l)) lp.links.push(l);
+      if(!l.loops.includes(lp.id)) l.loops.push(lp.id);
+    });
+    lp.pathLinks.push(pl);
+    const neg=pl.filter(l=>l.pol==="−").length;
+    if((neg%2===0?"R":"B")!==lp.type) console.error("Loop type mismatch",lp.id,neg);
+    pl.neg=neg;
+  });
+  lp.nodes.forEach(n=>{if(!byId[n].loops.includes(lp.id)) byId[n].loops.push(lp.id);});
+});
+const loopById=Object.fromEntries(LOOPS.map(l=>[l.id,l]));
+const plain=s=>s.replace(/\n/g," ");
+const nm=id=>plain(byId[canon(id)].label);
+
+/* ---------- geometry ---------- */
+const q=(a,c,b,t)=>({x:(1-t)*(1-t)*a.x+2*(1-t)*t*c.x+t*t*b.x,y:(1-t)*(1-t)*a.y+2*(1-t)*t*c.y+t*t*b.y});
+const dq=(a,c,b,t)=>({x:2*(1-t)*(c.x-a.x)+2*t*(b.x-c.x),y:2*(1-t)*(c.y-a.y)+2*t*(b.y-c.y)});
+const norm=v=>{const L=Math.hypot(v.x,v.y)||1;return {x:v.x/L,y:v.y/L};};
+const inRect=(n,p,pad)=>Math.abs(p.x-n.x)<=n.hw+pad&&Math.abs(p.y-n.y)<=n.hh+pad;
+function ctrl(a,b,bend){const dx=b.x-a.x,dy=b.y-a.y,L=Math.hypot(dx,dy);return {x:(a.x+b.x)/2-dy/L*bend,y:(a.y+b.y)/2+dx/L*bend};}
+function geom(l){
+  const a=byId[l.from],b=byId[l.to],c=ctrl(a,b,l.bend||0),P=t=>q(a,c,b,t);
+  let lo=0,hi=.5;for(let i=0;i<30;i++){const m=(lo+hi)/2;if(inRect(a,P(m),5))lo=m;else hi=m;}const t0=hi;
+  lo=.5;hi=1;for(let i=0;i<30;i++){const m=(lo+hi)/2;if(inRect(b,P(m),6))hi=m;else lo=m;}const t1=lo;
+  const p0=P(t0),p1=P(t1);
+  const w0=(1-t0)*(1-t1),w1=(1-t0)*t1+t0*(1-t1),w2=t0*t1;
+  return {p0,cc:{x:w0*a.x+w1*c.x+w2*b.x,y:w0*a.y+w1*c.y+w2*b.y},p1};
+}
+
+/* ---------- build SVG ---------- */
+const svg=document.getElementById("cld");
+const el=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;};
+const gSec=el("g",{},svg),gLinks=el("g",{},svg),gMarks=el("g",{},svg),gNodes=el("g",{},svg);
+
+function build(){
+  SECTORS.forEach(s=>{
+    const g=el("g",{class:"sector"},gSec);g.style.setProperty("--sec",`var(${s.fill})`);
+    el("rect",{x:s.x,y:s.y,width:s.w,height:s.h,rx:12},g);
+    el("text",{x:s.x+14,y:s.y+22},g).textContent=s.label;
+  });
+  NODES.forEach(n=>{
+    const cls="node"+(n.lever?" lever":"")+(n.linked?" linked":"")+(n.alias?" shadow":"");
+    const g=el("g",{class:cls,tabindex:"0",role:"button","aria-label":plain(n.label)+(n.alias?" (copy)":"")},gNodes);
+    n.g=g;
+    if(n.alias){const sec=SECTORS.find(s=>s.id===n.sector);g.style.setProperty("--sec",`var(${sec.fill})`);}
+    const rect=el("rect",{class:"box",rx:7},g);
+    const t=el("text",{class:"lab","text-anchor":"middle"},g);
+    const lines=(n.alias?`<${n.label}>`:n.label).split("\n");
+    lines.forEach((ln,i)=>{const ts=el("tspan",{x:n.x,dy:i===0?`${0.35-(lines.length-1)*0.6}em`:"1.2em"},t);ts.textContent=ln;});
+    t.setAttribute("y",n.y);
+    const bb=t.getBBox();
+    n.hw=n.alias?bb.width/2+6:Math.max(bb.width/2+14,42);n.hh=bb.height/2+(n.alias?4:8);
+    rect.setAttribute("x",n.x-n.hw);rect.setAttribute("y",n.y-n.hh);rect.setAttribute("width",2*n.hw);rect.setAttribute("height",2*n.hh);
+    if(n.lever||n.linked){
+      const cap=[n.lever?"LEVER":null,n.linked?"FROM "+n.linked.toUpperCase():null].filter(Boolean).join(" · ");
+      el("text",{class:"cap",x:n.x,y:n.y+n.hh+13,"text-anchor":"middle"},g).textContent=cap;
+    }
+    g.addEventListener("click",e=>{e.stopPropagation();selectNode(canon(n.id));});
+    g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectNode(canon(n.id));}});
+  });
+  LINKS.forEach(l=>{
+    const G=geom(l);l.G=G;
+    const g=el("g",{class:`link g${l.grade}`+(l.added?" added":""),tabindex:"0",role:"button","aria-label":`Link ${l.n}: ${nm(l.from)} to ${nm(l.to)}, ${l.pol==="+"?"same direction":"opposite direction"}`},gLinks);l.g=g;
+    const d=`M${G.p0.x},${G.p0.y} Q${G.cc.x},${G.cc.y} ${G.p1.x},${G.p1.y}`;
+    el("path",{class:"hit",d},g);
+    el("path",{class:"ln",d},g);
+    const dv=norm({x:G.p1.x-G.cc.x,y:G.p1.y-G.cc.y}),nn={x:-dv.y,y:dv.x},bs={x:G.p1.x-dv.x*11,y:G.p1.y-dv.y*11};
+    el("path",{class:"ah",d:`M${G.p1.x},${G.p1.y} L${bs.x+nn.x*4.8},${bs.y+nn.y*4.8} L${bs.x-nn.x*4.8},${bs.y-nn.y*4.8} Z`},g);
+    if(l.delay){
+      const m=q(G.p0,G.cc,G.p1,.5),td=norm(dq(G.p0,G.cc,G.p1,.5)),tn={x:-td.y,y:td.x};
+      [-3,3].forEach(o=>el("line",{class:"dl",x1:m.x+td.x*o-tn.x*7,y1:m.y+td.y*o-tn.y*7,x2:m.x+td.x*o+tn.x*7,y2:m.y+td.y*o+tn.y*7},g));
+    }
+    let s;
+    if(typeof l.lpos==="number") s=l.lpos;
+    else{s=1;while(s>0.3){const p=q(G.p0,G.cc,G.p1,s);if(Math.hypot(p.x-G.p1.x,p.y-G.p1.y)>=30)break;s-=.005;}}
+    const p=q(G.p0,G.cc,G.p1,s),td=norm(dq(G.p0,G.cc,G.p1,s)),side=l.lside??((l.bend||0)<0?-1:1);
+    l.lp={x:p.x-td.y*side*13,y:p.y+td.x*side*13};
+    el("circle",{class:"pc",cx:l.lp.x,cy:l.lp.y,r:8.5},g);
+    el("text",{class:"pt",x:l.lp.x,y:l.lp.y+0.5},g).textContent=l.pol;
+    l.samples=[];for(let i=0;i<=48;i++)l.samples.push(q(G.p0,G.cc,G.p1,i/48));
+    g.addEventListener("click",e=>{e.stopPropagation();selectLink(l.idx);});
+    g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectLink(l.idx);}});
+  });
+  LOOPS.forEach(lp=>{
+    lp.markers=[];
+    lp.pathLinks.forEach((pl,pi)=>{
+      if(lp.marker&&pi>0) return;
+      const pts=[];pl.forEach(l=>{const a=byId[l.from];pts.push({x:a.x,y:a.y});pts.push(ctrl(a,byId[l.to],l.bend||0));});
+      let cx=pts.reduce((s,p)=>s+p.x,0)/pts.length,cy=pts.reduce((s,p)=>s+p.y,0)/pts.length;
+      let area=0;
+      const ring=lp.marker?pl.map(l=>byId[canon(l.from)]):pts;
+      for(let i=0;i<ring.length;i++){const a=ring[i],b=ring[(i+1)%ring.length];area+=a.x*b.y-b.x*a.y;}
+      if(lp.marker){cx=lp.marker.x;cy=lp.marker.y;}
+      const cw=area>0;
+      const g=el("g",{class:"marker "+lp.type},gMarks);
+      const r=18,P=a=>({x:cx+r*Math.cos(a*Math.PI/180),y:cy+r*Math.sin(a*Math.PI/180)});
+      const a0=cw?-140:-40,a1=cw?110:-290,s0=P(a0),s1=P(a1);
+      el("path",{class:"arc",d:`M${s0.x},${s0.y} A${r},${r} 0 1 ${cw?1:0} ${s1.x},${s1.y}`},g);
+      const ar=a1*Math.PI/180,tg=cw?{x:-Math.sin(ar),y:Math.cos(ar)}:{x:Math.sin(ar),y:-Math.cos(ar)},tn={x:-tg.y,y:tg.x};
+      el("path",{d:`M${s1.x+tg.x*5},${s1.y+tg.y*5} L${s1.x-tg.x*2+tn.x*3.6},${s1.y-tg.y*2+tn.y*3.6} L${s1.x-tg.x*2-tn.x*3.6},${s1.y-tg.y*2-tn.y*3.6} Z`},g);
+      el("circle",{class:"mc",cx,cy,r:13},g);
+      el("text",{x:cx,y:cy+0.5},g).textContent=lp.id;
+      g.addEventListener("click",e=>{e.stopPropagation();selectLoop(lp.id);});
+      lp.markers.push({g,x:cx,y:cy});
+    });
+  });
+  svg.addEventListener("click",()=>showAll());
+}
+
+/* ---------- state ---------- */
+const state={loop:null,node:null,link:null,levers:true,colour:"none"};
+const linkVisible=l=>state.levers||!(byId[l.from].lever||byId[l.to].lever);
+const nodeVisible=n=>state.levers||!n.lever;
+
+function apply(){
+  let aL=null,aN=null;
+  if(state.loop){const lp=loopById[state.loop];aL=new Set(lp.links);aN=lp.nodes;}
+  else if(state.node){aL=new Set(LINKS.filter(l=>canon(l.from)===state.node||canon(l.to)===state.node));aN=new Set([state.node]);aL.forEach(l=>{aN.add(canon(l.from));aN.add(canon(l.to));});}
+  else if(state.link!==null){const l=LINKS[state.link];aL=new Set([l]);aN=new Set([canon(l.from),canon(l.to)]);}
+  LINKS.forEach(l=>{
+    l.g.style.display=linkVisible(l)?"":"none";
+    l.g.classList.toggle("dim",!!aL&&!aL.has(l));
+    l.g.classList.toggle("hl",!!aL&&aL.has(l));
+  });
+  NODES.forEach(n=>{
+    n.g.style.display=nodeVisible(n)?"":"none";
+    n.g.classList.toggle("dim",!!aN&&!aN.has(canon(n.id)));
+    n.g.classList.toggle("sel",state.node===canon(n.id));
+  });
+  const anySel=!!(state.loop||state.node||state.link!==null);
+  LOOPS.forEach(lp=>lp.markers.forEach(m=>m.g.classList.toggle("dim",anySel&&state.loop!==lp.id&&!(state.node&&lp.nodes.has(state.node)))));
+  document.querySelectorAll("#loopbtns .lbtn").forEach(b=>b.setAttribute("aria-pressed",String(state.loop===b.dataset.loop)));
+  document.getElementById("showall").setAttribute("aria-pressed",String(!anySel));
+  svg.setAttribute("class","c-"+state.colour);
+  renderLegend();renderInfo();runCheck();
+}
+function selectLoop(id){state.loop=id;state.node=null;state.link=null;apply();}
+function selectNode(id){state.node=id;state.loop=null;state.link=null;apply();}
+function selectLink(i){state.link=i;state.loop=null;state.node=null;apply();}
+function showAll(){state.loop=null;state.node=null;state.link=null;apply();}
+
+function renderLegend(){
+  const box=document.getElementById("colour-legend");
+  if(state.colour==="grade"){
+    box.innerHTML=`<svg width="30" height="10" viewBox="0 0 30 10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--gb)" stroke-width="2.4"/></svg>Grade B &nbsp; <svg width="30" height="10" viewBox="0 0 30 10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--gc)" stroke-width="1.6"/></svg>Grade C &nbsp; <svg width="30" height="10" viewBox="0 0 30 10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--gd)" stroke-width="1.6" stroke-dasharray="6 4"/></svg>Grade D`;
+  } else if(state.colour==="added"){
+    box.innerHTML=`<svg width="30" height="10" viewBox="0 0 30 10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--prop)" stroke-width="2.4"/></svg>Added from evidence`;
+  } else box.innerHTML="";
+}
+
+/* ---------- info panel ---------- */
+const info=document.getElementById("info");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const gradeTag=g=>`<span class="grade g${String(g).charAt(0)}">Grade ${esc(g)}</span>`;
+function traceHTML(pl){
+  let h=esc(nm(pl[0].from));
+  pl.forEach(l=>{h+=` → <span class="sg" title="${l.pol==="+"?"same direction":"opposite direction"}">${l.pol}</span> ${esc(nm(l.to))}`;});
+  return h;
+}
+function srcList(keys){return `<ul>${keys.map(k=>`<li><a href="${S[k][1]}" target="_blank" rel="noopener">${esc(S[k][0])}</a></li>`).join("")}</ul>`;}
+function renderInfo(){
+  if(state.loop){
+    const lp=loopById[state.loop];
+    const tname=lp.type==="R"?"Reinforcing":"Balancing";
+    const negs=lp.pathLinks.map(pl=>pl.neg);
+    const negText=lp.pathLinks.length>1
+      ?`Each path has ${negs[0]} negative link${negs[0]===1?"":"s"} (${negs[0]%2?"odd":"even"}), so each loop is ${tname.toLowerCase()}.`
+      :`${negs[0]} negative link${negs[0]===1?"":"s"} (${negs[0]%2?"odd":"even"}), so the loop is ${tname.toLowerCase()}.`;
+    info.innerHTML=`<div class="head"><h3>${lp.id} · ${esc(lp.name)}</h3><span class="tag ${lp.type}">${tname}</span>${gradeTag(lp.grade)}<span class="badge">${esc(lp.verdict)}</span></div>
+    <div class="trace">${lp.pathLinks.map(pl=>`<div>${traceHTML(pl)}</div>`).join("")}<div>${negText}</div></div>
+    <dl class="dl"><dt>How it works</dt><dd>${esc(lp.how)}</dd><dt>Direction</dt><dd>${esc(lp.dir)}</dd><dt>What you can do</dt><dd class="act">${esc(lp.act)}</dd><dt>Indicators</dt><dd>${esc(lp.ind)}</dd><dt>Levers</dt><dd>${esc(lp.lev)}</dd></dl>`;
+  } else if(state.link!==null){
+    const l=LINKS[state.link];
+    info.innerHTML=`<div class="head"><h3>Link ${l.n} · ${esc(nm(l.from))} → ${esc(nm(l.to))}</h3><span class="badge">${l.pol==="+"?"+ same direction":"− opposite direction"}</span>${l.delay?'<span class="badge">Delayed</span>':""}${gradeTag(l.grade)}<span class="badge">${esc(l.verdict)}</span></div>
+    <dl class="dl"><dt>Mechanism</dt><dd>${esc(l.mech)}</dd><dt>Evidence</dt><dd>${esc(l.ev)}</dd><dt>Loops</dt><dd>${l.loops.length?l.loops.join(", "):"Input, not part of a loop"}</dd><dt>Sources</dt><dd>${srcList(l.src)}</dd></dl>`;
+  } else if(state.node){
+    const n=byId[state.node];
+    const ins=LINKS.filter(l=>canon(l.to)===n.id&&linkVisible(l)),outs=LINKS.filter(l=>canon(l.from)===n.id&&linkVisible(l));
+    const lk=l=>`<button class="lbtn" data-link="${l.idx}"><span class="t">${l.n}</span>${esc(nm(l.from===n.id||canon(l.from)===n.id?l.to:l.from))} (${l.pol}${l.delay?", delayed":""})</button>`;
+    info.innerHTML=`<div class="head"><h3>${esc(plain(n.label))}</h3><span class="badge">${esc(n.type)}</span><span class="badge">${esc(n.units)}</span>${n.lever?'<span class="badge lev">Lever</span>':""}${n.linked?`<span class="badge">From ${esc(n.linked)}</span>`:""}${gradeTag(n.grade)}</div>
+    <p>${esc(n.desc)}</p>
+    <dl class="dl"><dt>Research construct</dt><dd>${esc(n.construct)}</dd>
+    <dt>Affected by</dt><dd><div class="chips">${ins.length?ins.map(lk).join(""):"Nothing in this view. It is an input."}</div></dd>
+    <dt>Affects</dt><dd><div class="chips">${outs.length?outs.map(lk).join(""):"—"}</div></dd>
+    <dt>Loops</dt><dd><div class="chips">${n.loops.length?n.loops.map(id=>`<button class="lbtn" data-type="${loopById[id].type}" data-go="${id}"><span class="t">${id}</span>${esc(loopById[id].name)}</button>`).join(""):"Not part of a loop in this view."}</div></dd></dl>`;
+    info.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>selectLoop(b.dataset.go)));
+    info.querySelectorAll("[data-link]").forEach(b=>b.addEventListener("click",()=>selectLink(+b.dataset.link)));
+  } else {
+    info.innerHTML=`<div class="head"><h3>View 1 · Overload engine</h3></div>
+    <p>Four environment levers set the starting load. Stress sits at the centre. Four reinforcing loops (R5, R1, R6, R7) can drive stress upward through anticipation, exhaustion, lost sleep and the cost of crises. Four balancing responses (B2, B8, B3, Bd) bring it back down: rest, retreat, self-regulation, and, when those are not enough, meltdown or shutdown.</p>
+    <p class="note">Select a + or − sign to see the evidence for a link. Select a loop button or marker to trace a loop, or a variable to see its links. Names in angle brackets are copies of a variable drawn elsewhere, used to avoid long crossing links. Press Escape to return here.</p>`;
+  }
+}
+
+/* ---------- layout check ---------- */
+function runCheck(){
+  const issues=[];
+  const vL=LINKS.filter(linkVisible),vN=NODES.filter(nodeVisible);
+  const vM=[];LOOPS.forEach(lp=>lp.markers.forEach(m=>vM.push({id:lp.id,...m})));
+  const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+  for(let i=0;i<vL.length;i++)for(let j=i+1;j<vL.length;j++){const d=dist(vL[i].lp,vL[j].lp);if(d<24)issues.push(`Labels ${vL[i].n} and ${vL[j].n} are ${d.toFixed(0)}px apart`);}
+  vL.forEach(l=>{
+    vN.forEach(n=>{if(inRect(n,l.lp,9))issues.push(`Label ${l.n} overlaps node ${n.id}`);});
+    vL.forEach(o=>{if(o===l)return;const m=Math.min(...o.samples.map(p=>dist(p,l.lp)));if(m<9)issues.push(`Label ${l.n} sits on link ${o.n}`);});
+    l.samples.slice(3,-3).forEach(p=>vN.forEach(n=>{if(n.id!==l.from&&n.id!==l.to&&inRect(n,p,2))issues.push(`Link ${l.n} crosses node ${n.id}`);}));
+  });
+  vM.forEach(m=>{
+    vN.forEach(n=>{if(inRect(n,m,22))issues.push(`Marker ${m.id} overlaps node ${n.id}`);});
+    vL.forEach(l=>{const d=Math.min(...l.samples.map(p=>dist(p,m)));if(d<20)issues.push(`Marker ${m.id} is ${d.toFixed(0)}px from link ${l.n}`);if(dist(l.lp,m)<30)issues.push(`Marker ${m.id} is close to label ${l.n}`);});
+  });
+  for(let i=0;i<vM.length;i++)for(let j=i+1;j<vM.length;j++)if(dist(vM[i],vM[j])<44)issues.push(`Markers ${vM[i].id} and ${vM[j].id} overlap`);
+  const uniq=[...new Set(issues)];
+  window.__layoutIssues=uniq;
+  document.getElementById("checkline").textContent=uniq.length?`Layout check: ${uniq.length} placement issue${uniq.length>1?"s":""} in the current view.`:"Layout check: no polarity label or loop marker overlaps a node, a link or another label in the current view.";
+  if(uniq.length)console.warn("LAYOUT",JSON.stringify(uniq));else console.log("LAYOUT OK");
+}
+
+/* ---------- tables ---------- */
+function tables(){
+  document.getElementById("t-links").innerHTML=`<thead><tr><th>#</th><th>From</th><th>To</th><th>Polarity</th><th>Delay</th><th>Loops</th><th>Mechanism</th><th>Evidence</th><th>Grade</th><th>Verdict</th></tr></thead><tbody>${
+    LINKS.map(l=>`<tr class="${l.added?"added":""}"><td class="num">${l.n}</td><td>${esc(nm(l.from))}</td><td>${esc(nm(l.to))}</td><td class="mono">${l.pol}</td><td>${l.delay?"Yes":"No"}</td><td class="mono">${l.loops.length?l.loops.join(", "):"Input"}</td><td class="wide">${esc(l.mech)}</td><td class="wide">${esc(l.ev)} ${l.src.map(k=>`<a href="${S[k][1]}" target="_blank" rel="noopener">${esc(S[k][0].split(",")[0])}</a>`).join("; ")}</td><td>${gradeTag(l.grade)}</td><td>${esc(l.verdict)}</td></tr>`).join("")}</tbody>`;
+  document.getElementById("t-loops").innerHTML=`<thead><tr><th>ID</th><th>Name</th><th>Type</th><th>Links in order</th><th>Negative links</th><th>Grade</th><th>Verdict</th></tr></thead><tbody>${
+    LOOPS.map(lp=>`<tr><td class="mono">${lp.id}</td><td>${esc(lp.name)}</td><td>${lp.type==="R"?"Reinforcing":"Balancing"}</td><td class="wide"><div class="trace">${lp.pathLinks.map(pl=>`<div>${traceHTML(pl)}</div>`).join("")}</div></td><td class="num">${lp.pathLinks.map(pl=>pl.neg).join(" / ")}</td><td>${gradeTag(lp.grade)}</td><td>${esc(lp.verdict)}</td></tr>`).join("")}</tbody>`;
+  document.getElementById("t-vars").innerHTML=`<thead><tr><th>Variable</th><th>Description</th><th>Research construct</th><th>Type (provisional)</th><th>Units</th><th>Sector</th><th>Role</th><th>Grade</th></tr></thead><tbody>${
+    NODES.filter(n=>!n.alias).map(n=>`<tr class="${n.added?"added":""}"><td class="${n.type==="Stock"?"stock":""}">${esc(plain(n.label))}</td><td class="wide">${esc(n.desc)}</td><td>${esc(n.construct)}</td><td class="${n.type==="Stock"?"stock":""}">${esc(n.type)}</td><td>${esc(n.units)}</td><td>${esc(secName[n.sector])}</td><td>${[n.lever?'<span class="badge lev">Lever</span>':"",n.linked?`<span class="badge">From ${n.linked}</span>`:""].join(" ")||"—"}</td><td>${gradeTag(n.grade)}</td></tr>`).join("")}</tbody>`;
+}
+
+/* ---------- controls and help ---------- */
+let pop=null;
+function closePop(){if(pop){pop.remove();pop=null;return true;}return false;}
+function controls(){
+  const box=document.getElementById("loopbtns");
+  LOOPS.forEach(lp=>{
+    const b=document.createElement("button");b.className="lbtn";b.dataset.loop=lp.id;b.dataset.type=lp.type;b.setAttribute("aria-pressed","false");
+    b.innerHTML=`<span class="t">${lp.id}</span>${esc(lp.name)}`;
+    b.addEventListener("click",()=>state.loop===lp.id?showAll():selectLoop(lp.id));box.appendChild(b);
+  });
+  document.getElementById("showall").addEventListener("click",showAll);
+  document.getElementById("tg-levers").addEventListener("change",e=>{state.levers=e.target.checked;if(state.node&&byId[state.node].lever&&!state.levers)state.node=null;if(state.link!==null&&!linkVisible(LINKS[state.link]))state.link=null;apply();});
+  document.getElementById("colour").addEventListener("change",e=>{state.colour=e.target.value;apply();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(closePop())return;showAll();}});
+  const HELP={
+    loops:"Each button traces one feedback loop and explains it above the diagram, with its evidence grade. R loops reinforce change in whichever direction it is moving. B loops counteract change. Select the same button again, or Show all, to restore the full diagram.",
+    levers:"Levers are factors that people supporting the individual can change. They have an amber outline. Untick to hide the levers and their links, which leaves the internal loops only.",
+    colour:"Evidence grade colours each link by the strength of its research support: B, published evidence from autistic people; C, related populations or theory; D, lived-experience accounts with little data. Added from evidence highlights the eight links the research review added to your original table.",
+    diagram:"Select a + or − sign to see the mechanism, evidence and sources for that link. Select a variable to see its links. A + sign means both variables move in the same direction; a − sign means they move in opposite directions. Neither sign means good or bad. Two short bars across a link mark a significant delay. Names in angle brackets are copies of a variable drawn elsewhere."
+  };
+  document.querySelectorAll(".help").forEach(b=>b.addEventListener("click",e=>{
+    e.stopPropagation();closePop();
+    pop=document.createElement("div");pop.className="pop";pop.setAttribute("role","dialog");
+    pop.innerHTML=`<button class="x" aria-label="Close help">Close ✕</button><div>${esc(HELP[b.dataset.help])}</div>`;
+    document.body.appendChild(pop);
+    const r=b.getBoundingClientRect(),w=Math.min(340,window.innerWidth-32);
+    pop.style.width=w+"px";
+    pop.style.left=Math.max(16,Math.min(window.scrollX+r.left,window.scrollX+window.innerWidth-w-16))+"px";
+    pop.style.top=(window.scrollY+r.bottom+8)+"px";
+    pop.querySelector(".x").addEventListener("click",closePop);
+    pop.addEventListener("click",ev=>ev.stopPropagation());
+    pop.querySelector(".x").focus();
+  }));
+  document.addEventListener("click",()=>closePop());
+}
+
+function start(){build();controls();tables();apply();}
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(start,start);
+})();
+</script>
+
+</body></html>

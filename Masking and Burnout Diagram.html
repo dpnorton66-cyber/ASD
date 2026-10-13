@@ -1,0 +1,761 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Masking and Burnout Diagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one working column (max 1200px); diagram with its explanation above, review and evidence tables beneath */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --surface-2:#eef1f5;
+  --ink:#18202b; --ink-2:#4b5666; --ink-3:#778293; --rule:#d6dce4;
+  --accent:#0f6e6a; --accent-soft:#dcefed;
+  --lever:#a3640c; --lever-soft:#fbf0dd; --linked:#8d96a3;
+  --rtag:#7b3f6e; --btag:#2d5d8a; --prop:#a3640c;
+  --gb:#1f3b5c; --gc:#8593a6; --gd:#b4553a;
+  --sec-env:#e8f1ec; --sec-out:#eceff3; --outcome-soft:#e3ecf6; --sec-load:#e9eef6; --sec-cap:#f4efe5; --sec-reg:#f1ecf3; --sec-stroke:#d0d8e1;
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151b; --surface:#181e26; --surface-2:#1f2630;
+    --ink:#e4e9ef; --ink-2:#a9b3c0; --ink-3:#7f8a99; --rule:#2d3541;
+    --accent:#4fbdb4; --accent-soft:#163331;
+    --lever:#e3a64f; --lever-soft:#2f2515; --linked:#6c7684;
+    --rtag:#d993c6; --btag:#86b6e4; --prop:#e3a64f;
+    --gb:#a9cdf2; --gc:#6f7b8b; --gd:#e48f72;
+    --sec-env:#152019; --sec-out:#171b21; --outcome-soft:#18263a; --sec-load:#151b25; --sec-cap:#211d16; --sec-reg:#1d1822; --sec-stroke:#2a323d;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151b; --surface:#181e26; --surface-2:#1f2630;
+  --ink:#e4e9ef; --ink-2:#a9b3c0; --ink-3:#7f8a99; --rule:#2d3541;
+  --accent:#4fbdb4; --accent-soft:#163331;
+  --lever:#e3a64f; --lever-soft:#2f2515; --linked:#6c7684;
+  --rtag:#d993c6; --btag:#86b6e4; --prop:#e3a64f;
+  --gb:#a9cdf2; --gc:#6f7b8b; --gd:#e48f72;
+  --sec-env:#152019; --sec-out:#171b21; --outcome-soft:#18263a; --sec-load:#151b25; --sec-cap:#211d16; --sec-reg:#1d1822; --sec-stroke:#2a323d;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:1200px;margin:0 auto}
+a{color:var(--accent)}
+header.top{padding-block:36px 20px;border-bottom:1px solid var(--rule);display:grid;gap:12px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1.15;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:24px;margin:0;text-wrap:balance}
+h3{font-size:15px;font-weight:600;margin:0}
+p{margin:0;max-width:72ch}
+.lede{display:grid;gap:8px;color:var(--ink-2)}
+.gate{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-family:var(--f-mono);font-size:12.5px;color:var(--ink-2)}
+.gate .pill{border:1px solid var(--accent);color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 10px;font-weight:500}
+section{padding-block:28px 8px;display:grid;gap:16px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.group-label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+button,select{font:inherit}
+button{cursor:pointer}
+.lbtn{font-family:var(--f-mono);font-size:13px;font-weight:500;border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:6px;padding:5px 10px;display:inline-flex;gap:6px;align-items:center}
+.lbtn .t{font-weight:600}
+.lbtn[data-type="R"] .t{color:var(--rtag)}
+.lbtn[data-type="B"] .t{color:var(--btag)}
+.lbtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.lbtn:hover{border-color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tick{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-2)}
+.tick input{accent-color:var(--accent);width:16px;height:16px}
+.tick select{border:1px solid var(--rule);border-radius:6px;background:var(--surface);color:var(--ink);padding:3px 6px;font-size:14px}
+.help{width:20px;height:20px;border-radius:50%;border:1px solid var(--rule);background:var(--surface-2);color:var(--ink-2);font-size:12px;font-weight:600;line-height:1;padding:0;display:inline-grid;place-items:center}
+.help:hover{border-color:var(--ink-3)}
+.pop{position:absolute;z-index:20;max-width:340px;background:var(--surface);color:var(--ink);border:1px solid var(--rule);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.18);padding:12px 14px;font-size:14px;display:grid;gap:6px}
+.pop .x{justify-self:end;border:none;background:none;color:var(--ink-3);font-size:13px;padding:0}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px;display:grid;gap:10px;min-height:150px}
+.panel .head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
+.tag{font-family:var(--f-mono);font-size:12px;border-radius:4px;padding:1px 7px;border:1px solid currentColor;white-space:nowrap}
+.tag.R{color:var(--rtag)} .tag.B{color:var(--btag)}
+.grade{font-family:var(--f-mono);font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;white-space:nowrap;border:1px solid}
+.grade.gB{color:var(--gb);border-color:var(--gb)} .grade.gC{color:var(--ink-2);border-color:var(--gc)} .grade.gD{color:var(--gd);border-color:var(--gd);border-style:dashed}
+.trace{font-family:var(--f-mono);font-size:13px;color:var(--ink-2);display:grid;gap:2px}
+.trace .sg{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1px solid var(--ink-3);font-size:12px;margin:0 2px;vertical-align:-3px;color:var(--ink)}
+.dl{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 16px}
+.dl dt{font-weight:600;font-size:13.5px;color:var(--ink-2)}
+.dl dd{margin:0;min-width:0}
+.dl dd.act{background:var(--accent-soft);border-radius:6px;padding:4px 8px;margin-left:-8px}
+.dl ul{margin:0;padding-left:18px}
+@media (max-width:640px){.dl{grid-template-columns:1fr}.dl dd.act{margin-left:0}}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.diagram{background:var(--surface);border:1px solid var(--rule);border-radius:10px;overflow-x:auto}
+#cld{display:block;width:100%;min-width:880px;height:auto}
+#cld text{font-family:var(--f-body)}
+.sector rect{fill:var(--sec);stroke:var(--sec-stroke)}
+.sector text{font-family:var(--f-mono)!important;font-size:11.5px;letter-spacing:.08em;fill:var(--ink-3);text-transform:uppercase}
+.node{cursor:pointer}
+.node rect.box{fill:var(--surface);stroke:var(--ink-2);stroke-width:1.3}
+.node text.lab{fill:var(--ink);font-size:13.5px;font-weight:500}
+.node text.cap{font-family:var(--f-mono)!important;font-size:10px;fill:var(--lever);letter-spacing:.04em}
+.node.lever rect.box{stroke:var(--lever);stroke-width:2.2;fill:var(--lever-soft)}
+.node.linked rect.box{stroke-dasharray:4 3}
+.node.linked text.lab{fill:var(--ink-2)}
+.node.linked.lever rect.box{stroke:var(--linked);fill:var(--surface-2)}
+.node.linked text.cap{fill:var(--ink-3)}
+.node.shadow rect.box{stroke:none;fill:var(--sec)}
+.node.shadow text.lab{fill:var(--ink-3);font-style:italic;font-weight:400}
+.node:focus{outline:none}
+.node:focus-visible rect.box,.node.sel rect.box{stroke:var(--accent);stroke-width:2.6}
+.link{cursor:pointer}
+.link path.hit{fill:none;stroke:transparent;stroke-width:12}
+.link path.ln{fill:none;stroke:var(--ink-2);stroke-width:1.6}
+.link path.ah{fill:var(--ink-2)}
+.link line.dl{stroke:var(--ink-2);stroke-width:1.8}
+.link circle.pc{fill:var(--surface);stroke:var(--ink-2);stroke-width:1.1}
+.link text.pt{fill:var(--ink);font-size:13px;font-weight:600;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+#cld.c-grade .link.gB path.ln{stroke:var(--gb);stroke-width:2.4}
+#cld.c-grade .link.gB path.ah{fill:var(--gb)}
+#cld.c-grade .link.gC path.ln{stroke:var(--gc);stroke-width:1.6}
+#cld.c-grade .link.gC path.ah{fill:var(--gc)}
+#cld.c-grade .link.gD path.ln{stroke:var(--gd);stroke-width:1.6;stroke-dasharray:6 4}
+#cld.c-grade .link.gD path.ah{fill:var(--gd)}
+#cld.c-added .link.added path.ln{stroke:var(--prop);stroke-width:2.4}
+#cld.c-added .link.added path.ah{fill:var(--prop)}
+#cld.c-added .link:not(.added){opacity:.45}
+.link.hl path.ln{stroke:var(--accent)!important;stroke-width:2.6!important;stroke-dasharray:none!important}
+.link.hl path.ah{fill:var(--accent)!important}
+.link.hl circle.pc{fill:var(--accent);stroke:var(--accent)}
+.link.hl text.pt{fill:var(--surface)}
+.link.hl line.dl{stroke:var(--accent)}
+.link.hl{opacity:1!important}
+.dim{opacity:.14!important}
+.marker{cursor:pointer}
+.marker circle.mc{fill:var(--surface);stroke-width:1.6}
+.marker.R circle.mc{stroke:var(--rtag)} .marker.B circle.mc{stroke:var(--btag)}
+.marker text{font-family:var(--f-mono)!important;font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.marker.R text,.marker.R path{fill:var(--rtag)} .marker.B text,.marker.B path{fill:var(--btag)}
+.marker path.arc{fill:none!important;stroke-width:1.4}
+.marker.R path.arc{stroke:var(--rtag)} .marker.B path.arc{stroke:var(--btag)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--ink-2);align-items:center}
+.legend svg{vertical-align:middle;margin-right:6px}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:500;background:var(--surface-2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-size:13px;color:var(--ink-3)}
+td.mono{font-family:var(--f-mono);font-size:13px;white-space:nowrap}
+td.wide{min-width:280px}
+tr.added td{background:var(--lever-soft)}
+.stock{font-weight:600}
+.badge{font-family:var(--f-mono);font-size:11px;border:1px solid var(--rule);border-radius:4px;padding:0 5px;color:var(--ink-2);white-space:nowrap}
+.badge.lev{border-color:var(--lever);color:var(--lever)}
+ol.q{margin:0;padding-left:22px;display:grid;gap:8px;max-width:80ch}
+.note{font-size:13.5px;color:var(--ink-3)}
+footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3);display:grid;gap:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.node.outcome rect.box{stroke:var(--btag);stroke-width:2.2;fill:var(--outcome-soft)}
+.node.outcome text.cap{fill:var(--btag)}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Autism environment model · View 2 of 3 · Masking, burnout and support</div>
+  <h1>Why hidden distress goes unsupported, and how it ends in burnout</h1>
+  <div class="lede">
+    <p>This view shows how pressure to fit in leads autistic people to mask, how masking hides need so that support does not arrive, and how sustained masking builds into autistic burnout. It also shows how visible distress can bring either support or exclusion, depending on how it is read. View 1 covers the overload engine. View 3 covers the environment in detail.</p>
+    <p>Every link has been checked against published research and given an evidence grade. Select a + or − sign to see the evidence and sources for that link. The full review is in the <a href="https://claude.ai/code/artifact/2f1eaecc-ddbb-40fd-927a-99f0f305338e" target="_blank" rel="noopener">evidence review report</a>.</p>
+  </div>
+  <div class="gate"><span class="pill">Stages 2 and 3 · Diagram and evidence</span><span>14 variables · 25 links · 6 loop groups</span><span>6 links added from evidence · 1 reversed</span></div>
+</header>
+
+<section id="diagram-section" aria-labelledby="h-diagram">
+  <h2 id="h-diagram">Causal loop diagram</h2>
+  <div class="toolbar">
+    <div class="group" role="group" aria-label="Loops">
+      <span class="group-label">Loops</span>
+      <div class="group" id="loopbtns"></div>
+      <button class="lbtn" id="showall" aria-pressed="true">Show all</button>
+      <button class="help" data-help="loops" aria-label="Help: loop buttons">?</button>
+    </div>
+    <div class="group">
+      <label class="tick"><input type="checkbox" id="tg-levers" checked> Show levers</label>
+      <button class="help" data-help="levers" aria-label="Help: levers">?</button>
+      <label class="tick" for="colour">Colour links by
+        <select id="colour"><option value="none">nothing</option><option value="grade">evidence grade</option><option value="added">changed by evidence</option></select></label>
+      <button class="help" data-help="colour" aria-label="Help: link colouring">?</button>
+    </div>
+  </div>
+  <div class="panel" id="info" aria-live="polite"></div>
+  <div class="diagram"><svg id="cld" class="c-none" viewBox="0 0 1200 880" role="img" aria-label="Causal loop diagram, View 2: masking, burnout and support"></svg></div>
+  <div class="legend">
+    <span><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="9" fill="none" stroke="currentColor"/><text x="11" y="15" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">+</text></svg>Same direction</span>
+    <span><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="9" fill="none" stroke="currentColor"/><text x="11" y="15" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">−</text></svg>Opposite direction</span>
+    <span><svg width="34" height="16" viewBox="0 0 34 16"><line x1="0" y1="8" x2="34" y2="8" stroke="currentColor" stroke-width="1.6"/><line x1="14" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.8"/><line x1="19" y1="2" x2="19" y2="14" stroke="currentColor" stroke-width="1.8"/></svg>Significant delay</span>
+    <span><svg width="30" height="18" viewBox="0 0 30 18"><rect x="1" y="1" width="28" height="16" rx="4" fill="var(--lever-soft)" stroke="var(--lever)" stroke-width="2"/></svg>Lever</span>
+    <span><svg width="30" height="18" viewBox="0 0 30 18"><rect x="1" y="1" width="28" height="16" rx="4" fill="var(--outcome-soft)" stroke="var(--btag)" stroke-width="2"/></svg>Outcome</span>
+    <span><svg width="30" height="18" viewBox="0 0 30 18"><rect x="1" y="1" width="28" height="16" rx="4" fill="var(--surface-2)" stroke="var(--linked)" stroke-width="1.3" stroke-dasharray="4 3"/></svg>Linked from View 1</span>
+    <span><svg width="96" height="18" viewBox="0 0 96 18"><text x="48" y="13" text-anchor="middle" font-size="12" font-style="italic" fill="var(--ink-3)">&lt;Accommodations&gt;</text></svg>Copy of a variable drawn elsewhere</span>
+    <span id="colour-legend"></span>
+    <button class="help" data-help="diagram" aria-label="Help: reading the diagram">?</button>
+  </div>
+</section>
+
+<section aria-labelledby="h-review">
+  <h2 id="h-review">Review of the supplied table</h2>
+  <p class="note">Each loop in the table was checked by counting negative links. Two structural problems were found and corrected; the other points concern direction and naming.</p>
+  <div class="tablewrap"><table id="t-issues"></table></div>
+</section>
+
+<section aria-labelledby="h-links">
+  <h2 id="h-links">Link evidence</h2>
+  <p class="note">Grades: B, published evidence from autistic people; C, evidence from a related population, theory, or qualitative and parent-report evidence; D, lived-experience accounts with little data. Shaded rows are links added or reversed by the evidence review.</p>
+  <div class="tablewrap"><table id="t-links"></table></div>
+</section>
+
+<section aria-labelledby="h-loops">
+  <h2 id="h-loops">Loop table</h2>
+  <p class="note">Each loop is graded at its weakest link. No study has measured any loop as a whole.</p>
+  <div class="tablewrap"><table id="t-loops"></table></div>
+</section>
+
+<section aria-labelledby="h-vars">
+  <h2 id="h-vars">Variable table</h2>
+  <p class="note">Types are provisional and will be settled when the stock and flow model is built. Stocks are shown in bold.</p>
+  <div class="tablewrap"><table id="t-vars"></table></div>
+</section>
+
+<section aria-labelledby="h-q">
+  <h2 id="h-q">Open questions</h2>
+  <ol class="q">
+    <li>Does low wellbeing or self-esteem feed back into masking? Internalised stigma is one reason autistic adults give for camouflaging, which would close a loop from the outcome back to masking.</li>
+    <li>Should acceptance be a variable separate from accommodations? The evidence that masking falls concerns feeling accepted, not adjustments as such.</li>
+    <li>Is the renumbering acceptable: B9 for the loop drawn as R2, with R2 now running through masking and stress?</li>
+    <li>Should disclosure become a lever, such as support to disclose safely?</li>
+  </ol>
+</section>
+
+<footer>
+  <div>Masking, burnout and support · View 2 · Causal loop diagram · Stages 2 and 3 · Version of 13 October 2026</div>
+  <div id="checkline">Layout check: running…</div>
+</footer>
+</div>
+
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg";
+
+const S={
+  cage19:["Cage and Troxell-Whitman (2019), J Autism Dev Disord","https://link.springer.com/article/10.1007/s10803-018-03878-x"],
+  cook21:["Cook et al. (2021), Clinical Psychology Review","https://explore.psychsafety.com/n/cook-et-al-2021/"],
+  hull17:["Hull et al. (2017), J Autism Dev Disord","https://discovery.ucl.ac.uk/id/eprint/10056287/"],
+  edw24:["Edwards et al. (2024), Autism","https://journals.sagepub.com/doi/10.1177/13623613231192133"],
+  thom20:["Thompson-Hodgetts et al. (2020), reported by University of Alberta","https://ualberta.ca/folio/2020/03/telling-friends-and-teachers-about-a-childs-autism-has-mixed-results-say-parents.html"],
+  barg16:["Bargiela et al. (2016), J Autism Dev Disord","https://discovery.ucl.ac.uk/id/eprint/1506350/"],
+  guld21:["Guldberg et al. (2021), University of Birmingham","https://research.birmingham.ac.uk/files/156385005/exclusion_for_autistic_children_and_young_people.pdf"],
+  coll26:["Collins and Collins (2026), Tizard Learning Disability Review","https://www.open-access.bcu.ac.uk/16843/"],
+  lewis:["Lewis and Stevens (2023), Autism","https://journals.sagepub.com/doi/abs/10.1177/13623613221145783"],
+  cage18:["Cage et al. (2018), J Autism Dev Disord","https://pure.royalholloway.ac.uk/en/publications/experiences-of-autism-acceptance-and-mental-health-in-autistic-ad/"],
+  ray:["Raymaker et al. (2020), Autism in Adulthood","https://pdxscholar.library.pdx.edu/socwork_fac/378"],
+  hig:["Higgins et al. (2021), Autism CRC summary","https://www.autismcrc.com.au/sites/default/files/reports/3-076RI_Autistic-Burnout_Executive-summary.pdf"],
+  mce:["McEwen (2005), J Psychiatry Neurosci","https://www.jpn.ca/content/30/5/315.full.pdf"],
+  stein:["Stein Duker et al. (2023), JAMA Network Open","https://chan.usc.edu/news/latest/sensory-adapted-dental-rooms-significantly-reduce-autistic-childrens-physiological-and-behavioral-stress-during-teeth-cleanings"],
+  petty22:["Petty et al. (2022), J Autism Dev Disord","https://ray.yorksj.ac.uk/id/eprint/5811"],
+  cass18:["Cassidy et al. (2018), Molecular Autism, reported by University of Nottingham","https://www.nottingham.ac.uk/home/featurenews/2018/new-research-sheds-light-on-why-suicide-is-more-common-in-autistic-people.aspx"],
+  phung:["Phung et al. (2021), Frontiers in Psychology","https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.741421/full"],
+  milton:["Milton (2012), Disability & Society, summarised by Reframing Autism","https://reframingautism.org.au/miltons-double-empathy-problem-a-summary-for-non-academics/"],
+  cromp20:["Crompton et al. (2020), Autism","https://pure.qub.ac.uk/en/publications/autistic-peer-to-peer-information-transfer-is-highly-effective/"],
+  halsall:["Halsall et al. (2021), Autism","https://research.birmingham.ac.uk/en/publications/camouflaging-by-adolescent-autistic-girls-who-attend-both-mainstr"]
+};
+
+const SECTORS=[
+  {id:"env",label:"Setting and staff",x:20,y:40,w:250,h:660,fill:"--sec-env"},
+  {id:"rec",label:"Recognition and support",x:286,y:40,w:520,h:278,fill:"--sec-load"},
+  {id:"mask",label:"Masking and exclusion",x:286,y:334,w:520,h:366,fill:"--sec-reg"},
+  {id:"burn",label:"Burnout and health",x:822,y:40,w:358,h:660,fill:"--sec-cap"},
+  {id:"out",label:"Outcomes",x:20,y:716,w:1160,h:148,fill:"--sec-out"}
+];
+const secName=Object.fromEntries(SECTORS.map(s=>[s.id,s.label]));
+
+const NODES=[
+  {id:"disc",label:"Disclosure",x:145,y:340,sector:"env",grade:"C",type:"Calculated factor",units:"Index, 0 to 1",
+   construct:"Diagnostic disclosure",desc:"Whether the person or family has told the setting about the diagnosis or the person's needs."},
+  {id:"staff",label:"Staff\nunderstanding",x:145,y:560,sector:"env",lever:true,grade:"C",type:"Stock",units:"Score, 0 to 10",
+   construct:"Autism knowledge; the double empathy problem",desc:"Staff knowledge of autism, and their ability to read behaviour as communication of need rather than misbehaviour."},
+  {id:"recog",label:"Recognised\nneed",x:480,y:190,sector:"rec",grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Identification and diagnosis of need",desc:"How far the setting has identified the person's needs."},
+  {id:"accom",label:"Accommodations\nin place",x:720,y:190,sector:"rec",grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Reasonable adjustments",desc:"Adjustments that are actually in place and followed through. Brought into View 1 as an input to total load."},
+  {id:"meltdown",label:"Meltdown",x:480,y:430,sector:"mask",grade:"B",type:"Flow",units:"Visible episodes per week",
+   construct:"Meltdown",desc:"A visible meltdown in the setting. Also part of View 1, where it is driven by stress."},
+  {id:"masking",label:"Masking",x:720,y:430,sector:"mask",grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Camouflaging",desc:"Effortful suppression of autistic traits and display of non-autistic behaviour in order to fit in."},
+  {id:"conflict",label:"Conflict and\nexclusion",x:480,y:630,sector:"mask",grade:"B",type:"Flow",units:"Incidents per term",
+   construct:"Sanctions, restraint, suspension and exclusion",desc:"Sanctions, restraint, suspension and exclusion that follow visible distress."},
+  {id:"pressure",label:"Pressure to\nconform",x:720,y:630,sector:"mask",grade:"B",type:"Calculated factor",units:"Index, 0 to 1",
+   construct:"Social norms and stigma that motivate camouflaging",desc:"Demand from the setting to behave like non-autistic peers, through social norms, behaviour policies and the expectations of staff and peers."},
+  {id:"load",label:"Load / stress",x:960,y:190,sector:"burn",linked:"View 1",grade:"B",type:"Stock (in View 1)",units:"Index, 0 to 1",
+   construct:"Perceived stress; physiological arousal",desc:"Total load and stress from View 1, shown here because accommodations and masking act on it and it drives meltdowns."},
+  {id:"exh",label:"Exhaustion",x:960,y:430,sector:"burn",linked:"View 1",grade:"B",type:"Stock (in View 1)",units:"Index, 0 to 1",
+   construct:"Chronic exhaustion",desc:"Accumulated depletion of physical and mental energy, from View 1."},
+  {id:"allo",label:"Allostatic\nload",x:1100,y:430,sector:"burn",grade:"C",type:"Stock",units:"Index, 0 to 1",
+   construct:"Allostatic load",desc:"The cumulative physiological cost of repeated stress responses."},
+  {id:"burnout",label:"Autistic\nburnout",x:960,y:630,sector:"burn",grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Autistic burnout",desc:"A state of chronic exhaustion, loss of skills and reduced tolerance to stimulus that lasts months."},
+  {id:"part",label:"Participation",x:560,y:795,sector:"out",outcome:true,grade:"C",type:"Calculated factor",units:"Index, 0 to 1",
+   construct:"Participation in education, work and community",desc:"Taking part in education, work and community life."},
+  {id:"wellb",label:"Wellbeing and\nself-esteem",x:900,y:795,sector:"out",outcome:true,grade:"B",type:"Stock",units:"Index, 0 to 1",
+   construct:"Mental health and self-worth",desc:"Mental health and self-worth, including the risk factors for suicidality identified in autistic adults."},
+  {id:"accom_s",alias:"accom",label:"Accommodations",x:370,y:795,sector:"out"}
+];
+
+const LINKS=[
+  {n:"1",from:"pressure",to:"masking",pol:"+",delay:false,grade:"B",verdict:"Supported",src:["cage19","cook21"],
+   mech:"Pressure to fit in motivates the person to hide autistic traits.",
+   ev:"Autistic adults camouflage mainly to fit in, to get by at work or school, and to avoid bullying or retaliation (262 adults). A systematic review describes camouflaging as instrumental: to find work, avoid hostility and appear competent."},
+  {n:"2",from:"pressure",to:"disc",pol:"−",delay:false,grade:"C",verdict:"Supported",src:["edw24"],
+   mech:"Expected stigma makes the person less willing to disclose.",
+   ev:"Fear of judgement, discrimination and stigma was a common reason not to disclose, across 3,121 public posts. Some people mask instead of disclosing."},
+  {n:"3",from:"disc",to:"recog",pol:"+",delay:false,grade:"C",verdict:"Supported with qualification",src:["edw24","thom20"],
+   mech:"Disclosure tells the setting what the person needs.",
+   ev:"Disclosure can help others understand the person. Outcomes are mixed: parents of 23 children found that understanding and support often did not follow, and some autistic adults report stigma after disclosing."},
+  {n:"4",from:"staff",to:"recog",pol:"+",delay:false,grade:"C",verdict:"Supported",src:["barg16","guld21","coll26"],
+   mech:"Staff who understand autism notice and name needs that would otherwise be missed.",
+   ev:"Professionals missed autism in late-diagnosed women, and training for teachers and clinicians is recommended to improve recognition. Staff often lack autism knowledge; trainee teachers' knowledge matched the general population."},
+  {n:"5",from:"masking",to:"meltdown",pol:"−",delay:false,grade:"C",verdict:"Supported with qualification",src:["lewis","cook21"],
+   mech:"Masking suppresses visible signs of distress in the setting.",
+   ev:"Adults describe internal meltdowns hidden from others. The suppression holds in the setting only: masking also raises stress (link A1), so distress is delayed, not removed."},
+  {n:"6",from:"meltdown",to:"recog",pol:"+",delay:true,grade:"C",verdict:"Supported with qualification",src:["barg16","guld21"],
+   mech:"Visible distress makes need apparent to others.",
+   ev:"Needs hidden by camouflaging are missed or recognised late. But visible distress is often treated as a behaviour problem rather than a sign of need, so recognition depends on staff understanding."},
+  {n:"7",from:"recog",to:"accom",pol:"+",delay:true,grade:"B",verdict:"Supported with qualification",src:["guld21"],
+   mech:"Recognised need leads to adjustments being put in place.",
+   ev:"Reasonable adjustments are often not made, or not followed through, and waits for assessment and support are long. The link holds but is weak and delayed; the table showed no delay."},
+  {n:"8",from:"accom",to:"masking",pol:"−",delay:true,grade:"C",verdict:"Supported with qualification",src:["cage18","cage19"],
+   mech:"When needs are met, there is less reason to hide them.",
+   ev:"Autistic adults who camouflage report feeling less accepted, and acceptance by others predicts lower stress and depression (111 adults). The evidence concerns acceptance rather than adjustments as such."},
+  {n:"9",from:"meltdown",to:"conflict",pol:"+",delay:false,grade:"B",verdict:"Supported",src:["guld21"],
+   mech:"Distress behaviour is met with sanctions or exclusion.",
+   ev:"Autistic pupils in England were about twice as likely to be excluded as pupils without special educational needs (2018–19). Distress behaviour is often handled under behaviour policies rather than SEND policies."},
+  {n:"10",from:"conflict",to:"pressure",pol:"+",delay:false,grade:"C",verdict:"Supported",src:["cage19","guld21"],
+   mech:"Conflict and sanctions raise the stakes of not fitting in.",
+   ev:"Avoiding retaliation and bullying is the second most common reason autistic adults give for camouflaging. Schools often respond to incidents with zero-tolerance behaviour policies."},
+  {n:"11",from:"masking",to:"exh",pol:"+",delay:true,grade:"B",verdict:"Supported",src:["hull17","cook21"],
+   mech:"Sustained masking uses energy.",
+   ev:"Exhaustion is a consistent consequence of camouflaging. A systematic review links camouflaging to exhaustion, burnout, anxiety and depression."},
+  {n:"12",from:"exh",to:"burnout",pol:"+",delay:true,grade:"B",verdict:"Supported",src:["ray","hig"],
+   mech:"Exhaustion that is not relieved becomes burnout.",
+   ev:"Chronic exhaustion is the defining feature of autistic burnout, together with loss of skills and reduced tolerance to stimulus."},
+  {n:"13",from:"allo",to:"burnout",pol:"+",delay:true,grade:"C",verdict:"Not supported as drawn; reversed",added:true,src:["mce"],
+   mech:"The cumulative cost of stress contributes to burnout.",
+   ev:"The table drew burnout causing allostatic load. Research defines allostatic load as the cumulative cost of repeated stress, which then causes ill-health, so the direction is reversed here. No study has measured allostatic load in autistic people."},
+  {n:"14",from:"burnout",to:"masking",pol:"−",delay:true,grade:"C",verdict:"Supported",src:["ray","hig"],
+   mech:"In burnout the person can no longer sustain masking.",
+   ev:"In burnout, autistic traits become more visible and skills are lost. Being autistic without masking helps recovery."},
+  {n:"15",from:"accom",to:"load",pol:"−",delay:false,grade:"B",verdict:"Supported",src:["stein"],
+   mech:"Adjustments remove or reduce demands.",
+   ev:"In a randomised crossover trial with 162 autistic children, sensory adaptations reduced physiological stress and distressed behaviour."},
+  {n:"16",from:"accom_s",to:"part",pol:"+",delay:false,grade:"C",verdict:"Supported",src:["petty22","guld21"],
+   mech:"Adjustments make it possible to take part.",
+   ev:"Reasonable adjustments are defined by their positive effect on autistic employees' wellbeing and work output. Adjustments not made are a main cause of school exclusion."},
+  {n:"17",from:"conflict",to:"part",pol:"−",delay:false,grade:"B",verdict:"Supported",src:["guld21"],
+   mech:"Exclusion removes the person from education or work.",
+   ev:"Exclusion removes the pupil from school and is linked to isolation from friends and school refusal."},
+  {n:"18",from:"burnout",to:"wellb",pol:"−",delay:false,grade:"B",verdict:"Supported",src:["ray"],
+   mech:"Burnout harms mental health and self-worth.",
+   ev:"Burnout harms health, independent living and quality of life, and is linked to suicidal behaviour."},
+  {n:"V1",from:"load",to:"meltdown",pol:"+",delay:false,grade:"B",verdict:"From View 1",src:["lewis","phung"],
+   mech:"Above a threshold, stress is released as a meltdown.",
+   ev:"View 1 link 16. Meltdowns follow overwhelm from sensory, social, emotional or information stressors. Drawn here because loop B1 closes through it."},
+  {n:"A1",from:"masking",to:"load",pol:"+",delay:false,added:true,grade:"B",verdict:"Added",src:["cage19","cook21"],
+   mech:"Masking is effortful and adds to stress.",
+   ev:"Consistently high camouflagers report more stress and anxiety than consistently low camouflagers (262 adults). Camouflaging is consistently linked to anxiety and depression."},
+  {n:"A2",from:"burnout",to:"meltdown",pol:"+",delay:false,added:true,grade:"C",verdict:"Added",src:["phung","ray"],
+   mech:"Burnout lowers tolerance, so meltdowns become more likely.",
+   ev:"Burnout and meltdowns can occur together; accumulated demands and exhaustion can lead to a meltdown. Burnout includes reduced tolerance to stimulus."},
+  {n:"A3",from:"masking",to:"wellb",pol:"−",delay:true,added:true,grade:"B",verdict:"Added",src:["cook21","cass18"],
+   mech:"Long-term masking harms mental health and self-worth.",
+   ev:"Camouflaging is linked to anxiety, depression and suicide risk, and was identified as a risk marker for suicidality specific to autistic adults."},
+  {n:"A4",from:"conflict",to:"wellb",pol:"−",delay:false,added:true,grade:"C",verdict:"Added",src:["guld21"],
+   mech:"Exclusion damages self-esteem.",
+   ev:"83% of surveyed parents reported lower self-esteem after exclusion. Exclusion is also linked to anxiety and self-harm."},
+  {n:"A5",from:"staff",to:"pressure",pol:"−",delay:false,bend:150,added:true,grade:"C",verdict:"Added (lever)",src:["milton","cromp20","guld21"],
+   mech:"Staff who understand autism expect less conformity.",
+   ev:"Misunderstanding between autistic and non-autistic people runs both ways, yet autistic people are expected to adapt. Communication broke down in mixed groups, not autistic ones (72 participants). Rigid behaviour policies reflect limited understanding."},
+  {n:"A6",from:"load",to:"allo",pol:"+",delay:true,added:true,grade:"C",verdict:"Added",src:["mce"],
+   mech:"Repeated stress builds allostatic load.",
+   ev:"Repeated stress responses produce allostatic load, the cumulative wear on body and brain."}
+];
+
+const LOOPS=[
+  {id:"R3",type:"R",grade:"C",verdict:"Supported with qualification",name:"Masking hides need",paths:[["masking","meltdown","recog","accom"]],
+   how:"The more a person masks, the fewer signs of distress others see. With less visible distress, less need is recognised, so fewer accommodations are put in place. Without accommodations, the person must keep masking.",
+   dir:"Upward, a person who copes on the surface goes unsupported for years; this is the pattern behind late diagnosis. Downward, adjustments reduce the need to mask, so needs become easier to see.",
+   act:"Do not take calm presentation as evidence of no need. Ask the person and their family how they are at home and at the end of the day.",
+   ind:"Difference between presentation in the setting and at home; late or missed diagnosis; distress reported after the day ends.",
+   lev:"Staff understanding; accommodations put in place without waiting for visible distress."},
+  {id:"B1",type:"B",grade:"C",verdict:"Supported with qualification",name:"Visible distress brings support",paths:[["meltdown","recog","accom","load"],["masking","load","meltdown","recog","accom"]],
+   how:"A meltdown makes need visible. Once need is recognised, accommodations are put in place after a delay. Accommodations reduce load and stress, which reduces meltdowns.",
+   dir:"This loop works only when staff read distress as a sign of need. When they read it as misbehaviour, meltdowns lead to exclusion instead (loops B9 and R2).",
+   act:"Treat a meltdown as information about unmet need. Record what came before it and review adjustments.",
+   ind:"Time from first visible distress to adjustments in place; share of incidents followed by a support review rather than a sanction.",
+   lev:"Staff understanding; speed of assessment and adjustment."},
+  {id:"B9",type:"B",grade:"C",verdict:"Supplied as R2; balancing as drawn",name:"Pressure suppresses visible distress",paths:[["meltdown","conflict","pressure","masking"]],
+   how:"A meltdown leads to conflict or exclusion. Conflict increases pressure to conform. Under more pressure the person masks more, so fewer meltdowns are seen in the setting.",
+   dir:"This loop makes the setting look calmer. It does not remove distress; it moves it out of sight (loop R2).",
+   act:"Do not judge a behaviour plan by fewer visible incidents alone. Check stress, exhaustion and wellbeing as well.",
+   ind:"A fall in incidents alongside rising absence, distress at home or signs of exhaustion.",
+   lev:"Staff understanding, which reduces pressure to conform; behaviour policy."},
+  {id:"R2",type:"R",grade:"C",verdict:"Supported once link A1 is added",name:"Exclusion drives hidden stress",paths:[["meltdown","conflict","pressure","masking","load"]],
+   how:"A meltdown leads to conflict or exclusion, which increases pressure to conform. The person masks more. Masking adds to stress, and higher stress leads to further meltdowns.",
+   dir:"Upward, sanctions and exclusion build stress that later breaks through. Downward, lower pressure reduces masking and stress.",
+   act:"Replace sanctions for distress with adjustments. Reduce demands to conform where they are not essential.",
+   ind:"Repeated exclusions; meltdowns that return after a period of apparent calm.",
+   lev:"Staff understanding; behaviour policy; accommodations."},
+  {id:"R4",type:"R",grade:"C",verdict:"Closed by link A2",name:"Masking leads to burnout and crisis",paths:[["masking","exh","burnout","meltdown","conflict","pressure"],["masking","load","allo","burnout","meltdown","conflict","pressure"]],
+   how:"Sustained masking causes exhaustion and, through stress, allostatic load. Both build into autistic burnout over months. Burnout lowers tolerance, so meltdowns become more likely. Meltdowns bring conflict and pressure to conform, which drives more masking.",
+   dir:"Upward, a person who masked successfully for years reaches burnout and crisis. Downward, lower pressure to mask allows energy to recover.",
+   act:"Reduce the need to mask before exhaustion builds. Treat signs of exhaustion in a person who appears to cope well as a warning.",
+   ind:"Growing fatigue, withdrawal and loss of skills in someone who has masked well.",
+   lev:"Staff understanding; accommodations; acceptance."},
+  {id:"B4",type:"B",grade:"C",verdict:"Supported",name:"Burnout breaks the mask",paths:[["masking","exh","burnout"],["masking","load","allo","burnout"]],
+   how:"Masking leads to exhaustion and, through stress, to allostatic load. Both build towards burnout. In burnout the person can no longer mask, so masking falls.",
+   dir:"This loop limits masking only at great cost: masking stops because the person is depleted, not because the setting has changed.",
+   act:"When someone stops masking, treat it as a sign of depletion, not of new behaviour problems. Reduce demands and support recovery.",
+   ind:"Sudden visibility of autistic traits; loss of skills; increased need for withdrawal.",
+   lev:"The upstream levers that reduce masking before burnout."}
+];
+
+const ISSUES=[
+  ["Loop R2 is balancing as drawn","Meltdown → Conflict → Pressure to conform → Masking → Meltdown","The path has one negative link (masking reduces visible meltdown), so it counteracts change rather than reinforcing it.","Kept as B9, \"Pressure suppresses visible distress\". R2 now runs through masking to load and stress (A1), which research supports, and is reinforcing."],
+  ["Loop R4 does not close","Masking → Exhaustion → Autistic burnout → Allostatic load","The chain ends at allostatic load, so it is not a feedback loop.","Burnout makes meltdowns more likely (A2), which closes R4 through conflict and pressure to conform."],
+  ["Allostatic load drawn in the wrong direction","Autistic burnout → Allostatic load","Research defines allostatic load as the cumulative cost of repeated stress, which leads to ill-health.","Reversed: load and stress build allostatic load (A6), which contributes to burnout (link 13)."],
+  ["Polarity depends on the setting","Masking → Meltdown","Masking suppresses distress in the setting, but the stress it causes is released later or elsewhere.","Kept as negative for the setting. Added masking to load and stress (A1)."],
+  ["Pressure to conform shown as a fixed input","Pressure to conform","Research shows it responds to staff understanding as well as to conflict.","Staff understanding now reduces pressure to conform (A5) and is shown as a lever."],
+  ["Outcomes are end points","Participation; Wellbeing and self-esteem","Acceptable for outcome measures, but low self-esteem may feed back into masking.","No change. See open question 1."],
+  ["Loop B1 closes only through View 1","Load / stress → Meltdown","Without the View 1 link the loop cannot be traced in this view.","The View 1 link is drawn here as V1."]
+];
+
+const byId=Object.fromEntries(NODES.map(n=>[n.id,n]));
+const canon=id=>byId[id].alias||id;
+const key=(a,b)=>a+">"+b;
+const linkMap={};
+LINKS.forEach((l,i)=>{l.idx=i;l.loops=[];linkMap[key(canon(l.from),canon(l.to))]=l;});
+NODES.forEach(n=>n.loops=[]);
+LOOPS.forEach(lp=>{
+  lp.links=[];lp.nodes=new Set();lp.pathLinks=[];
+  lp.paths.forEach(p=>{
+    const pl=[];
+    p.forEach((n,i)=>{
+      lp.nodes.add(n);
+      const l=linkMap[key(n,p[(i+1)%p.length])];
+      if(!l){console.error("Missing link",n,p[(i+1)%p.length]);return;}
+      pl.push(l); if(!lp.links.includes(l)) lp.links.push(l);
+      if(!l.loops.includes(lp.id)) l.loops.push(lp.id);
+    });
+    lp.pathLinks.push(pl);
+    const neg=pl.filter(l=>l.pol==="−").length;
+    if((neg%2===0?"R":"B")!==lp.type) console.error("Loop type mismatch",lp.id,neg);
+    pl.neg=neg;
+  });
+  lp.nodes.forEach(n=>{if(!byId[n].loops.includes(lp.id)) byId[n].loops.push(lp.id);});
+});
+const loopById=Object.fromEntries(LOOPS.map(l=>[l.id,l]));
+const plain=s=>s.replace(/\n/g," ");
+const nm=id=>plain(byId[canon(id)].label);
+
+/* ---------- geometry ---------- */
+const q=(a,c,b,t)=>({x:(1-t)*(1-t)*a.x+2*(1-t)*t*c.x+t*t*b.x,y:(1-t)*(1-t)*a.y+2*(1-t)*t*c.y+t*t*b.y});
+const dq=(a,c,b,t)=>({x:2*(1-t)*(c.x-a.x)+2*t*(b.x-c.x),y:2*(1-t)*(c.y-a.y)+2*t*(b.y-c.y)});
+const norm=v=>{const L=Math.hypot(v.x,v.y)||1;return {x:v.x/L,y:v.y/L};};
+const inRect=(n,p,pad)=>Math.abs(p.x-n.x)<=n.hw+pad&&Math.abs(p.y-n.y)<=n.hh+pad;
+const rectDist=(n,p)=>Math.hypot(Math.max(Math.abs(p.x-n.x)-n.hw,0),Math.max(Math.abs(p.y-n.y)-n.hh,0));
+const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+function ctrl(a,b,bend){const dx=b.x-a.x,dy=b.y-a.y,L=Math.hypot(dx,dy);return {x:(a.x+b.x)/2-dy/L*bend,y:(a.y+b.y)/2+dx/L*bend};}
+function geom(l){
+  const a=byId[l.from],b=byId[l.to],c=ctrl(a,b,l.bend||0),P=t=>q(a,c,b,t);
+  let lo=0,hi=.5;for(let i=0;i<30;i++){const m=(lo+hi)/2;if(inRect(a,P(m),5))lo=m;else hi=m;}const t0=hi;
+  lo=.5;hi=1;for(let i=0;i<30;i++){const m=(lo+hi)/2;if(inRect(b,P(m),6))hi=m;else lo=m;}const t1=lo;
+  const p0=P(t0),p1=P(t1);
+  const w0=(1-t0)*(1-t1),w1=(1-t0)*t1+t0*(1-t1),w2=t0*t1;
+  return {p0,cc:{x:w0*a.x+w1*c.x+w2*b.x,y:w0*a.y+w1*c.y+w2*b.y},p1};
+}
+
+/* ---------- build SVG ---------- */
+const svg=document.getElementById("cld");
+const el=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;};
+const gSec=el("g",{},svg),gLinks=el("g",{},svg),gMarks=el("g",{},svg),gNodes=el("g",{},svg);
+
+function placeLabels(){
+  // Try positions along each link and on both sides; keep the first that clears nodes, other labels and other links.
+  const placed=[];
+  LINKS.forEach(l=>{
+    const G=l.G,cands=[];
+    let sEnd=1;while(sEnd>0.3){const p=q(G.p0,G.cc,G.p1,sEnd);if(Math.hypot(p.x-G.p1.x,p.y-G.p1.y)>=30)break;sEnd-=.005;}
+    const pref=(l.bend||0)<0?-1:1;
+    [sEnd,0.72,0.6,0.5,0.4,0.3].forEach(s=>[pref,-pref].forEach(side=>{
+      const p=q(G.p0,G.cc,G.p1,s),td=norm(dq(G.p0,G.cc,G.p1,s));
+      cands.push({x:p.x-td.y*side*13,y:p.y+td.x*side*13});
+    }));
+    let best=null,bestScore=-1;
+    for(const c of cands){
+      let m=Infinity;
+      NODES.forEach(n=>{m=Math.min(m,rectDist(n,c)-9);});
+      placed.forEach(p=>{m=Math.min(m,dist(p,c)-24);});
+      LINKS.forEach(o=>{if(o===l)return;o.samples.forEach(s=>{m=Math.min(m,dist(s,c)-10);});});
+      if(m>=0){best=c;break;}
+      if(m>bestScore){bestScore=m;best=c;}
+    }
+    l.lp=best;placed.push(best);
+  });
+}
+
+function placeMarkers(){
+  const placed=[];
+  const labels=LINKS.map(l=>l.lp);
+  LOOPS.forEach(lp=>{
+    const pl=lp.pathLinks[0];
+    const poly=pl.map(l=>byId[l.from]);
+    const cx=poly.reduce((s,p)=>s+p.x,0)/poly.length,cy=poly.reduce((s,p)=>s+p.y,0)/poly.length;
+    let area=0;for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length];area+=a.x*b.y-b.x*a.y;}
+    lp.cw=area>0;
+    if(lp.marker){lp.mpos=lp.marker;placed.push(lp.marker);return;}
+    const xs=poly.map(p=>p.x),ys=poly.map(p=>p.y);
+    const inside=(x,y)=>{let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if(((a.y>y)!==(b.y>y))&&(x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x))c=!c;}return c;};
+    let best=null,bestScore=-Infinity;
+    for(let x=Math.min(...xs)-40;x<=Math.max(...xs)+40;x+=6)for(let y=Math.min(...ys)-40;y<=Math.max(...ys)+40;y+=6){
+      const p={x,y};
+      let m=Infinity;
+      NODES.forEach(n=>{m=Math.min(m,rectDist(n,p)-24);});
+      LINKS.forEach(o=>o.samples.forEach(s=>{m=Math.min(m,dist(s,p)-22);}));
+      labels.forEach(s=>{m=Math.min(m,dist(s,p)-31);});
+      placed.forEach(s=>{m=Math.min(m,dist(s,p)-48);});
+      const score=Math.min(m,30)-(inside(x,y)?0:25)-0.04*Math.hypot(x-cx,y-cy);
+      if(score>bestScore){bestScore=score;best=p;}
+    }
+    lp.mpos=best;placed.push(best);
+  });
+}
+
+function build(){
+  SECTORS.forEach(s=>{
+    const g=el("g",{class:"sector"},gSec);g.style.setProperty("--sec",`var(${s.fill})`);
+    el("rect",{x:s.x,y:s.y,width:s.w,height:s.h,rx:12},g);
+    el("text",{x:s.x+14,y:s.y+22},g).textContent=s.label;
+  });
+  NODES.forEach(n=>{
+    const cls="node"+(n.lever?" lever":"")+(n.linked?" linked":"")+(n.alias?" shadow":"")+(n.outcome?" outcome":"");
+    const g=el("g",{class:cls,tabindex:"0",role:"button","aria-label":plain(n.label)+(n.alias?" (copy)":"")},gNodes);
+    n.g=g;
+    if(n.alias){const sec=SECTORS.find(s=>s.id===n.sector);g.style.setProperty("--sec",`var(${sec.fill})`);}
+    const rect=el("rect",{class:"box",rx:7},g);
+    const t=el("text",{class:"lab","text-anchor":"middle"},g);
+    const lines=(n.alias?`<${n.label}>`:n.label).split("\n");
+    lines.forEach((ln,i)=>{const ts=el("tspan",{x:n.x,dy:i===0?`${0.35-(lines.length-1)*0.6}em`:"1.2em"},t);ts.textContent=ln;});
+    t.setAttribute("y",n.y);
+    const bb=t.getBBox();
+    n.hw=n.alias?bb.width/2+6:Math.max(bb.width/2+14,42);n.hh=bb.height/2+(n.alias?4:8);
+    rect.setAttribute("x",n.x-n.hw);rect.setAttribute("y",n.y-n.hh);rect.setAttribute("width",2*n.hw);rect.setAttribute("height",2*n.hh);
+    const capText=[n.lever?"LEVER":null,n.outcome?"OUTCOME":null,n.linked?"FROM "+n.linked.toUpperCase():null].filter(Boolean).join(" · ");
+    if(capText) el("text",{class:"cap",x:n.x,y:(n.linked&&!n.lever)?n.y-n.hh-6:n.y+n.hh+13,"text-anchor":"middle"},g).textContent=capText;
+    g.addEventListener("click",e=>{e.stopPropagation();selectNode(canon(n.id));});
+    g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectNode(canon(n.id));}});
+  });
+  LINKS.forEach(l=>{
+    l.G=geom(l);const G=l.G;
+    l.samples=[];for(let i=0;i<=48;i++)l.samples.push(q(G.p0,G.cc,G.p1,i/48));
+  });
+  placeLabels();
+  LINKS.forEach(l=>{
+    const G=l.G;
+    const g=el("g",{class:`link g${l.grade}`+(l.added?" added":""),tabindex:"0",role:"button","aria-label":`Link ${l.n}: ${nm(l.from)} to ${nm(l.to)}, ${l.pol==="+"?"same direction":"opposite direction"}`},gLinks);l.g=g;
+    const d=`M${G.p0.x},${G.p0.y} Q${G.cc.x},${G.cc.y} ${G.p1.x},${G.p1.y}`;
+    el("path",{class:"hit",d},g);
+    el("path",{class:"ln",d},g);
+    const dv=norm({x:G.p1.x-G.cc.x,y:G.p1.y-G.cc.y}),nn={x:-dv.y,y:dv.x},bs={x:G.p1.x-dv.x*11,y:G.p1.y-dv.y*11};
+    el("path",{class:"ah",d:`M${G.p1.x},${G.p1.y} L${bs.x+nn.x*4.8},${bs.y+nn.y*4.8} L${bs.x-nn.x*4.8},${bs.y-nn.y*4.8} Z`},g);
+    if(l.delay){
+      const m=q(G.p0,G.cc,G.p1,.5),td=norm(dq(G.p0,G.cc,G.p1,.5)),tn={x:-td.y,y:td.x};
+      [-3,3].forEach(o=>el("line",{class:"dl",x1:m.x+td.x*o-tn.x*7,y1:m.y+td.y*o-tn.y*7,x2:m.x+td.x*o+tn.x*7,y2:m.y+td.y*o+tn.y*7},g));
+    }
+    el("circle",{class:"pc",cx:l.lp.x,cy:l.lp.y,r:8.5},g);
+    el("text",{class:"pt",x:l.lp.x,y:l.lp.y+0.5},g).textContent=l.pol;
+    g.addEventListener("click",e=>{e.stopPropagation();selectLink(l.idx);});
+    g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selectLink(l.idx);}});
+  });
+  placeMarkers();
+  LOOPS.forEach(lp=>{
+    const {x:cx,y:cy}=lp.mpos,cw=lp.cw;
+    const g=el("g",{class:"marker "+lp.type},gMarks);
+    const r=18,P=a=>({x:cx+r*Math.cos(a*Math.PI/180),y:cy+r*Math.sin(a*Math.PI/180)});
+    const a0=cw?-140:-40,a1=cw?110:-290,s0=P(a0),s1=P(a1);
+    el("path",{class:"arc",d:`M${s0.x},${s0.y} A${r},${r} 0 1 ${cw?1:0} ${s1.x},${s1.y}`},g);
+    const ar=a1*Math.PI/180,tg=cw?{x:-Math.sin(ar),y:Math.cos(ar)}:{x:Math.sin(ar),y:-Math.cos(ar)},tn={x:-tg.y,y:tg.x};
+    el("path",{d:`M${s1.x+tg.x*5},${s1.y+tg.y*5} L${s1.x-tg.x*2+tn.x*3.6},${s1.y-tg.y*2+tn.y*3.6} L${s1.x-tg.x*2-tn.x*3.6},${s1.y-tg.y*2-tn.y*3.6} Z`},g);
+    el("circle",{class:"mc",cx,cy,r:13},g);
+    el("text",{x:cx,y:cy+0.5},g).textContent=lp.id;
+    g.addEventListener("click",e=>{e.stopPropagation();selectLoop(lp.id);});
+    lp.markers=[{g,x:cx,y:cy}];
+  });
+  svg.addEventListener("click",()=>showAll());
+}
+
+/* ---------- state ---------- */
+const state={loop:null,node:null,link:null,levers:true,colour:"none"};
+const linkVisible=l=>state.levers||!(byId[l.from].lever||byId[l.to].lever);
+const nodeVisible=n=>state.levers||!n.lever;
+
+function apply(){
+  let aL=null,aN=null;
+  if(state.loop){const lp=loopById[state.loop];aL=new Set(lp.links);aN=lp.nodes;}
+  else if(state.node){aL=new Set(LINKS.filter(l=>canon(l.from)===state.node||canon(l.to)===state.node));aN=new Set([state.node]);aL.forEach(l=>{aN.add(canon(l.from));aN.add(canon(l.to));});}
+  else if(state.link!==null){const l=LINKS[state.link];aL=new Set([l]);aN=new Set([canon(l.from),canon(l.to)]);}
+  LINKS.forEach(l=>{
+    l.g.style.display=linkVisible(l)?"":"none";
+    l.g.classList.toggle("dim",!!aL&&!aL.has(l));
+    l.g.classList.toggle("hl",!!aL&&aL.has(l));
+  });
+  NODES.forEach(n=>{
+    n.g.style.display=nodeVisible(n)?"":"none";
+    n.g.classList.toggle("dim",!!aN&&!aN.has(canon(n.id)));
+    n.g.classList.toggle("sel",state.node===canon(n.id));
+  });
+  const anySel=!!(state.loop||state.node||state.link!==null);
+  LOOPS.forEach(lp=>lp.markers.forEach(m=>m.g.classList.toggle("dim",anySel&&state.loop!==lp.id&&!(state.node&&lp.nodes.has(state.node)))));
+  document.querySelectorAll("#loopbtns .lbtn").forEach(b=>b.setAttribute("aria-pressed",String(state.loop===b.dataset.loop)));
+  document.getElementById("showall").setAttribute("aria-pressed",String(!anySel));
+  svg.setAttribute("class","c-"+state.colour);
+  renderLegend();renderInfo();runCheck();
+}
+function selectLoop(id){state.loop=id;state.node=null;state.link=null;apply();}
+function selectNode(id){state.node=id;state.loop=null;state.link=null;apply();}
+function selectLink(i){state.link=i;state.loop=null;state.node=null;apply();}
+function showAll(){state.loop=null;state.node=null;state.link=null;apply();}
+
+function renderLegend(){
+  const box=document.getElementById("colour-legend");
+  if(state.colour==="grade"){
+    box.innerHTML=`<svg width="30" height="10" viewBox="0 0 30 10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--gb)" stroke-width="2.4"/></svg>Grade B &nbsp; <svg width="30" height="10" viewBox="0 0 30 10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--gc)" stroke-width="1.6"/></svg>Grade C`;
+  } else if(state.colour==="added"){
+    box.innerHTML=`<svg width="30" height="10" viewBox="0 0 30 10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--prop)" stroke-width="2.4"/></svg>Added or reversed by the evidence review`;
+  } else box.innerHTML="";
+}
+
+/* ---------- info panel ---------- */
+const info=document.getElementById("info");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const gradeTag=g=>`<span class="grade g${String(g).charAt(0)}">Grade ${esc(g)}</span>`;
+function traceHTML(pl){
+  let h=esc(nm(pl[0].from));
+  pl.forEach(l=>{h+=` → <span class="sg" title="${l.pol==="+"?"same direction":"opposite direction"}">${l.pol}</span> ${esc(nm(l.to))}`;});
+  return h;
+}
+function srcList(keys){return `<ul>${keys.map(k=>`<li><a href="${S[k][1]}" target="_blank" rel="noopener">${esc(S[k][0])}</a></li>`).join("")}</ul>`;}
+function renderInfo(){
+  if(state.loop){
+    const lp=loopById[state.loop];
+    const tname=lp.type==="R"?"Reinforcing":"Balancing";
+    const negs=lp.pathLinks.map(pl=>pl.neg);
+    const negText=lp.pathLinks.length>1
+      ?`Negative links per path: ${negs.join(" and ")} (${negs[0]%2?"odd":"even"}), so each path is ${tname.toLowerCase()}.`
+      :`${negs[0]} negative link${negs[0]===1?"":"s"} (${negs[0]%2?"odd":"even"}), so the loop is ${tname.toLowerCase()}.`;
+    info.innerHTML=`<div class="head"><h3>${lp.id} · ${esc(lp.name)}</h3><span class="tag ${lp.type}">${tname}</span>${gradeTag(lp.grade)}<span class="badge">${esc(lp.verdict)}</span></div>
+    <div class="trace">${lp.pathLinks.map(pl=>`<div>${traceHTML(pl)}</div>`).join("")}<div>${negText}</div></div>
+    <dl class="dl"><dt>How it works</dt><dd>${esc(lp.how)}</dd><dt>Direction</dt><dd>${esc(lp.dir)}</dd><dt>What you can do</dt><dd class="act">${esc(lp.act)}</dd><dt>Indicators</dt><dd>${esc(lp.ind)}</dd><dt>Levers</dt><dd>${esc(lp.lev)}</dd></dl>`;
+  } else if(state.link!==null){
+    const l=LINKS[state.link];
+    info.innerHTML=`<div class="head"><h3>Link ${l.n} · ${esc(nm(l.from))} → ${esc(nm(l.to))}</h3><span class="badge">${l.pol==="+"?"+ same direction":"− opposite direction"}</span>${l.delay?'<span class="badge">Delayed</span>':""}${gradeTag(l.grade)}<span class="badge">${esc(l.verdict)}</span></div>
+    <dl class="dl"><dt>Mechanism</dt><dd>${esc(l.mech)}</dd><dt>Evidence</dt><dd>${esc(l.ev)}</dd><dt>Loops</dt><dd>${l.loops.length?l.loops.join(", "):"Not part of a loop"}</dd><dt>Sources</dt><dd>${srcList(l.src)}</dd></dl>`;
+  } else if(state.node){
+    const n=byId[state.node];
+    const ins=LINKS.filter(l=>canon(l.to)===n.id&&linkVisible(l)),outs=LINKS.filter(l=>canon(l.from)===n.id&&linkVisible(l));
+    const lk=l=>`<button class="lbtn" data-link="${l.idx}"><span class="t">${l.n}</span>${esc(nm(canon(l.from)===n.id?l.to:l.from))} (${l.pol}${l.delay?", delayed":""})</button>`;
+    info.innerHTML=`<div class="head"><h3>${esc(plain(n.label))}</h3><span class="badge">${esc(n.type)}</span><span class="badge">${esc(n.units)}</span>${n.lever?'<span class="badge lev">Lever</span>':""}${n.outcome?'<span class="badge">Outcome</span>':""}${n.linked?`<span class="badge">From ${esc(n.linked)}</span>`:""}${gradeTag(n.grade)}</div>
+    <p>${esc(n.desc)}</p>
+    <dl class="dl"><dt>Research construct</dt><dd>${esc(n.construct)}</dd>
+    <dt>Affected by</dt><dd><div class="chips">${ins.length?ins.map(lk).join(""):"Nothing in this view. It is an input."}</div></dd>
+    <dt>Affects</dt><dd><div class="chips">${outs.length?outs.map(lk).join(""):"Nothing in this view. It is an outcome."}</div></dd>
+    <dt>Loops</dt><dd><div class="chips">${n.loops.length?n.loops.map(id=>`<button class="lbtn" data-type="${loopById[id].type}" data-go="${id}"><span class="t">${id}</span>${esc(loopById[id].name)}</button>`).join(""):"Not part of a loop in this view."}</div></dd></dl>`;
+    info.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>selectLoop(b.dataset.go)));
+    info.querySelectorAll("[data-link]").forEach(b=>b.addEventListener("click",()=>selectLink(+b.dataset.link)));
+  } else {
+    info.innerHTML=`<div class="head"><h3>View 2 · Masking, burnout and support</h3></div>
+    <p>Masking sits at the centre. Pressure to conform drives it. It hides need, so support does not arrive (R3). It adds to stress and exhaustion, which build into burnout (R4). Visible distress can bring support (B1), but it can also bring exclusion and more pressure to mask (B9, R2). Burnout eventually breaks the mask, at great cost (B4).</p>
+    <p class="note">Select a + or − sign to see the evidence for a link. Select a loop button or marker to trace a loop, or a variable to see its links. Names in angle brackets are copies of a variable drawn elsewhere. Press Escape to return here.</p>`;
+  }
+}
+
+/* ---------- layout check ---------- */
+function runCheck(){
+  const issues=[];
+  const vL=LINKS.filter(linkVisible),vN=NODES.filter(nodeVisible);
+  const vM=[];LOOPS.forEach(lp=>lp.markers.forEach(m=>vM.push({id:lp.id,...m})));
+  for(let i=0;i<vL.length;i++)for(let j=i+1;j<vL.length;j++){const d=dist(vL[i].lp,vL[j].lp);if(d<24)issues.push(`Labels ${vL[i].n} and ${vL[j].n} are ${d.toFixed(0)}px apart`);}
+  vL.forEach(l=>{
+    vN.forEach(n=>{if(inRect(n,l.lp,9))issues.push(`Label ${l.n} overlaps node ${n.id}`);});
+    vL.forEach(o=>{if(o===l)return;const m=Math.min(...o.samples.map(p=>dist(p,l.lp)));if(m<9)issues.push(`Label ${l.n} sits on link ${o.n}`);});
+    l.samples.slice(3,-3).forEach(p=>vN.forEach(n=>{if(n.id!==l.from&&n.id!==l.to&&inRect(n,p,2))issues.push(`Link ${l.n} crosses node ${n.id}`);}));
+  });
+  vM.forEach(m=>{
+    vN.forEach(n=>{if(inRect(n,m,22))issues.push(`Marker ${m.id} overlaps node ${n.id}`);});
+    vL.forEach(l=>{const d=Math.min(...l.samples.map(p=>dist(p,m)));if(d<20)issues.push(`Marker ${m.id} is ${d.toFixed(0)}px from link ${l.n}`);if(dist(l.lp,m)<30)issues.push(`Marker ${m.id} is close to label ${l.n}`);});
+  });
+  for(let i=0;i<vM.length;i++)for(let j=i+1;j<vM.length;j++)if(dist(vM[i],vM[j])<44)issues.push(`Markers ${vM[i].id} and ${vM[j].id} overlap`);
+  const uniq=[...new Set(issues)];
+  window.__layoutIssues=uniq;
+  document.getElementById("checkline").textContent=uniq.length?`Layout check: ${uniq.length} placement issue${uniq.length>1?"s":""} in the current view.`:"Layout check: no polarity label or loop marker overlaps a node, a link or another label in the current view.";
+  if(uniq.length)console.warn("LAYOUT",JSON.stringify(uniq));else console.log("LAYOUT OK");
+}
+
+/* ---------- tables ---------- */
+function tables(){
+  document.getElementById("t-issues").innerHTML=`<thead><tr><th>Issue</th><th>Where</th><th>Why it matters</th><th>Correction</th></tr></thead><tbody>${ISSUES.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td class="wide">${esc(r[2])}</td><td class="wide">${esc(r[3])}</td></tr>`).join("")}</tbody>`;
+  document.getElementById("t-links").innerHTML=`<thead><tr><th>#</th><th>From</th><th>To</th><th>Polarity</th><th>Delay</th><th>Loops</th><th>Mechanism</th><th>Evidence</th><th>Grade</th><th>Verdict</th></tr></thead><tbody>${
+    LINKS.map(l=>`<tr class="${l.added?"added":""}"><td class="num">${l.n}</td><td>${esc(nm(l.from))}</td><td>${esc(nm(l.to))}</td><td class="mono">${l.pol}</td><td>${l.delay?"Yes":"No"}</td><td class="mono">${l.loops.length?l.loops.join(", "):"—"}</td><td class="wide">${esc(l.mech)}</td><td class="wide">${esc(l.ev)} ${l.src.map(k=>`<a href="${S[k][1]}" target="_blank" rel="noopener">${esc(S[k][0].split(",")[0])}</a>`).join("; ")}</td><td>${gradeTag(l.grade)}</td><td>${esc(l.verdict)}</td></tr>`).join("")}</tbody>`;
+  document.getElementById("t-loops").innerHTML=`<thead><tr><th>ID</th><th>Name</th><th>Type</th><th>Links in order</th><th>Negative links</th><th>Grade</th><th>Verdict</th></tr></thead><tbody>${
+    LOOPS.map(lp=>`<tr><td class="mono">${lp.id}</td><td>${esc(lp.name)}</td><td>${lp.type==="R"?"Reinforcing":"Balancing"}</td><td class="wide"><div class="trace">${lp.pathLinks.map(pl=>`<div>${traceHTML(pl)}</div>`).join("")}</div></td><td class="num">${lp.pathLinks.map(pl=>pl.neg).join(" / ")}</td><td>${gradeTag(lp.grade)}</td><td>${esc(lp.verdict)}</td></tr>`).join("")}</tbody>`;
+  document.getElementById("t-vars").innerHTML=`<thead><tr><th>Variable</th><th>Description</th><th>Research construct</th><th>Type (provisional)</th><th>Units</th><th>Sector</th><th>Role</th><th>Grade</th></tr></thead><tbody>${
+    NODES.filter(n=>!n.alias).map(n=>`<tr><td class="${n.type==="Stock"?"stock":""}">${esc(plain(n.label))}</td><td class="wide">${esc(n.desc)}</td><td>${esc(n.construct)}</td><td class="${n.type==="Stock"?"stock":""}">${esc(n.type)}</td><td>${esc(n.units)}</td><td>${esc(secName[n.sector])}</td><td>${[n.lever?'<span class="badge lev">Lever</span>':"",n.outcome?'<span class="badge">Outcome</span>':"",n.linked?`<span class="badge">From ${n.linked}</span>`:""].join(" ").trim()||"—"}</td><td>${gradeTag(n.grade)}</td></tr>`).join("")}</tbody>`;
+}
+
+/* ---------- controls and help ---------- */
+let pop=null;
+function closePop(){if(pop){pop.remove();pop=null;return true;}return false;}
+function controls(){
+  const box=document.getElementById("loopbtns");
+  LOOPS.forEach(lp=>{
+    const b=document.createElement("button");b.className="lbtn";b.dataset.loop=lp.id;b.dataset.type=lp.type;b.setAttribute("aria-pressed","false");
+    b.innerHTML=`<span class="t">${lp.id}</span>${esc(lp.name)}`;
+    b.addEventListener("click",()=>state.loop===lp.id?showAll():selectLoop(lp.id));box.appendChild(b);
+  });
+  document.getElementById("showall").addEventListener("click",showAll);
+  document.getElementById("tg-levers").addEventListener("change",e=>{state.levers=e.target.checked;if(state.node&&byId[state.node].lever&&!state.levers)state.node=null;if(state.link!==null&&!linkVisible(LINKS[state.link]))state.link=null;apply();});
+  document.getElementById("colour").addEventListener("change",e=>{state.colour=e.target.value;apply();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(closePop())return;showAll();}});
+  const HELP={
+    loops:"Each button traces one feedback loop and explains it above the diagram, with its evidence grade. R loops reinforce change in whichever direction it is moving. B loops counteract change. Some loops have two paths; both are highlighted.",
+    levers:"Levers are factors that people supporting the individual can change. They have an amber outline. Untick to hide the levers and their links.",
+    colour:"Evidence grade colours each link by the strength of its research support: B, published evidence from autistic people; C, related populations, theory, or qualitative and parent-report evidence. Changed by evidence highlights links the research review added or reversed.",
+    diagram:"Select a + or − sign to see the mechanism, evidence and sources for that link. Select a variable to see its links. A + sign means both variables move in the same direction; a − sign means they move in opposite directions. Neither sign means good or bad. Two short bars across a link mark a significant delay. Dashed boxes are variables brought in from View 1."
+  };
+  document.querySelectorAll(".help").forEach(b=>b.addEventListener("click",e=>{
+    e.stopPropagation();closePop();
+    pop=document.createElement("div");pop.className="pop";pop.setAttribute("role","dialog");
+    pop.innerHTML=`<button class="x" aria-label="Close help">Close ✕</button><div>${esc(HELP[b.dataset.help])}</div>`;
+    document.body.appendChild(pop);
+    const r=b.getBoundingClientRect(),w=Math.min(340,window.innerWidth-32);
+    pop.style.width=w+"px";
+    pop.style.left=Math.max(16,Math.min(window.scrollX+r.left,window.scrollX+window.innerWidth-w-16))+"px";
+    pop.style.top=(window.scrollY+r.bottom+8)+"px";
+    pop.querySelector(".x").addEventListener("click",closePop);
+    pop.addEventListener("click",ev=>ev.stopPropagation());
+    pop.querySelector(".x").focus();
+  }));
+  document.addEventListener("click",()=>closePop());
+}
+
+function start(){build();controls();tables();apply();}
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(start,start);
+})();
+</script>
+
+</body></html>
